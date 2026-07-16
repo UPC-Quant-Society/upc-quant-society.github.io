@@ -1,0 +1,95 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import type { Lang, PageData } from '../data/site';
+import { ui } from '../data/site';
+
+type Props = {
+  lang: Lang;
+  slug: string;
+  page: PageData;
+};
+
+const { lang, slug, page } = Astro.props;
+const t = ui[lang];
+---
+
+<BaseLayout lang={lang} slug={slug} title={page.title} description={page.description}>
+  <section class="page-hero shell">
+    <p class="eyebrow">{page.eyebrow}</p>
+    <h1>{page.title}</h1>
+    <p class="page-intro">{page.intro}</p>
+  </section>
+
+  <div class="page-layout shell">
+    <aside class="page-index">
+      <span>{t.onThisPage}</span>
+      <nav aria-label={t.onThisPage}>
+        {page.sections.map((section) => (
+          <a href={`#${section.id}`}>{section.title}</a>
+        ))}
+      </nav>
+    </aside>
+
+    <div class="page-sections">
+      {page.sections.map((section) => (
+        <section class="content-section" id={section.id}>
+          <div class="section-heading">
+            {section.kicker && <span class="section-number">{section.kicker}</span>}
+            <h2>{section.title}</h2>
+          </div>
+
+          {section.body && (
+            <div class="body-copy">
+              {section.body.map((paragraph) => <p>{paragraph}</p>)}
+            </div>
+          )}
+
+          {section.cards && (
+            <div class:list={['card-grid', { 'three-columns': section.cards.length === 3 }]}>
+              {section.cards.map((card) => (
+                <article class:list={['info-card', { linked: Boolean(card.href) }]}>
+                  {card.status && <span class="status">{card.status}</span>}
+                  {card.label && <span class="card-label">{card.label}</span>}
+                  <h3>{card.title}</h3>
+                  <p>{card.text}</p>
+                  {card.href && (
+                    <a href={card.href} aria-label={`${t.viewPage}: ${card.title}`}>
+                      {t.viewPage} <span aria-hidden="true">↗</span>
+                    </a>
+                  )}
+                </article>
+              ))}
+            </div>
+          )}
+
+          {section.people && (
+            <div class="people-grid">
+              {section.people.map((person) => (
+                <article class="person-card">
+                  <div class="person-initials" aria-hidden="true">
+                    {person.name.split(' ').slice(0, 2).map((part) => part[0]).join('')}
+                  </div>
+                  <div>
+                    <span>{person.role}</span>
+                    <h3>{person.name}</h3>
+                    <p>{person.description}</p>
+                  </div>
+                </article>
+              ))}
+            </div>
+          )}
+
+          {section.note && (
+            <div class:list={['note', section.note.tone === 'green' ? 'note-green' : 'note-neutral']}>
+              <span>{section.note.tone === 'green' ? '//' : '—'}</span>
+              <div>
+                <h3>{section.note.title}</h3>
+                <p>{section.note.text}</p>
+              </div>
+            </div>
+          )}
+        </section>
+      ))}
+    </div>
+  </div>
+</BaseLayout>

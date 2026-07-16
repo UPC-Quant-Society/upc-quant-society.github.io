@@ -1,0 +1,17 @@
+---
+type Props = {
+  lang: 'ca' | 'en';
+  compact?: boolean;
+};
+
+const { lang, compact = false } = Astro.props;
+---
+
+<a class:list={['logo', { compact }]} href={`/${lang}/`} aria-label="UPC Quant Society">
+  <span class="logo-mark" aria-hidden="true">
+    <span>Q</span><span>S</span><i></i>
+  </span>
+  {!compact && (
+    <span class="logo-name">UPC Quant<br />Society</span>
+  )}
+</a>

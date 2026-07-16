@@ -1,0 +1,35 @@
+---
+import Logo from './Logo.astro';
+import { contactEmail, githubUrl, ui, type Lang } from '../data/site';
+
+type Props = {
+  lang: Lang;
+};
+
+const { lang } = Astro.props;
+const t = ui[lang];
+---
+
+<footer class="site-footer">
+  <div class="shell footer-grid">
+    <div>
+      <Logo lang={lang} />
+      <p class="footer-description">{t.footerText}</p>
+    </div>
+    <div class="footer-links">
+      <a href={githubUrl} target="_blank" rel="noreferrer">GitHub</a>
+      <a href={`mailto:${contactEmail}`}>Email</a>
+      <a href={`/${lang}/${lang === 'ca' ? 'participa' : 'join'}/`}>
+        {lang === 'ca' ? 'Participa' : 'Join'}
+      </a>
+    </div>
+    <div class="footer-transparency">
+      <span>TRANSPARENCY / TRANSPARÈNCIA</span>
+      <p>{t.notAdvice}</p>
+    </div>
+  </div>
+  <div class="shell footer-bottom">
+    <span>© {new Date().getFullYear()} {t.allRights}</span>
+    <span>Universitat Politècnica de Catalunya</span>
+  </div>
+</footer>

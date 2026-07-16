@@ -1,0 +1,39 @@
+---
+import Logo from './Logo.astro';
+import { getAlternatePath, nav, ui, type Lang } from '../data/site';
+
+type Props = {
+  lang: Lang;
+  slug?: string;
+};
+
+const { lang, slug } = Astro.props;
+const t = ui[lang];
+const alternatePath = getAlternatePath(lang, slug);
+---
+
+<header class="site-header">
+  <div class="header-inner shell">
+    <Logo lang={lang} />
+    <nav class="desktop-nav" aria-label={lang === 'ca' ? 'Navegació principal' : 'Main navigation'}>
+      {nav[lang].map((item) => (
+        <a href={item.href}>{item.label}</a>
+      ))}
+    </nav>
+    <div class="header-actions">
+      <a class="language-switch" href={alternatePath} hreflang={lang === 'ca' ? 'en' : 'ca'}>
+        <span>{t.languageShort}</span>
+        <span class="language-long">{t.language}</span>
+      </a>
+      <details class="mobile-nav">
+        <summary>{t.menu}</summary>
+        <div class="mobile-panel">
+          {nav[lang].map((item) => (
+            <a href={item.href}>{item.label}</a>
+          ))}
+          <a href={alternatePath}>{t.language}</a>
+        </div>
+      </details>
+    </div>
+  </div>
+</header>

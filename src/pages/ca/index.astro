@@ -1,0 +1,78 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { home, ui, type Lang } from '../../data/site';
+
+const lang: Lang = 'ca';
+const content = home[lang] as {
+  title: string;
+  description: string;
+  eyebrow: string;
+  heading: string;
+  intro: string;
+  areas: { index: string; title: string; text: string; href: string }[];
+  bridgeTitle: string;
+  bridgeText: string;
+  bridgeHref: string;
+  bridgeLink: string;
+};
+const t = ui[lang];
+---
+
+<BaseLayout lang={lang} title={content.title} description={content.description}>
+  <section class="home-hero shell">
+    <div class="hero-copy">
+      <p class="eyebrow">{content.eyebrow}</p>
+      <h1>{content.heading}</h1>
+      <p>{content.intro}</p>
+      <div class="hero-links">
+        <a class="button button-primary" href={`/${lang}/${lang === 'ca' ? 'activitat' : 'activity'}/`}>
+          {t.explore}
+        </a>
+        <a class="button button-secondary" href={`/${lang}/${lang === 'ca' ? 'associacio' : 'about'}/`}>
+          {t.learnMore}
+        </a>
+      </div>
+    </div>
+
+    <div class="hero-system" aria-hidden="true">
+      <div class="system-axis axis-x"></div>
+      <div class="system-axis axis-y"></div>
+      <span class="point p1">PROBABILITY</span>
+      <span class="point p2">CODE</span>
+      <span class="point p3">DATA</span>
+      <span class="point p4">MARKETS</span>
+      <span class="system-code">QS / UPC / 01</span>
+    </div>
+  </section>
+
+  <section class="phase-section shell">
+    <div class="phase-label">{t.currentPhase}</div>
+    <div>
+      <h2>{t.currentPhaseTitle}</h2>
+      <p>{t.currentPhaseText}</p>
+    </div>
+  </section>
+
+  <section class="home-areas shell">
+    {content.areas.map((area) => (
+      <a class="area-card" href={area.href}>
+        <span>{area.index}</span>
+        <h2>{area.title}</h2>
+        <p>{area.text}</p>
+        <i aria-hidden="true">↗</i>
+      </a>
+    ))}
+  </section>
+
+  <section class="bridge-section shell">
+    <div class="bridge-rule"></div>
+    <div>
+      <p class="eyebrow">{lang === 'ca' ? 'CONNEXIÓ' : 'CONNECTION'}</p>
+      <h2>{content.bridgeTitle}</h2>
+    </div>
+    <div>
+      <p>{content.bridgeText}</p>
+      <a href={content.bridgeHref}>{content.bridgeLink} <span aria-hidden="true">↗</span></a>
+    </div>
+  </section>
+</BaseLayout>
