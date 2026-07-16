@@ -4,13 +4,19 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
 <BaseLayout
   lang="ca"
-  title="Pàgina no trobada"
-  description="La pàgina sol·licitada no existeix."
+  title="Pàgina no trobada · Page not found"
+  description="La pàgina sol·licitada no existeix. The requested page does not exist."
 >
   <section class="page-hero shell not-found">
     <p class="eyebrow">404</p>
-    <h1>Pàgina no trobada.</h1>
-    <p class="page-intro">La ruta no existeix o s’ha mogut.</p>
-    <a class="button button-primary" href="/ca/">Tornar a l’inici</a>
+    <h1>Pàgina no trobada.<br />Page not found.</h1>
+    <p class="page-intro">
+      La ruta no existeix o s’ha mogut.<br />
+      The page does not exist or has moved.
+    </p>
+    <div class="hero-links">
+      <a class="button button-primary" href="/ca/" hreflang="ca">Inici en català</a>
+      <a class="button button-secondary" href="/en/" hreflang="en">English home</a>
+    </div>
   </section>
 </BaseLayout>
