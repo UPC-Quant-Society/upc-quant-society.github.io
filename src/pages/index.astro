@@ -1,3 +1,17 @@
----
-return Astro.redirect('/ca/');
----
+<!doctype html>
+<html lang="ca">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta http-equiv="refresh" content="0;url=/ca/" />
+    <meta name="robots" content="noindex" />
+    <link rel="canonical" href="https://upc-quant-society.github.io/ca/" />
+    <title>UPC Quant Society</title>
+    <script is:inline>
+      window.location.replace('/ca/');
+    </script>
+  </head>
+  <body>
+    <p><a href="/ca/">Continua al web en català</a></p>
+  </body>
+</html>

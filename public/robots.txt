@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://upc-quant-society.github.io/sitemap-index.xml

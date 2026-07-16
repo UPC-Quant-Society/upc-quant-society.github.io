@@ -19,6 +19,10 @@ export type Section = {
     text: string;
     tone?: 'green' | 'neutral';
   };
+  cta?: {
+    label: string;
+    href: string;
+  };
   people?: {
     name: string;
     role: string;
@@ -34,7 +38,7 @@ export type PageData = {
   sections: Section[];
 };
 
-export const contactEmail = 'upcquantsociety@gmail.com';
+export const contactEmail = 'quantumsociety.upc@gmail.com';
 export const githubUrl = 'https://github.com/UPC-Quant-Society';
 
 export const routePairs = [
@@ -174,8 +178,7 @@ export const pages: Record<Lang, Record<string, PageData>> = {
           kicker: '02',
           title: 'Missió',
           body: [
-            'Construir una comunitat d’estudiants de la UPC interessats en les finances quantitatives i facilitar-los una base tècnica, projectes aplicats i contacte amb l’entorn acadèmic i professional.',
-            'L’objectiu no és només aprendre continguts, sinó crear una cultura de treball rigorosa, documentar el coneixement i desenvolupar resultats que es puguin revisar i compartir.',
+            'Reunim estudiants amb interès en les finances quantitatives per aprendre, desenvolupar projectes aplicats i connectar amb l’entorn acadèmic i professional. Ho fem mitjançant formació tècnica, treball col·laboratiu i iniciatives que transformen el coneixement en resultats concrets i revisables.',
           ],
         },
         {
@@ -210,7 +213,7 @@ export const pages: Record<Lang, Record<string, PageData>> = {
           ],
           note: {
             title: 'La idea és més senzilla del que sembla.',
-            text: 'Ens agraden les matemàtiques i els mercats, i volem un espai on estudiar-los amb altres estudiants de la UPC.',
+            text: 'Ens agraden les matemàtiques i els mercats, i volem un espai on estudiar-los amb altres estudiants.',
             tone: 'green',
           },
         },
@@ -219,8 +222,7 @@ export const pages: Record<Lang, Record<string, PageData>> = {
           kicker: '06',
           title: 'Visió',
           body: [
-            'A llarg termini, volem que la societat sigui un punt de referència dins la UPC per a estudiants interessats en finances quantitatives.',
-            'Aquesta visió es construirà amb projectes públics, formació ben documentada, participació en competicions i relacions acadèmiques i professionals que aportin valor real.',
+            'Esdevenir una comunitat universitària de referència en finances quantitatives, reconeguda per l’excel·lència tècnica dels seus membres i per la seva capacitat de connectar talent, acadèmia i indústria.',
           ],
         },
       ],
@@ -382,33 +384,30 @@ export const pages: Record<Lang, Record<string, PageData>> = {
       description: 'Formes de col·laboració acadèmica i professional amb UPC Quant Society.',
       eyebrow: 'UNIVERSITAT I INDÚSTRIA',
       intro:
-        'Busquem relacions concretes que aportin coneixement, criteri tècnic o oportunitats d’aplicació. No es tracta d’acumular logotips, sinó de construir activitats útils.',
+        'Col·laborem amb professorat, investigadors, professionals, empreses i entitats que vulguin contribuir a projectes, formació i activitats tècniques amb impacte real.',
       sections: [
         {
           id: 'academia',
-          title: 'Professors i investigadors',
-          cards: [
-            { title: 'Supervisió de projectes', text: 'Orientar l’abast, la metodologia i la bibliografia.' },
-            { title: 'Seminaris', text: 'Presentar una línia de recerca o un problema tècnic.' },
-            { title: 'Revisió de contingut', text: 'Ajudar a mantenir el rigor del programa formatiu.' },
-          ],
+          title: 'Acadèmia',
+          body: ['Supervisa un projecte, proposa una línia de recerca o participa en una sessió tècnica.'],
         },
         {
           id: 'industria',
-          title: 'Empreses i professionals',
-          cards: [
-            { title: 'Workshop tècnic', text: 'Treballar sobre eines, dades o casos reals.' },
-            { title: 'Repte guiat', text: 'Proposar un problema perquè els membres desenvolupin una solució.' },
-            { title: 'Orientació professional', text: 'Explicar rols, processos de selecció i trajectòries.' },
-          ],
+          title: 'Indústria',
+          body: ['Planteja un repte, organitza un workshop o presenta un problema real del sector.'],
         },
         {
-          id: 'partners',
-          title: 'Col·laboradors',
-          note: {
-            title: 'No hi ha cap llistat públic encara.',
-            text: 'Els col·laboradors i partners només apareixeran aquí quan la relació estigui confirmada i se n’hagi acordat la comunicació.',
-            tone: 'neutral',
+          id: 'entitats',
+          title: 'Entitats i associacions',
+          body: ['Desenvolupem conjuntament seminaris, competicions i activitats interdisciplinàries.'],
+        },
+        {
+          id: 'proposta',
+          title: 'Tens una proposta concreta? Parlem-ne.',
+          body: ['Explica’ns l’objectiu, el format i el possible encaix amb l’associació.'],
+          cta: {
+            label: 'Proposa una col·laboració',
+            href: `mailto:${contactEmail}`,
           },
         },
       ],
@@ -421,11 +420,21 @@ export const pages: Record<Lang, Record<string, PageData>> = {
         'L’associació es construeix amb una estructura petita i responsabilitats clares. La composició formal de la junta i els rols operatius s’actualitzaran en aquesta pàgina.',
       sections: [
         {
-          id: 'fundadors',
+          id: 'cofundadors',
+          title: 'Cofundadors',
+          people: [
+            { name: 'Aniol Arolas Salvador', role: 'Cofundador', description: 'Estudiant d’Enginyeria de Telecomunicacions a la UPC.' },
+            { name: 'Pau Gibert Hernández', role: 'Cofundador', description: 'Estudiant d’Enginyeria de Telecomunicacions a la UPC.' },
+          ],
+        },
+        {
+          id: 'equip-fundador',
           title: 'Equip fundador',
           people: [
-            { name: 'Pau Gibert Hernández', role: 'Cofundador', description: 'Estudiant d’Enginyeria de Telecomunicacions a la UPC.' },
-            { name: 'Aniol Arolas Salvador', role: 'Cofundador', description: 'Estudiant d’Enginyeria de Telecomunicacions a la UPC.' },
+            { name: 'Alejandro Cilveti', role: 'Membre de l’equip fundador', description: 'Estudiant de Matemàtiques a la UPC.' },
+            { name: 'Hàn Virgili', role: 'Membre de l’equip fundador', description: 'Estudiant de Matemàtiques a la UPC.' },
+            { name: 'Martí Ventura', role: 'Membre de l’equip fundador', description: 'Estudiant de Dret i Administració i Direcció d’Empreses a la UAB.' },
+            { name: 'Martina Gallemí', role: 'Membre de l’equip fundador', description: 'Estudiant d’Enginyeria Matemàtica en Ciència de Dades a la UPF.' },
           ],
         },
         {
@@ -435,7 +444,7 @@ export const pages: Record<Lang, Record<string, PageData>> = {
             { title: 'Direcció', text: 'Visió, prioritats i representació institucional.' },
             { title: 'Coordinació', text: 'Documentació, seguiment i continuïtat interna.' },
             { title: 'Recursos', text: 'Pressupost, transparència i sostenibilitat econòmica.' },
-            { title: 'Àrees operatives', text: 'Formació, projectes, competicions, comunicació i relacions externes.' },
+            { title: 'Grups de treball', text: 'Formació, projectes, competicions, comunicació i relacions externes.' },
           ],
         },
       ],
@@ -491,6 +500,8 @@ export const pages: Record<Lang, Record<string, PageData>> = {
           cards: [
             { label: 'EMAIL', title: contactEmail, text: 'Consultes generals, acadèmiques i professionals.', href: `mailto:${contactEmail}` },
             { label: 'GITHUB', title: 'UPC-Quant-Society', text: 'Repositoris i projectes públics.', href: githubUrl },
+            { label: 'LINKEDIN', title: 'Perfil en preparació', text: 'Properament' },
+            { label: 'INSTAGRAM', title: 'Perfil en preparació', text: 'Properament' },
           ],
         },
         {
@@ -526,8 +537,7 @@ export const pages: Record<Lang, Record<string, PageData>> = {
           kicker: '02',
           title: 'Mission',
           body: [
-            'To build a community of UPC students interested in quantitative finance and provide technical foundations, applied projects and contact with academic and professional environments.',
-            'The goal is not only to study content, but to establish rigorous working habits, document knowledge and produce results that can be reviewed and shared.',
+            'We bring together students interested in quantitative finance to learn, develop applied projects and connect with academic and professional environments. We do this through technical training, collaborative work and initiatives that turn knowledge into concrete, reviewable outcomes.',
           ],
         },
         {
@@ -562,7 +572,7 @@ export const pages: Record<Lang, Record<string, PageData>> = {
           ],
           note: {
             title: 'The idea is simpler than it may sound.',
-            text: 'We enjoy mathematics and markets, and we want a place to study them with other UPC students.',
+            text: 'We enjoy mathematics and markets, and we want a place to study them with other students.',
             tone: 'green',
           },
         },
@@ -571,8 +581,7 @@ export const pages: Record<Lang, Record<string, PageData>> = {
           kicker: '06',
           title: 'Vision',
           body: [
-            'In the long term, we want the society to become a reference point at UPC for students interested in quantitative finance.',
-            'This will be built through public projects, well-documented training, competition participation and academic and professional relationships that provide real value.',
+            'To become a leading university community in quantitative finance, recognised for the technical excellence of its members and its ability to connect talent, academia and industry.',
           ],
         },
       ],
@@ -734,33 +743,30 @@ export const pages: Record<Lang, Record<string, PageData>> = {
       description: 'Academic and professional collaboration with UPC Quant Society.',
       eyebrow: 'UNIVERSITY AND INDUSTRY',
       intro:
-        'We are looking for specific relationships that add knowledge, technical judgement or opportunities for application. The goal is not to collect logos, but to build useful activities.',
+        'We collaborate with professors, researchers, professionals, companies and organisations interested in contributing to projects, training and technical activities with tangible outcomes.',
       sections: [
         {
           id: 'academia',
-          title: 'Professors and researchers',
-          cards: [
-            { title: 'Project supervision', text: 'Help define scope, methodology and references.' },
-            { title: 'Seminars', text: 'Present a research area or technical problem.' },
-            { title: 'Content review', text: 'Help maintain the rigour of the training programme.' },
-          ],
+          title: 'Academia',
+          body: ['Supervise a project, propose a research direction or contribute to a technical session.'],
         },
         {
           id: 'industry',
-          title: 'Companies and professionals',
-          cards: [
-            { title: 'Technical workshop', text: 'Work with tools, data or real cases.' },
-            { title: 'Guided challenge', text: 'Propose a problem for members to solve.' },
-            { title: 'Career guidance', text: 'Explain roles, recruitment processes and career paths.' },
-          ],
+          title: 'Industry',
+          body: ['Propose a challenge, organise a workshop or present a real industry problem.'],
         },
         {
-          id: 'partners',
-          title: 'Collaborators',
-          note: {
-            title: 'There is no public list yet.',
-            text: 'Collaborators and partners will only appear here once the relationship is confirmed and its communication has been agreed.',
-            tone: 'neutral',
+          id: 'organisations',
+          title: 'Organisations and associations',
+          body: ['Develop seminars, competitions and interdisciplinary activities together.'],
+        },
+        {
+          id: 'proposal',
+          title: 'Have a concrete proposal? Let’s discuss it.',
+          body: ['Tell us the objective, format and how it could fit with the society.'],
+          cta: {
+            label: 'Propose a collaboration',
+            href: `mailto:${contactEmail}`,
           },
         },
       ],
@@ -773,11 +779,21 @@ export const pages: Record<Lang, Record<string, PageData>> = {
         'The society is being built with a small structure and clear responsibilities. The formal board and operational roles will be updated on this page.',
       sections: [
         {
-          id: 'founders',
+          id: 'co-founders',
+          title: 'Co-founders',
+          people: [
+            { name: 'Aniol Arolas Salvador', role: 'Co-founder', description: 'Telecommunications Engineering student at UPC.' },
+            { name: 'Pau Gibert Hernández', role: 'Co-founder', description: 'Telecommunications Engineering student at UPC.' },
+          ],
+        },
+        {
+          id: 'founding-team',
           title: 'Founding team',
           people: [
-            { name: 'Pau Gibert Hernández', role: 'Co-founder', description: 'Telecommunications Engineering student at UPC.' },
-            { name: 'Aniol Arolas Salvador', role: 'Co-founder', description: 'Telecommunications Engineering student at UPC.' },
+            { name: 'Alejandro Cilveti', role: 'Founding team member', description: 'Mathematics student at UPC.' },
+            { name: 'Hàn Virgili', role: 'Founding team member', description: 'Mathematics student at UPC.' },
+            { name: 'Martí Ventura', role: 'Founding team member', description: 'Law and Business Administration student at UAB.' },
+            { name: 'Martina Gallemí', role: 'Founding team member', description: 'Mathematical Engineering in Data Science student at UPF.' },
           ],
         },
         {
@@ -787,7 +803,7 @@ export const pages: Record<Lang, Record<string, PageData>> = {
             { title: 'Direction', text: 'Vision, priorities and institutional representation.' },
             { title: 'Coordination', text: 'Documentation, follow-up and internal continuity.' },
             { title: 'Resources', text: 'Budget, transparency and financial sustainability.' },
-            { title: 'Operational areas', text: 'Training, projects, competitions, communication and external relations.' },
+            { title: 'Working groups', text: 'Training, projects, competitions, communication and external relations.' },
           ],
         },
       ],
@@ -843,6 +859,8 @@ export const pages: Record<Lang, Record<string, PageData>> = {
           cards: [
             { label: 'EMAIL', title: contactEmail, text: 'General, academic and professional enquiries.', href: `mailto:${contactEmail}` },
             { label: 'GITHUB', title: 'UPC-Quant-Society', text: 'Public repositories and projects.', href: githubUrl },
+            { label: 'LINKEDIN', title: 'Profile being prepared', text: 'Coming soon' },
+            { label: 'INSTAGRAM', title: 'Profile being prepared', text: 'Coming soon' },
           ],
         },
         {

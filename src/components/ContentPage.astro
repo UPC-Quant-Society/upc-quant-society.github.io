@@ -88,6 +88,12 @@ const t = ui[lang];
               </div>
             </div>
           )}
+
+          {section.cta && (
+            <a class="button button-primary" href={section.cta.href}>
+              {section.cta.label}
+            </a>
+          )}
         </section>
       ))}
     </div>

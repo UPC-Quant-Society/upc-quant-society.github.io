@@ -17,6 +17,7 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
 const alternate = new URL(getAlternatePath(lang, slug), Astro.site);
 const catalanUrl = lang === 'ca' ? canonical : alternate;
 const englishUrl = lang === 'en' ? canonical : alternate;
+const defaultUrl = new URL('/ca/', Astro.site);
 ---
 
 <!doctype html>
@@ -26,10 +27,20 @@ const englishUrl = lang === 'en' ? canonical : alternate;
     <meta name="viewport" content="width=device-width" />
     <meta name="description" content={description} />
     <meta name="theme-color" content="#111111" />
+    <meta property="og:title" content={fullTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:site_name" content="UPC Quant Society" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={fullTitle} />
+    <meta name="twitter:description" content={description} />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="canonical" href={canonical} />
     <link rel="alternate" hreflang="ca" href={catalanUrl} />
     <link rel="alternate" hreflang="en" href={englishUrl} />
+    <link rel="alternate" hreflang="x-default" href={defaultUrl} />
+    <link rel="sitemap" href="/sitemap-index.xml" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
