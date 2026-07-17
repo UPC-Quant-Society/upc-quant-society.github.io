@@ -1,0 +1,94 @@
+import { defineCollection, z } from 'astro:content';
+import { glob } from 'astro/loaders';
+
+const resources = defineCollection({
+  loader: glob({
+    pattern: '**/*.json',
+    base: './src/data/library/resources',
+  }),
+
+  schema: z.object({
+    slug: z.string(),
+    title: z.string(),
+
+    description: z.object({
+      ca: z.string(),
+      en: z.string(),
+    }),
+
+    authors: z.array(z.string()).default([]),
+    institution: z.string().optional(),
+
+    type: z.enum([
+      'book',
+      'course',
+      'paper',
+      'notes',
+      'repository',
+      'dataset',
+      'certification',
+    ]),
+
+    areas: z.array(z.string()),
+    topics: z.array(z.string()).default([]),
+    collections: z.array(z.string()).default([]),
+
+    levels: z.array(
+      z.enum([
+        'introductory',
+        'beginner',
+        'intermediate',
+        'advanced',
+        'research',
+      ]),
+    ),
+
+    languages: z.array(z.string()),
+    year: z.number().int().optional(),
+
+    access: z.enum([
+      'open-access',
+      'official-free',
+      'freemium',
+      'institutional',
+      'paid',
+      'subscription',
+      'not-verified',
+    ]),
+
+    officialUrl: z.string().url(),
+
+    materials: z.object({
+      exercises: z.boolean().default(false),
+      solutions: z.boolean().default(false),
+      videos: z.boolean().default(false),
+      code: z.boolean().default(false),
+      datasets: z.boolean().default(false),
+    }),
+
+    score: z.object({
+      quality: z.number().min(0).max(10),
+      pedagogy: z.number().min(0).max(10),
+      quantRelevance: z.number().min(0).max(10),
+      practicalValue: z.number().min(0).max(10),
+      reputation: z.number().min(0).max(10),
+      currency: z.number().min(0).max(10),
+      accessibility: z.number().min(0).max(10),
+    }),
+
+    verification: z.object({
+      status: z.enum([
+        'official-source',
+        'partially-verified',
+        'pending',
+      ]),
+      checkedAt: z.string(),
+    }),
+
+    featured: z.boolean().default(false),
+  }),
+});
+
+export const collections = {
+  resources,
+};
