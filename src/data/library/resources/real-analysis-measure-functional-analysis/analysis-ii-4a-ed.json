@@ -1,0 +1,49 @@
+{
+  "slug": "analysis-ii-4a-ed",
+  "title": "Analysis II, 4a ed.",
+  "description": {
+    "ca": "Recurs seleccionat de real analysis measure functional analysis per construir una base sòlida en finances quantitatives. Inclou multivariable i integració.",
+    "en": "A selected real analysis measure functional analysis resource for building a strong quantitative finance foundation. It includes multivariable i integració."
+  },
+  "authors": [
+    "Terence Tao"
+  ],
+  "type": "book",
+  "areas": [
+    "mathematics"
+  ],
+  "topics": [
+    "real-analysis",
+    "measure-theory",
+    "functional-analysis"
+  ],
+  "collections": [
+    "mathematical-foundations",
+    "real-analysis-measure-functional-analysis"
+  ],
+  "levels": [
+    "intermediate",
+    "advanced"
+  ],
+  "languages": [
+    "en"
+  ],
+  "access": "institutional",
+  "officialUrl": "https://link.springer.com/book/10.1007/978-981-19-7284-3",
+  "materials": {
+    "exercises": false,
+    "solutions": false,
+    "videos": false,
+    "code": false,
+    "datasets": false
+  },
+  "score": {
+    "overall": 9.0
+  },
+  "verification": {
+    "status": "official-source",
+    "checkedAt": "2026-07-17"
+  },
+  "featured": false,
+  "institution": "Springer"
+}

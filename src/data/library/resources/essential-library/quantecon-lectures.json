@@ -1,0 +1,44 @@
+{
+  "slug": "quantecon-lectures",
+  "title": "QuantEcon Lectures",
+  "description": {
+    "ca": "Recurs seleccionat de economia computacional per construir una base sòlida en finances quantitatives.",
+    "en": "A selected economia computacional resource for building a strong quantitative finance foundation."
+  },
+  "authors": [],
+  "type": "course",
+  "areas": [
+    "economics"
+  ],
+  "topics": [
+    "computational-economics"
+  ],
+  "collections": [
+    "essential-library",
+    "computational-economics"
+  ],
+  "levels": [
+    "intermediate"
+  ],
+  "languages": [
+    "en"
+  ],
+  "access": "official-free",
+  "officialUrl": "https://quantecon.org/lectures/",
+  "materials": {
+    "exercises": false,
+    "solutions": false,
+    "videos": false,
+    "code": true,
+    "datasets": false
+  },
+  "score": {
+    "overall": 9.4
+  },
+  "verification": {
+    "status": "official-source",
+    "checkedAt": "2026-07-17"
+  },
+  "featured": true,
+  "institution": "QuantEcon"
+}

@@ -18,14 +18,24 @@ export async function getStaticPaths() {
 const { resource } = Astro.props;
 const data = resource.data;
 
-const finalScore =
-  0.25 * data.score.quality +
-  0.20 * data.score.pedagogy +
-  0.20 * data.score.quantRelevance +
-  0.15 * data.score.practicalValue +
-  0.10 * data.score.reputation +
-  0.05 * data.score.currency +
-  0.05 * data.score.accessibility;
+const detailedScore =
+  data.score.quality !== undefined &&
+  data.score.pedagogy !== undefined &&
+  data.score.quantRelevance !== undefined &&
+  data.score.practicalValue !== undefined &&
+  data.score.reputation !== undefined &&
+  data.score.currency !== undefined &&
+  data.score.accessibility !== undefined
+    ? 0.25 * data.score.quality +
+      0.20 * data.score.pedagogy +
+      0.20 * data.score.quantRelevance +
+      0.15 * data.score.practicalValue +
+      0.10 * data.score.reputation +
+      0.05 * data.score.currency +
+      0.05 * data.score.accessibility
+    : undefined;
+
+const finalScore = data.score.overall ?? detailedScore ?? 0;
 ---
 
 <BaseLayout

@@ -1,0 +1,46 @@
+{
+  "slug": "mit-18-04-complex-variables-with-applications",
+  "title": "MIT 18.04 — Complex Variables with Applications",
+  "description": {
+    "ca": "Recurs seleccionat de complex fourier pde per construir una base sòlida en finances quantitatives. Inclou notes, problemes, solucions, matlab.",
+    "en": "A selected complex fourier pde resource for building a strong quantitative finance foundation. It includes notes, problemes, solucions, matlab."
+  },
+  "authors": [],
+  "type": "course",
+  "areas": [
+    "mathematics"
+  ],
+  "topics": [
+    "complex-analysis",
+    "fourier-analysis",
+    "partial-differential-equations"
+  ],
+  "collections": [
+    "mathematical-foundations",
+    "complex-fourier-pde"
+  ],
+  "levels": [
+    "intermediate"
+  ],
+  "languages": [
+    "en"
+  ],
+  "access": "open-access",
+  "officialUrl": "https://ocw.mit.edu/courses/18-04-complex-variables-with-applications-spring-2018/",
+  "materials": {
+    "exercises": false,
+    "solutions": true,
+    "videos": false,
+    "code": true,
+    "datasets": false
+  },
+  "score": {
+    "overall": 9.2
+  },
+  "verification": {
+    "status": "official-source",
+    "checkedAt": "2026-07-17"
+  },
+  "featured": false,
+  "institution": "MIT OpenCourseWare"
+}

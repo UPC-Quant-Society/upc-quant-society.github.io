@@ -1,0 +1,48 @@
+{
+  "slug": "an-introduction-to-measure-theory",
+  "title": "An Introduction to Measure Theory",
+  "description": {
+    "ca": "Recurs seleccionat de real analysis measure functional analysis per construir una base sòlida en finances quantitatives. Inclou versió oficial en línia.",
+    "en": "A selected real analysis measure functional analysis resource for building a strong quantitative finance foundation. It includes versió oficial en línia."
+  },
+  "authors": [
+    "Terence Tao"
+  ],
+  "type": "book",
+  "areas": [
+    "mathematics"
+  ],
+  "topics": [
+    "real-analysis",
+    "measure-theory",
+    "functional-analysis"
+  ],
+  "collections": [
+    "mathematical-foundations",
+    "real-analysis-measure-functional-analysis"
+  ],
+  "levels": [
+    "advanced"
+  ],
+  "languages": [
+    "en"
+  ],
+  "access": "official-free",
+  "officialUrl": "https://terrytao.wordpress.com/books/an-introduction-to-measure-theory/",
+  "materials": {
+    "exercises": false,
+    "solutions": false,
+    "videos": false,
+    "code": false,
+    "datasets": false
+  },
+  "score": {
+    "overall": 9.0
+  },
+  "verification": {
+    "status": "official-source",
+    "checkedAt": "2026-07-17"
+  },
+  "featured": false,
+  "institution": "Terence Tao"
+}

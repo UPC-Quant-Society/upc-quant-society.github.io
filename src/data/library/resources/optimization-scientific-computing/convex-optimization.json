@@ -1,0 +1,54 @@
+{
+  "slug": "convex-optimization",
+  "title": "Convex Optimization",
+  "description": {
+    "ca": "Recurs seleccionat de optimization scientific computing per construir una base sòlida en finances quantitatives. Inclou llibre, diapositives, exemples cvx/cvxpy.",
+    "en": "A selected optimization scientific computing resource for building a strong quantitative finance foundation. It includes llibre, diapositives, exemples cvx/cvxpy."
+  },
+  "authors": [
+    "Stephen Boyd",
+    "Lieven Vandenberghe"
+  ],
+  "type": "book",
+  "areas": [
+    "optimization"
+  ],
+  "topics": [
+    "convex-optimization",
+    "portfolio-optimization",
+    "regularization",
+    "calibration",
+    "robust-optimization"
+  ],
+  "collections": [
+    "essential-library",
+    "mathematical-foundations",
+    "optimization-scientific-computing"
+  ],
+  "levels": [
+    "intermediate",
+    "advanced"
+  ],
+  "languages": [
+    "en"
+  ],
+  "access": "official-free",
+  "officialUrl": "https://web.stanford.edu/~boyd/cvxbook/",
+  "materials": {
+    "exercises": false,
+    "solutions": false,
+    "videos": false,
+    "code": true,
+    "datasets": false
+  },
+  "score": {
+    "overall": 9.6
+  },
+  "verification": {
+    "status": "official-source",
+    "checkedAt": "2026-07-17"
+  },
+  "featured": true,
+  "institution": "Stanford University",
+  "year": 2004
+}

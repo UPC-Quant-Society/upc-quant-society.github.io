@@ -1,0 +1,46 @@
+{
+  "slug": "stanford-ee364a-convex-optimization-i",
+  "title": "Stanford EE364a — Convex Optimization I",
+  "description": {
+    "ca": "Recurs seleccionat de optimization scientific computing per construir una base sòlida en finances quantitatives. Inclou classes, tasques, cvxpy.",
+    "en": "A selected optimization scientific computing resource for building a strong quantitative finance foundation. It includes classes, tasques, cvxpy."
+  },
+  "authors": [],
+  "type": "course",
+  "areas": [
+    "optimization"
+  ],
+  "topics": [
+    "optimization",
+    "scientific-computing"
+  ],
+  "collections": [
+    "mathematical-foundations",
+    "optimization-scientific-computing"
+  ],
+  "levels": [
+    "intermediate",
+    "advanced"
+  ],
+  "languages": [
+    "en"
+  ],
+  "access": "official-free",
+  "officialUrl": "https://web.stanford.edu/class/ee364a/",
+  "materials": {
+    "exercises": false,
+    "solutions": false,
+    "videos": true,
+    "code": true,
+    "datasets": false
+  },
+  "score": {
+    "overall": 9.5
+  },
+  "verification": {
+    "status": "official-source",
+    "checkedAt": "2026-07-17"
+  },
+  "featured": false,
+  "institution": "Stanford University"
+}

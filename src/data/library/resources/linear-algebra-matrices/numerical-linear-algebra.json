@@ -1,0 +1,52 @@
+{
+  "slug": "numerical-linear-algebra",
+  "title": "Numerical Linear Algebra",
+  "description": {
+    "ca": "Recurs seleccionat de linear algebra matrices per construir una base sòlida en finances quantitatives. Inclou exercicis; edició 25è aniversari.",
+    "en": "A selected linear algebra matrices resource for building a strong quantitative finance foundation. It includes exercicis; edició 25è aniversari."
+  },
+  "authors": [
+    "Lloyd N. Trefethen",
+    "David Bau III"
+  ],
+  "type": "book",
+  "areas": [
+    "mathematics"
+  ],
+  "topics": [
+    "numerical-linear-algebra",
+    "qr-factorization",
+    "conditioning",
+    "svd",
+    "eigenvalues"
+  ],
+  "collections": [
+    "mathematical-foundations",
+    "linear-algebra-matrices"
+  ],
+  "levels": [
+    "advanced"
+  ],
+  "languages": [
+    "en"
+  ],
+  "access": "institutional",
+  "officialUrl": "https://epubs.siam.org/doi/book/10.1137/1.9781611977165",
+  "materials": {
+    "exercises": true,
+    "solutions": false,
+    "videos": false,
+    "code": false,
+    "datasets": false
+  },
+  "score": {
+    "overall": 9.1
+  },
+  "verification": {
+    "status": "official-source",
+    "checkedAt": "2026-07-17"
+  },
+  "featured": false,
+  "institution": "SIAM",
+  "year": 2022
+}

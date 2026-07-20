@@ -1,0 +1,45 @@
+{
+  "slug": "algorithmic-and-high-frequency-trading",
+  "title": "Algorithmic and High-Frequency Trading",
+  "description": {
+    "ca": "Recurs seleccionat de microestructura per construir una base sòlida en finances quantitatives.",
+    "en": "A selected microestructura resource for building a strong quantitative finance foundation."
+  },
+  "authors": [],
+  "type": "book",
+  "areas": [
+    "market-microstructure"
+  ],
+  "topics": [
+    "market-microstructure",
+    "high-frequency-trading"
+  ],
+  "collections": [
+    "essential-library",
+    "market-microstructure-hft"
+  ],
+  "levels": [
+    "intermediate"
+  ],
+  "languages": [
+    "en"
+  ],
+  "access": "institutional",
+  "officialUrl": "https://assets.cambridge.org/97811070/91146/frontmatter/9781107091146_frontmatter.pdf",
+  "materials": {
+    "exercises": false,
+    "solutions": false,
+    "videos": false,
+    "code": false,
+    "datasets": false
+  },
+  "score": {
+    "overall": 9.2
+  },
+  "verification": {
+    "status": "official-source",
+    "checkedAt": "2026-07-17"
+  },
+  "featured": true,
+  "institution": "Cambridge University Press"
+}

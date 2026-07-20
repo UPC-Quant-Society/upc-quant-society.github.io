@@ -1,0 +1,45 @@
+{
+  "slug": "practiques-upc-amb-matlab-octave-i-apendix-python",
+  "title": "Pràctiques UPC amb Matlab/Octave i apèndix Python",
+  "description": {
+    "ca": "Recurs seleccionat de linear algebra matrices per construir una base sòlida en finances quantitatives. Inclou exercicis computacionals.",
+    "en": "A selected linear algebra matrices resource for building a strong quantitative finance foundation. It includes exercicis computacionals."
+  },
+  "authors": [],
+  "type": "notes",
+  "areas": [
+    "mathematics"
+  ],
+  "topics": [
+    "linear-algebra",
+    "matrices"
+  ],
+  "collections": [
+    "mathematical-foundations",
+    "linear-algebra-matrices"
+  ],
+  "levels": [
+    "beginner"
+  ],
+  "languages": [
+    "ca"
+  ],
+  "access": "official-free",
+  "officialUrl": "https://upcommons.upc.edu/entities/publication/9bf97898-a5f4-4d4b-a03e-feab81720319",
+  "materials": {
+    "exercises": true,
+    "solutions": false,
+    "videos": false,
+    "code": false,
+    "datasets": false
+  },
+  "score": {
+    "overall": 7.8
+  },
+  "verification": {
+    "status": "official-source",
+    "checkedAt": "2026-07-17"
+  },
+  "featured": false,
+  "institution": "Universitat Politècnica de Catalunya"
+}

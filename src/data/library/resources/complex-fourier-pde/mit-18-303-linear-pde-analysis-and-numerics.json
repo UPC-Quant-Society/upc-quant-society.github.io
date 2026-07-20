@@ -1,0 +1,47 @@
+{
+  "slug": "mit-18-303-linear-pde-analysis-and-numerics",
+  "title": "MIT 18.303 — Linear PDE: Analysis and Numerics",
+  "description": {
+    "ca": "Recurs seleccionat de complex fourier pde per construir una base sòlida en finances quantitatives. Inclou diferències finites, fem, julia i projectes.",
+    "en": "A selected complex fourier pde resource for building a strong quantitative finance foundation. It includes diferències finites, fem, julia i projectes."
+  },
+  "authors": [],
+  "type": "course",
+  "areas": [
+    "mathematics"
+  ],
+  "topics": [
+    "partial-differential-equations",
+    "finite-differences",
+    "finite-elements",
+    "numerical-methods"
+  ],
+  "collections": [
+    "mathematical-foundations",
+    "complex-fourier-pde"
+  ],
+  "levels": [
+    "advanced"
+  ],
+  "languages": [
+    "en"
+  ],
+  "access": "open-access",
+  "officialUrl": "https://ocw.mit.edu/courses/18-303-linear-partial-differential-equations-analysis-and-numerics-fall-2014/",
+  "materials": {
+    "exercises": true,
+    "solutions": false,
+    "videos": false,
+    "code": true,
+    "datasets": false
+  },
+  "score": {
+    "overall": 9.3
+  },
+  "verification": {
+    "status": "official-source",
+    "checkedAt": "2026-07-17"
+  },
+  "featured": false,
+  "institution": "MIT OpenCourseWare"
+}

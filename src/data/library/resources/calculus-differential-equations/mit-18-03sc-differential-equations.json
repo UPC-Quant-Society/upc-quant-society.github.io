@@ -1,0 +1,45 @@
+{
+  "slug": "mit-18-03sc-differential-equations",
+  "title": "MIT 18.03SC — Differential Equations",
+  "description": {
+    "ca": "Recurs seleccionat de calculus differential equations per construir una base sòlida en finances quantitatives. Inclou vídeos, notes, solucions, fourier i laplace.",
+    "en": "A selected calculus differential equations resource for building a strong quantitative finance foundation. It includes vídeos, notes, solucions, fourier i laplace."
+  },
+  "authors": [],
+  "type": "course",
+  "areas": [
+    "mathematics"
+  ],
+  "topics": [
+    "calculus",
+    "differential-equations"
+  ],
+  "collections": [
+    "mathematical-foundations",
+    "calculus-differential-equations"
+  ],
+  "levels": [
+    "intermediate"
+  ],
+  "languages": [
+    "en"
+  ],
+  "access": "open-access",
+  "officialUrl": "https://ocw.mit.edu/courses/18-03sc-differential-equations-fall-2011/",
+  "materials": {
+    "exercises": false,
+    "solutions": true,
+    "videos": true,
+    "code": true,
+    "datasets": false
+  },
+  "score": {
+    "overall": 9.5
+  },
+  "verification": {
+    "status": "official-source",
+    "checkedAt": "2026-07-17"
+  },
+  "featured": false,
+  "institution": "MIT OpenCourseWare"
+}

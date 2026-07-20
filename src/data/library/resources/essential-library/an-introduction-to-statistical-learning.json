@@ -1,0 +1,45 @@
+{
+  "slug": "an-introduction-to-statistical-learning",
+  "title": "An Introduction to Statistical Learning",
+  "description": {
+    "ca": "Recurs seleccionat de ml estadístic per construir una base sòlida en finances quantitatives.",
+    "en": "A selected ml estadístic resource for building a strong quantitative finance foundation."
+  },
+  "authors": [],
+  "type": "book",
+  "areas": [
+    "machine-learning"
+  ],
+  "topics": [
+    "machine-learning",
+    "statistical-learning"
+  ],
+  "collections": [
+    "essential-library",
+    "statistical-learning"
+  ],
+  "levels": [
+    "intermediate"
+  ],
+  "languages": [
+    "en"
+  ],
+  "access": "official-free",
+  "officialUrl": "https://www.statlearning.com/",
+  "materials": {
+    "exercises": false,
+    "solutions": false,
+    "videos": false,
+    "code": false,
+    "datasets": false
+  },
+  "score": {
+    "overall": 9.4
+  },
+  "verification": {
+    "status": "official-source",
+    "checkedAt": "2026-07-17"
+  },
+  "featured": true,
+  "institution": "Springer"
+}

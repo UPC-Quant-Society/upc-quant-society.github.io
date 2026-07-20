@@ -1,0 +1,48 @@
+{
+  "slug": "quantitative-risk-management",
+  "title": "Quantitative Risk Management",
+  "description": {
+    "ca": "Recurs seleccionat de risc per construir una base sòlida en finances quantitatives.",
+    "en": "A selected risc resource for building a strong quantitative finance foundation."
+  },
+  "authors": [
+    "Alexander J. McNeil",
+    "Rüdiger Frey",
+    "Paul Embrechts"
+  ],
+  "type": "book",
+  "areas": [
+    "risk-management"
+  ],
+  "topics": [
+    "quantitative-risk-management"
+  ],
+  "collections": [
+    "essential-library",
+    "risk-management"
+  ],
+  "levels": [
+    "intermediate"
+  ],
+  "languages": [
+    "en"
+  ],
+  "access": "institutional",
+  "officialUrl": "https://assets.press.princeton.edu/releases/McNeil_Quantitative_Risk_Management_Exercise_Book.pdf",
+  "materials": {
+    "exercises": true,
+    "solutions": false,
+    "videos": false,
+    "code": false,
+    "datasets": false
+  },
+  "score": {
+    "overall": 9.4
+  },
+  "verification": {
+    "status": "official-source",
+    "checkedAt": "2026-07-17"
+  },
+  "featured": true,
+  "institution": "Princeton University Press"
+}

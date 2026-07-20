@@ -1,0 +1,48 @@
+{
+  "slug": "numerical-optimization-2a-ed",
+  "title": "Numerical Optimization, 2a ed.",
+  "description": {
+    "ca": "Recurs seleccionat de optimization scientific computing per construir una base sòlida en finances quantitatives. Inclou teoria i algorismes.",
+    "en": "A selected optimization scientific computing resource for building a strong quantitative finance foundation. It includes teoria i algorismes."
+  },
+  "authors": [
+    "Jorge Nocedal",
+    "Stephen J. Wright"
+  ],
+  "type": "book",
+  "areas": [
+    "optimization"
+  ],
+  "topics": [
+    "optimization",
+    "scientific-computing"
+  ],
+  "collections": [
+    "mathematical-foundations",
+    "optimization-scientific-computing"
+  ],
+  "levels": [
+    "advanced"
+  ],
+  "languages": [
+    "en"
+  ],
+  "access": "institutional",
+  "officialUrl": "https://link.springer.com/book/10.1007/978-0-387-40065-5",
+  "materials": {
+    "exercises": false,
+    "solutions": false,
+    "videos": false,
+    "code": false,
+    "datasets": false
+  },
+  "score": {
+    "overall": 9.2
+  },
+  "verification": {
+    "status": "official-source",
+    "checkedAt": "2026-07-17"
+  },
+  "featured": false,
+  "institution": "Springer"
+}

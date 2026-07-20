@@ -67,14 +67,16 @@ const resources = defineCollection({
     }),
 
     score: z.object({
-      quality: z.number().min(0).max(10),
-      pedagogy: z.number().min(0).max(10),
-      quantRelevance: z.number().min(0).max(10),
-      practicalValue: z.number().min(0).max(10),
-      reputation: z.number().min(0).max(10),
-      currency: z.number().min(0).max(10),
-      accessibility: z.number().min(0).max(10),
-    }),
+      overall: z.number().min(0).max(10).optional(),
+
+      quality: z.number().min(0).max(10).optional(),
+      pedagogy: z.number().min(0).max(10).optional(),
+      quantRelevance: z.number().min(0).max(10).optional(),
+      practicalValue: z.number().min(0).max(10).optional(),
+      reputation: z.number().min(0).max(10).optional(),
+      currency: z.number().min(0).max(10).optional(),
+        accessibility: z.number().min(0).max(10).optional(),
+        }),
 
     verification: z.object({
       status: z.enum([

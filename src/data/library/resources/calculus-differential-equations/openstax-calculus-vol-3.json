@@ -1,0 +1,45 @@
+{
+  "slug": "openstax-calculus-vol-3",
+  "title": "OpenStax Calculus, vol. 3",
+  "description": {
+    "ca": "Recurs seleccionat de calculus differential equations per construir una base sòlida en finances quantitatives. Inclou multivariable, camps, integrals.",
+    "en": "A selected calculus differential equations resource for building a strong quantitative finance foundation. It includes multivariable, camps, integrals."
+  },
+  "authors": [],
+  "type": "book",
+  "areas": [
+    "mathematics"
+  ],
+  "topics": [
+    "calculus",
+    "differential-equations"
+  ],
+  "collections": [
+    "mathematical-foundations",
+    "calculus-differential-equations"
+  ],
+  "levels": [
+    "intermediate"
+  ],
+  "languages": [
+    "en"
+  ],
+  "access": "open-access",
+  "officialUrl": "https://openstax.org/details/books/calculus-volume-3",
+  "materials": {
+    "exercises": false,
+    "solutions": false,
+    "videos": false,
+    "code": false,
+    "datasets": false
+  },
+  "score": {
+    "overall": 8.7
+  },
+  "verification": {
+    "status": "official-source",
+    "checkedAt": "2026-07-17"
+  },
+  "featured": false,
+  "institution": "OpenStax"
+}

@@ -1,0 +1,49 @@
+{
+  "slug": "matrix-analysis-2a-ed",
+  "title": "Matrix Analysis, 2a ed.",
+  "description": {
+    "ca": "Recurs seleccionat de linear algebra matrices per construir una base sòlida en finances quantitatives. Inclou més de 1.100 exercicis.",
+    "en": "A selected linear algebra matrices resource for building a strong quantitative finance foundation. It includes més de 1.100 exercicis."
+  },
+  "authors": [
+    "Roger A. Horn",
+    "Charles R. Johnson"
+  ],
+  "type": "book",
+  "areas": [
+    "mathematics"
+  ],
+  "topics": [
+    "linear-algebra",
+    "matrices"
+  ],
+  "collections": [
+    "mathematical-foundations",
+    "linear-algebra-matrices"
+  ],
+  "levels": [
+    "advanced",
+    "research"
+  ],
+  "languages": [
+    "en"
+  ],
+  "access": "institutional",
+  "officialUrl": "https://www.cambridge.org/highereducation/books/matrix-analysis/FDA3627DC2B9F5C3DF2FD8C3CC136B48",
+  "materials": {
+    "exercises": true,
+    "solutions": false,
+    "videos": false,
+    "code": false,
+    "datasets": false
+  },
+  "score": {
+    "overall": 8.9
+  },
+  "verification": {
+    "status": "official-source",
+    "checkedAt": "2026-07-17"
+  },
+  "featured": false,
+  "institution": "Cambridge University Press"
+}

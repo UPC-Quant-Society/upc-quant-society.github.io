@@ -18,14 +18,29 @@ export async function getStaticPaths() {
 const { resource } = Astro.props;
 const data = resource.data;
 
+const hasDetailedScore =
+  data.score.quality !== undefined &&
+  data.score.pedagogy !== undefined &&
+  data.score.quantRelevance !== undefined &&
+  data.score.practicalValue !== undefined &&
+  data.score.reputation !== undefined &&
+  data.score.currency !== undefined &&
+  data.score.accessibility !== undefined;
+
+const detailedScore = hasDetailedScore
+  ? 0.25 * data.score.quality! +
+    0.20 * data.score.pedagogy! +
+    0.20 * data.score.quantRelevance! +
+    0.15 * data.score.practicalValue! +
+    0.10 * data.score.reputation! +
+    0.05 * data.score.currency! +
+    0.05 * data.score.accessibility!
+  : undefined;
+
 const finalScore =
-  0.25 * data.score.quality +
-  0.20 * data.score.pedagogy +
-  0.20 * data.score.quantRelevance +
-  0.15 * data.score.practicalValue +
-  0.10 * data.score.reputation +
-  0.05 * data.score.currency +
-  0.05 * data.score.accessibility;
+  data.score.overall ??
+  detailedScore ??
+  0;
 ---
 
 <BaseLayout
@@ -34,24 +49,28 @@ const finalScore =
   title={data.title}
   description={data.description.ca}
 >
-  <main class="shell resource-detail">
+  <div class="shell resource-detail">
     <a href="/ca/recursos/biblioteca/">
       ← Tornar a la biblioteca
     </a>
 
     <header>
       <p class="eyebrow">{data.type}</p>
+
       <h1>{data.title}</h1>
+
       <p>{data.description.ca}</p>
     </header>
 
     <dl>
-      {data.institution && (
-        <div>
-          <dt>Institució</dt>
-          <dd>{data.institution}</dd>
-        </div>
-      )}
+      {
+        data.institution && (
+          <div>
+            <dt>Institució</dt>
+            <dd>{data.institution}</dd>
+          </div>
+        )
+      }
 
       <div>
         <dt>Nivell</dt>
@@ -72,6 +91,11 @@ const finalScore =
         <dt>Idiomes</dt>
         <dd>{data.languages.join(', ')}</dd>
       </div>
+
+      <div>
+        <dt>Tipus</dt>
+        <dd>{data.type}</dd>
+      </div>
     </dl>
 
     <a
@@ -82,5 +106,5 @@ const finalScore =
     >
       Obrir el recurs oficial
     </a>
-  </main>
+  </div>
 </BaseLayout>

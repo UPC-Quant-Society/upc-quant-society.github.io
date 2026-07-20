@@ -1,0 +1,45 @@
+{
+  "slug": "edhec-investment-management-with-python-and-ml",
+  "title": "EDHEC Investment Management with Python and ML",
+  "description": {
+    "ca": "Recurs seleccionat de carteres aplicades per construir una base sòlida en finances quantitatives.",
+    "en": "A selected carteres aplicades resource for building a strong quantitative finance foundation."
+  },
+  "authors": [],
+  "type": "course",
+  "areas": [
+    "portfolio-management"
+  ],
+  "topics": [
+    "portfolio-management",
+    "machine-learning"
+  ],
+  "collections": [
+    "essential-library",
+    "portfolio-management"
+  ],
+  "levels": [
+    "intermediate"
+  ],
+  "languages": [
+    "en"
+  ],
+  "access": "freemium",
+  "officialUrl": "https://www.coursera.org/specializations/investment-management-python-machine-learning",
+  "materials": {
+    "exercises": false,
+    "solutions": false,
+    "videos": true,
+    "code": true,
+    "datasets": false
+  },
+  "score": {
+    "overall": 8.8
+  },
+  "verification": {
+    "status": "official-source",
+    "checkedAt": "2026-07-17"
+  },
+  "featured": true,
+  "institution": "EDHEC Business School"
+}

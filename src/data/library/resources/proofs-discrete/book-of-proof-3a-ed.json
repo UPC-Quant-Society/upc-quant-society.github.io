@@ -1,0 +1,47 @@
+{
+  "slug": "book-of-proof-3a-ed",
+  "title": "Book of Proof, 3a ed.",
+  "description": {
+    "ca": "Recurs seleccionat de proofs discrete per construir una base sòlida en finances quantitatives. Inclou teoria i molts exercicis.",
+    "en": "A selected proofs discrete resource for building a strong quantitative finance foundation. It includes teoria i molts exercicis."
+  },
+  "authors": [
+    "Richard Hammack"
+  ],
+  "type": "book",
+  "areas": [
+    "mathematics"
+  ],
+  "topics": [
+    "proofs",
+    "discrete-mathematics"
+  ],
+  "collections": [
+    "mathematical-foundations",
+    "proofs-discrete"
+  ],
+  "levels": [
+    "beginner"
+  ],
+  "languages": [
+    "en"
+  ],
+  "access": "official-free",
+  "officialUrl": "https://richardhammack.github.io/BookOfProof/Main.pdf",
+  "materials": {
+    "exercises": true,
+    "solutions": false,
+    "videos": false,
+    "code": false,
+    "datasets": false
+  },
+  "score": {
+    "overall": 8.8
+  },
+  "verification": {
+    "status": "official-source",
+    "checkedAt": "2026-07-17"
+  },
+  "featured": false,
+  "institution": "Richard Hammack"
+}

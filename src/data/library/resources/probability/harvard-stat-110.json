@@ -1,0 +1,46 @@
+{
+  "slug": "harvard-stat-110",
+  "title": "Harvard Stat 110 — Introduction to Probability",
+  "description": {
+    "ca": "Curs complet d’introducció a la probabilitat amb classes, llibre, exercicis i solucions. És una de les millors portes d’entrada a la probabilitat per a estudiants quantitatius.",
+    "en": "A complete introduction to probability with lectures, a textbook, exercises and solutions. It is one of the strongest entry points into probability for quantitative students."
+  },
+  "authors": ["Joseph K. Blitzstein"],
+  "institution": "Harvard University",
+  "type": "course",
+  "areas": ["probability"],
+  "topics": [
+    "probability",
+    "conditional-probability",
+    "random-variables",
+    "expectation",
+    "distributions",
+    "law-of-large-numbers"
+  ],
+  "collections": [
+    "essential-library",
+    "probability-foundations"
+  ],
+  "levels": [
+    "beginner",
+    "intermediate"
+  ],
+  "languages": ["en"],
+  "access": "official-free",
+  "officialUrl": "https://stat110.hsites.harvard.edu/",
+  "materials": {
+    "exercises": true,
+    "solutions": true,
+    "videos": true,
+    "code": false,
+    "datasets": false
+  },
+  "score": {
+    "overall": 9.6
+  },
+  "verification": {
+    "status": "official-source",
+    "checkedAt": "2026-07-17"
+  },
+  "featured": true
+}

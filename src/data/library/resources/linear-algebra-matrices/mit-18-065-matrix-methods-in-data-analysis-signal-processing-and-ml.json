@@ -1,0 +1,45 @@
+{
+  "slug": "mit-18-065-matrix-methods-in-data-analysis-signal-processing-and-ml",
+  "title": "MIT 18.065 — Matrix Methods in Data Analysis, Signal Processing and ML",
+  "description": {
+    "ca": "Recurs seleccionat de linear algebra matrices per construir una base sòlida en finances quantitatives. Inclou vídeos, problemes, projecte.",
+    "en": "A selected linear algebra matrices resource for building a strong quantitative finance foundation. It includes vídeos, problemes, projecte."
+  },
+  "authors": [],
+  "type": "course",
+  "areas": [
+    "mathematics"
+  ],
+  "topics": [
+    "linear-algebra",
+    "matrices"
+  ],
+  "collections": [
+    "mathematical-foundations",
+    "linear-algebra-matrices"
+  ],
+  "levels": [
+    "intermediate"
+  ],
+  "languages": [
+    "en"
+  ],
+  "access": "open-access",
+  "officialUrl": "https://ocw.mit.edu/courses/18-065-matrix-methods-in-data-analysis-signal-processing-and-machine-learning-spring-2018/",
+  "materials": {
+    "exercises": true,
+    "solutions": false,
+    "videos": true,
+    "code": false,
+    "datasets": false
+  },
+  "score": {
+    "overall": 9.3
+  },
+  "verification": {
+    "status": "official-source",
+    "checkedAt": "2026-07-17"
+  },
+  "featured": false,
+  "institution": "MIT OpenCourseWare"
+}

@@ -1,0 +1,12 @@
+{
+  "id": "essential-library",
+  "name": {
+    "ca": "Biblioteca essencial",
+    "en": "Essential library"
+  },
+  "resources": [
+    "mit-18-06sc-linear-algebra",
+    "harvard-stat-110",
+    "mit-18-05-probability-statistics"
+  ]
+}

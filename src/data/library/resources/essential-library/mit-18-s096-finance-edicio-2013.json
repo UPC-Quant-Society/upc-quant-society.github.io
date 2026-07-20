@@ -1,0 +1,45 @@
+{
+  "slug": "mit-18-s096-finance-edicio-2013",
+  "title": "MIT 18.S096 — Finance, edició 2013",
+  "description": {
+    "ca": "Recurs seleccionat de finances matemàtiques per construir una base sòlida en finances quantitatives.",
+    "en": "A selected finances matemàtiques resource for building a strong quantitative finance foundation."
+  },
+  "authors": [],
+  "type": "course",
+  "areas": [
+    "mathematical-finance"
+  ],
+  "topics": [
+    "mathematical-finance"
+  ],
+  "collections": [
+    "essential-library",
+    "mathematical-finance"
+  ],
+  "levels": [
+    "intermediate"
+  ],
+  "languages": [
+    "en"
+  ],
+  "access": "open-access",
+  "officialUrl": "https://ocw.mit.edu/courses/18-s096-topics-in-mathematics-with-applications-in-finance-fall-2013/",
+  "materials": {
+    "exercises": false,
+    "solutions": false,
+    "videos": false,
+    "code": false,
+    "datasets": false
+  },
+  "score": {
+    "overall": 8.9
+  },
+  "verification": {
+    "status": "official-source",
+    "checkedAt": "2026-07-17"
+  },
+  "featured": true,
+  "institution": "MIT OpenCourseWare",
+  "year": 2013
+}

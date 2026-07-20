@@ -1,0 +1,46 @@
+{
+  "slug": "mit-18-100a-real-analysis",
+  "title": "MIT 18.100A — Real Analysis",
+  "description": {
+    "ca": "Recurs seleccionat de real analysis measure functional analysis per construir una base sòlida en finances quantitatives. Inclou vídeos, notes, problemes i exàmens.",
+    "en": "A selected real analysis measure functional analysis resource for building a strong quantitative finance foundation. It includes vídeos, notes, problemes i exàmens."
+  },
+  "authors": [],
+  "type": "course",
+  "areas": [
+    "mathematics"
+  ],
+  "topics": [
+    "real-analysis",
+    "measure-theory",
+    "functional-analysis"
+  ],
+  "collections": [
+    "mathematical-foundations",
+    "real-analysis-measure-functional-analysis"
+  ],
+  "levels": [
+    "intermediate"
+  ],
+  "languages": [
+    "en"
+  ],
+  "access": "open-access",
+  "officialUrl": "https://ocw.mit.edu/courses/18-100a-real-analysis-fall-2020/",
+  "materials": {
+    "exercises": false,
+    "solutions": false,
+    "videos": true,
+    "code": false,
+    "datasets": false
+  },
+  "score": {
+    "overall": 9.3
+  },
+  "verification": {
+    "status": "official-source",
+    "checkedAt": "2026-07-17"
+  },
+  "featured": false,
+  "institution": "MIT OpenCourseWare"
+}

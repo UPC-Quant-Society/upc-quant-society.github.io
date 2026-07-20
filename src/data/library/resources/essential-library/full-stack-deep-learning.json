@@ -1,0 +1,45 @@
+{
+  "slug": "full-stack-deep-learning",
+  "title": "Full Stack Deep Learning",
+  "description": {
+    "ca": "Recurs seleccionat de producció de ml per construir una base sòlida en finances quantitatives.",
+    "en": "A selected producció de ml resource for building a strong quantitative finance foundation."
+  },
+  "authors": [],
+  "type": "course",
+  "areas": [
+    "mlops"
+  ],
+  "topics": [
+    "mlops",
+    "production-machine-learning"
+  ],
+  "collections": [
+    "essential-library",
+    "mlops-production"
+  ],
+  "levels": [
+    "intermediate"
+  ],
+  "languages": [
+    "en"
+  ],
+  "access": "official-free",
+  "officialUrl": "https://fullstackdeeplearning.com/",
+  "materials": {
+    "exercises": false,
+    "solutions": false,
+    "videos": true,
+    "code": true,
+    "datasets": false
+  },
+  "score": {
+    "overall": 8.9
+  },
+  "verification": {
+    "status": "official-source",
+    "checkedAt": "2026-07-17"
+  },
+  "featured": true,
+  "institution": "Full Stack Deep Learning"
+}
