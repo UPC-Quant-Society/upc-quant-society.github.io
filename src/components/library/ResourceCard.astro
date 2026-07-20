@@ -1,0 +1,111 @@
+---
+type Lang = 'ca' | 'en';
+
+type Props = {
+  resource: {
+    id: string;
+    data: {
+      slug: string;
+      title: string;
+      description: {
+        ca: string;
+        en: string;
+      };
+      institution?: string;
+      type: string;
+      areas: string[];
+      levels: string[];
+      access: string;
+      score: {
+        quality: number;
+        pedagogy: number;
+        quantRelevance: number;
+        practicalValue: number;
+        reputation: number;
+        currency: number;
+        accessibility: number;
+      };
+      verification: {
+        status: string;
+        checkedAt: string;
+      };
+    };
+  };
+  lang: Lang;
+};
+
+const { resource, lang } = Astro.props;
+const data = resource.data;
+
+const finalScore =
+  0.25 * data.score.quality +
+  0.20 * data.score.pedagogy +
+  0.20 * data.score.quantRelevance +
+  0.15 * data.score.practicalValue +
+  0.10 * data.score.reputation +
+  0.05 * data.score.currency +
+  0.05 * data.score.accessibility;
+
+const basePath =
+  lang === 'ca'
+    ? '/ca/recursos/biblioteca'
+    : '/en/resources/library';
+
+const labels = {
+  ca: {
+    view: 'Veure recurs',
+    verified: 'Font oficial',
+  },
+  en: {
+    view: 'View resource',
+    verified: 'Official source',
+  },
+};
+
+const t = labels[lang];
+---
+
+<article
+  class="resource-card"
+  data-resource-card
+  data-title={data.title.toLowerCase()}
+  data-institution={(data.institution ?? '').toLowerCase()}
+  data-type={data.type}
+  data-areas={data.areas.join(' ')}
+  data-levels={data.levels.join(' ')}
+  data-access={data.access}
+>
+  <div class="resource-card__meta">
+    <span>{data.type}</span>
+    <span>{data.access}</span>
+  </div>
+
+  <h2>
+    <a href={`${basePath}/${data.slug}/`}>
+      {data.title}
+    </a>
+  </h2>
+
+  {data.institution && (
+    <p class="resource-card__institution">
+      {data.institution}
+    </p>
+  )}
+
+  <p>{data.description[lang]}</p>
+
+  <div class="resource-card__footer">
+    <strong>{finalScore.toFixed(1)}/10</strong>
+
+    {data.verification.status === 'official-source' && (
+      <span>{t.verified}</span>
+    )}
+  </div>
+
+  <a
+    class="resource-card__link"
+    href={`${basePath}/${data.slug}/`}
+  >
+    {t.view} →
+  </a>
+</article>

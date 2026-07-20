@@ -1,0 +1,48 @@
+{
+  "slug": "introduction-to-linear-algebra-6a-ed",
+  "title": "Introduction to Linear Algebra, 6a ed.",
+  "description": {
+    "ca": "Recurs seleccionat de linear algebra matrices per construir una base sòlida en finances quantitatives. Inclou problemes i [solucions oficials](https://math.mit.edu/~gs/linearalgebra/ila6/ila6sols.pdf).",
+    "en": "A selected linear algebra matrices resource for building a strong quantitative finance foundation. It includes problemes i [solucions oficials](https://math.mit.edu/~gs/linearalgebra/ila6/ila6sols.pdf)."
+  },
+  "authors": [
+    "Gilbert Strang"
+  ],
+  "type": "book",
+  "areas": [
+    "mathematics"
+  ],
+  "topics": [
+    "linear-algebra",
+    "matrices"
+  ],
+  "collections": [
+    "mathematical-foundations",
+    "linear-algebra-matrices"
+  ],
+  "levels": [
+    "beginner",
+    "intermediate"
+  ],
+  "languages": [
+    "en"
+  ],
+  "access": "institutional",
+  "officialUrl": "https://math.mit.edu/~gs/linearalgebra/ila6/indexila6.html",
+  "materials": {
+    "exercises": false,
+    "solutions": true,
+    "videos": false,
+    "code": false,
+    "datasets": false
+  },
+  "score": {
+    "overall": 9.4
+  },
+  "verification": {
+    "status": "official-source",
+    "checkedAt": "2026-07-17"
+  },
+  "featured": false,
+  "institution": "Wellesley-Cambridge Press"
+}

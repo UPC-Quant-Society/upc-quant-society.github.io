@@ -1,0 +1,44 @@
+{
+  "slug": "deep-learning",
+  "title": "Deep Learning",
+  "description": {
+    "ca": "Recurs seleccionat de deep learning per construir una base sòlida en finances quantitatives.",
+    "en": "A selected deep learning resource for building a strong quantitative finance foundation."
+  },
+  "authors": [],
+  "type": "book",
+  "areas": [
+    "machine-learning"
+  ],
+  "topics": [
+    "deep-learning"
+  ],
+  "collections": [
+    "essential-library",
+    "deep-learning"
+  ],
+  "levels": [
+    "intermediate"
+  ],
+  "languages": [
+    "en"
+  ],
+  "access": "official-free",
+  "officialUrl": "https://www.deeplearningbook.org/",
+  "materials": {
+    "exercises": false,
+    "solutions": false,
+    "videos": false,
+    "code": false,
+    "datasets": false
+  },
+  "score": {
+    "overall": 8.6
+  },
+  "verification": {
+    "status": "official-source",
+    "checkedAt": "2026-07-17"
+  },
+  "featured": true,
+  "institution": "MIT Press"
+}

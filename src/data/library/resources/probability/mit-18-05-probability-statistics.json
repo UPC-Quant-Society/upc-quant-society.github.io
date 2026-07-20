@@ -1,0 +1,57 @@
+{
+  "slug": "mit-18-05-probability-statistics",
+  "title": "MIT 18.05 — Introduction to Probability and Statistics",
+  "description": {
+    "ca": "Curs universitari introductori que presenta conjuntament probabilitat i estadística aplicada. Cobreix combinatòria, variables aleatòries, distribucions, inferència bayesiana, contrastos d’hipòtesis, intervals de confiança i regressió lineal.",
+    "en": "An introductory university course combining probability and applied statistics. It covers combinatorics, random variables, probability distributions, Bayesian inference, hypothesis testing, confidence intervals and linear regression."
+  },
+  "authors": [
+    "Jeremy Orloff",
+    "Jennifer French Kamrin"
+  ],
+  "institution": "MIT OpenCourseWare",
+  "type": "course",
+  "areas": [
+    "probability",
+    "statistics"
+  ],
+  "topics": [
+    "combinatorics",
+    "random-variables",
+    "probability-distributions",
+    "bayesian-inference",
+    "hypothesis-testing",
+    "confidence-intervals",
+    "linear-regression"
+  ],
+  "collections": [
+    "essential-library",
+    "probability-foundations",
+    "statistics-foundations"
+  ],
+  "levels": [
+    "beginner",
+    "intermediate"
+  ],
+  "languages": [
+    "en"
+  ],
+  "year": 2022,
+  "access": "open-access",
+  "officialUrl": "https://ocw.mit.edu/courses/18-05-introduction-to-probability-and-statistics-spring-2022/",
+  "materials": {
+    "exercises": true,
+    "solutions": true,
+    "videos": false,
+    "code": true,
+    "datasets": false
+  },
+  "score": {
+    "overall": 9.3
+  },
+  "verification": {
+    "status": "official-source",
+    "checkedAt": "2026-07-17"
+  },
+  "featured": true
+}

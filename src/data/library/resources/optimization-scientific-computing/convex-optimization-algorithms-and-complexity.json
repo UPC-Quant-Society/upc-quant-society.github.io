@@ -1,0 +1,47 @@
+{
+  "slug": "convex-optimization-algorithms-and-complexity",
+  "title": "Convex Optimization: Algorithms and Complexity",
+  "description": {
+    "ca": "Recurs seleccionat de optimization scientific computing per construir una base sòlida en finances quantitatives. Inclou monografia oficial gratuïta.",
+    "en": "A selected optimization scientific computing resource for building a strong quantitative finance foundation. It includes monografia oficial gratuïta."
+  },
+  "authors": [
+    "Sébastien Bubeck"
+  ],
+  "type": "book",
+  "areas": [
+    "optimization"
+  ],
+  "topics": [
+    "optimization",
+    "scientific-computing"
+  ],
+  "collections": [
+    "mathematical-foundations",
+    "optimization-scientific-computing"
+  ],
+  "levels": [
+    "advanced"
+  ],
+  "languages": [
+    "en"
+  ],
+  "access": "official-free",
+  "officialUrl": "https://arxiv.org/abs/1405.4980",
+  "materials": {
+    "exercises": false,
+    "solutions": false,
+    "videos": false,
+    "code": false,
+    "datasets": false
+  },
+  "score": {
+    "overall": 8.9
+  },
+  "verification": {
+    "status": "official-source",
+    "checkedAt": "2026-07-17"
+  },
+  "featured": false,
+  "institution": "arXiv"
+}

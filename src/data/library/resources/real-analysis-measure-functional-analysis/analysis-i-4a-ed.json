@@ -1,0 +1,48 @@
+{
+  "slug": "analysis-i-4a-ed",
+  "title": "Analysis I, 4a ed.",
+  "description": {
+    "ca": "Recurs seleccionat de real analysis measure functional analysis per construir una base sòlida en finances quantitatives. Inclou construcció rigorosa i exercicis.",
+    "en": "A selected real analysis measure functional analysis resource for building a strong quantitative finance foundation. It includes construcció rigorosa i exercicis."
+  },
+  "authors": [
+    "Terence Tao"
+  ],
+  "type": "book",
+  "areas": [
+    "mathematics"
+  ],
+  "topics": [
+    "real-analysis",
+    "measure-theory",
+    "functional-analysis"
+  ],
+  "collections": [
+    "mathematical-foundations",
+    "real-analysis-measure-functional-analysis"
+  ],
+  "levels": [
+    "intermediate"
+  ],
+  "languages": [
+    "en"
+  ],
+  "access": "institutional",
+  "officialUrl": "https://link.springer.com/book/10.1007/978-981-19-7261-4",
+  "materials": {
+    "exercises": true,
+    "solutions": false,
+    "videos": false,
+    "code": false,
+    "datasets": false
+  },
+  "score": {
+    "overall": 9.0
+  },
+  "verification": {
+    "status": "official-source",
+    "checkedAt": "2026-07-17"
+  },
+  "featured": false,
+  "institution": "Springer"
+}

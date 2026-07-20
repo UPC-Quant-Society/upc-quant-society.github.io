@@ -1,0 +1,96 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../../../layouts/BaseLayout.astro';
+
+export async function getStaticPaths() {
+  const resources = await getCollection('resources');
+
+  return resources.map((resource) => ({
+    params: {
+      slug: resource.data.slug,
+    },
+    props: {
+      resource,
+    },
+  }));
+}
+
+const { resource } = Astro.props;
+const data = resource.data;
+
+const detailedScore =
+  data.score.quality !== undefined &&
+  data.score.pedagogy !== undefined &&
+  data.score.quantRelevance !== undefined &&
+  data.score.practicalValue !== undefined &&
+  data.score.reputation !== undefined &&
+  data.score.currency !== undefined &&
+  data.score.accessibility !== undefined
+    ? 0.25 * data.score.quality +
+      0.20 * data.score.pedagogy +
+      0.20 * data.score.quantRelevance +
+      0.15 * data.score.practicalValue +
+      0.10 * data.score.reputation +
+      0.05 * data.score.currency +
+      0.05 * data.score.accessibility
+    : undefined;
+
+const finalScore = data.score.overall ?? detailedScore ?? 0;
+---
+
+<BaseLayout
+  lang="en"
+  slug={`resources/library/${data.slug}`}
+  title={data.title}
+  description={data.description.en}
+>
+  <main class="shell resource-detail">
+    <a href="/en/resources/library/">
+      ← Back to the library
+    </a>
+
+    <header>
+      <p class="eyebrow">{data.type}</p>
+      <h1>{data.title}</h1>
+      <p>{data.description.en}</p>
+    </header>
+
+    <dl>
+      {data.institution && (
+        <div>
+          <dt>Institution</dt>
+          <dd>{data.institution}</dd>
+        </div>
+      )}
+
+      <div>
+        <dt>Level</dt>
+        <dd>{data.levels.join(', ')}</dd>
+      </div>
+
+      <div>
+        <dt>Access</dt>
+        <dd>{data.access}</dd>
+      </div>
+
+      <div>
+        <dt>Score</dt>
+        <dd>{finalScore.toFixed(1)}/10</dd>
+      </div>
+
+      <div>
+        <dt>Languages</dt>
+        <dd>{data.languages.join(', ')}</dd>
+      </div>
+    </dl>
+
+    <a
+      class="button button-primary"
+      href={data.officialUrl}
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      Open official resource
+    </a>
+  </main>
+</BaseLayout>

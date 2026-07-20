@@ -1,0 +1,46 @@
+{
+  "slug": "mit-18-085-computational-science-and-engineering-i",
+  "title": "MIT 18.085 — Computational Science and Engineering I",
+  "description": {
+    "ca": "Recurs seleccionat de optimization scientific computing per construir una base sòlida en finances quantitatives. Inclou notes, problemes i mètodes numèrics.",
+    "en": "A selected optimization scientific computing resource for building a strong quantitative finance foundation. It includes notes, problemes i mètodes numèrics."
+  },
+  "authors": [],
+  "type": "course",
+  "areas": [
+    "optimization"
+  ],
+  "topics": [
+    "optimization",
+    "scientific-computing"
+  ],
+  "collections": [
+    "mathematical-foundations",
+    "optimization-scientific-computing"
+  ],
+  "levels": [
+    "intermediate",
+    "advanced"
+  ],
+  "languages": [
+    "en"
+  ],
+  "access": "open-access",
+  "officialUrl": "https://ocw.mit.edu/courses/18-085-computational-science-and-engineering-i-fall-2008/",
+  "materials": {
+    "exercises": false,
+    "solutions": false,
+    "videos": false,
+    "code": false,
+    "datasets": false
+  },
+  "score": {
+    "overall": 9.0
+  },
+  "verification": {
+    "status": "official-source",
+    "checkedAt": "2026-07-17"
+  },
+  "featured": false,
+  "institution": "MIT OpenCourseWare"
+}

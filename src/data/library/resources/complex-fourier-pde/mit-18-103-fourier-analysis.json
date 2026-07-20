@@ -1,0 +1,46 @@
+{
+  "slug": "mit-18-103-fourier-analysis",
+  "title": "MIT 18.103 — Fourier Analysis",
+  "description": {
+    "ca": "Recurs seleccionat de complex fourier pde per construir una base sòlida en finances quantitatives. Inclou notes, problemes i exàmens.",
+    "en": "A selected complex fourier pde resource for building a strong quantitative finance foundation. It includes notes, problemes i exàmens."
+  },
+  "authors": [],
+  "type": "course",
+  "areas": [
+    "mathematics"
+  ],
+  "topics": [
+    "complex-analysis",
+    "fourier-analysis",
+    "partial-differential-equations"
+  ],
+  "collections": [
+    "mathematical-foundations",
+    "complex-fourier-pde"
+  ],
+  "levels": [
+    "advanced"
+  ],
+  "languages": [
+    "en"
+  ],
+  "access": "open-access",
+  "officialUrl": "https://ocw.mit.edu/courses/18-103-fourier-analysis-fall-2013/",
+  "materials": {
+    "exercises": false,
+    "solutions": false,
+    "videos": false,
+    "code": false,
+    "datasets": false
+  },
+  "score": {
+    "overall": 8.9
+  },
+  "verification": {
+    "status": "official-source",
+    "checkedAt": "2026-07-17"
+  },
+  "featured": false,
+  "institution": "MIT OpenCourseWare"
+}

@@ -1,0 +1,67 @@
+{
+  "slug": "mit-linear-algebra",
+  "title": "MIT 18.06SC — Linear Algebra",
+
+  "description": {
+    "ca": "Curs complet d’àlgebra lineal amb vídeos, apunts, exercicis, solucions i exàmens.",
+    "en": "A complete linear algebra course with videos, notes, exercises, solutions and exams."
+  },
+
+  "authors": ["Gilbert Strang"],
+  "institution": "MIT OpenCourseWare",
+
+  "type": "course",
+
+  "areas": [
+    "mathematics"
+  ],
+
+  "topics": [
+    "linear-algebra",
+    "matrices",
+    "eigenvalues",
+    "least-squares"
+  ],
+
+  "collections": [
+    "essential-library",
+    "mathematical-foundations"
+  ],
+
+  "levels": [
+    "beginner",
+    "intermediate"
+  ],
+
+  "languages": ["en"],
+  "year": 2011,
+
+  "access": "open-access",
+
+  "officialUrl": "https://ocw.mit.edu/courses/18-06sc-linear-algebra-fall-2011/",
+
+  "materials": {
+    "exercises": true,
+    "solutions": true,
+    "videos": true,
+    "code": false,
+    "datasets": false
+  },
+
+  "score": {
+    "quality": 9.8,
+    "pedagogy": 9.8,
+    "quantRelevance": 9.2,
+    "practicalValue": 9.3,
+    "reputation": 10,
+    "currency": 8.5,
+    "accessibility": 10
+  },
+
+  "verification": {
+    "status": "official-source",
+    "checkedAt": "2026-07-17"
+  },
+
+  "featured": true
+}

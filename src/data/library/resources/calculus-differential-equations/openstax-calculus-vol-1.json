@@ -1,0 +1,45 @@
+{
+  "slug": "openstax-calculus-vol-1",
+  "title": "OpenStax Calculus, vol. 1",
+  "description": {
+    "ca": "Recurs seleccionat de calculus differential equations per construir una base sòlida en finances quantitatives. Inclou llibre i exercicis.",
+    "en": "A selected calculus differential equations resource for building a strong quantitative finance foundation. It includes llibre i exercicis."
+  },
+  "authors": [],
+  "type": "book",
+  "areas": [
+    "mathematics"
+  ],
+  "topics": [
+    "calculus",
+    "differential-equations"
+  ],
+  "collections": [
+    "mathematical-foundations",
+    "calculus-differential-equations"
+  ],
+  "levels": [
+    "beginner"
+  ],
+  "languages": [
+    "en"
+  ],
+  "access": "open-access",
+  "officialUrl": "https://openstax.org/details/books/calculus-volume-1",
+  "materials": {
+    "exercises": true,
+    "solutions": false,
+    "videos": false,
+    "code": false,
+    "datasets": false
+  },
+  "score": {
+    "overall": 8.6
+  },
+  "verification": {
+    "status": "official-source",
+    "checkedAt": "2026-07-17"
+  },
+  "featured": false,
+  "institution": "OpenStax"
+}

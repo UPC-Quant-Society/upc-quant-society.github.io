@@ -1,0 +1,48 @@
+{
+  "slug": "understanding-analysis-2a-ed",
+  "title": "Understanding Analysis, 2a ed.",
+  "description": {
+    "ca": "Recurs seleccionat de real analysis measure functional analysis per construir una base sòlida en finances quantitatives. Inclou exercicis i orientació pedagògica.",
+    "en": "A selected real analysis measure functional analysis resource for building a strong quantitative finance foundation. It includes exercicis i orientació pedagògica."
+  },
+  "authors": [
+    "Stephen Abbott"
+  ],
+  "type": "book",
+  "areas": [
+    "mathematics"
+  ],
+  "topics": [
+    "real-analysis",
+    "measure-theory",
+    "functional-analysis"
+  ],
+  "collections": [
+    "mathematical-foundations",
+    "real-analysis-measure-functional-analysis"
+  ],
+  "levels": [
+    "intermediate"
+  ],
+  "languages": [
+    "en"
+  ],
+  "access": "institutional",
+  "officialUrl": "https://link.springer.com/book/10.1007/978-1-4939-2712-8",
+  "materials": {
+    "exercises": true,
+    "solutions": false,
+    "videos": false,
+    "code": false,
+    "datasets": false
+  },
+  "score": {
+    "overall": 9.2
+  },
+  "verification": {
+    "status": "official-source",
+    "checkedAt": "2026-07-17"
+  },
+  "featured": false,
+  "institution": "Springer"
+}

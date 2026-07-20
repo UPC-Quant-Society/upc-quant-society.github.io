@@ -1,0 +1,53 @@
+{
+  "slug": "measure-integration-real-analysis",
+  "title": "Measure, Integration & Real Analysis",
+  "description": {
+    "ca": "Llibre avançat de Sheldon Axler sobre teoria de la mesura, integració, diferenciació, convergència i espais funcionals. És un pont modern entre l’anàlisi real i la probabilitat rigorosa.",
+    "en": "An advanced book by Sheldon Axler covering measure theory, integration, differentiation, convergence and function spaces. It provides a modern bridge between real analysis and rigorous probability."
+  },
+  "authors": [
+    "Sheldon Axler"
+  ],
+  "institution": "Springer",
+  "type": "book",
+  "areas": [
+    "mathematics",
+    "probability"
+  ],
+  "topics": [
+    "real-analysis",
+    "measure-theory",
+    "integration",
+    "convergence",
+    "functional-spaces"
+  ],
+  "collections": [
+    "essential-library",
+    "mathematical-foundations",
+    "real-analysis-measure-functional-analysis"
+  ],
+  "levels": [
+    "advanced"
+  ],
+  "languages": [
+    "en"
+  ],
+  "year": 2020,
+  "access": "open-access",
+  "officialUrl": "https://measure.axler.net/",
+  "materials": {
+    "exercises": false,
+    "solutions": false,
+    "videos": false,
+    "code": false,
+    "datasets": false
+  },
+  "score": {
+    "overall": 9.4
+  },
+  "verification": {
+    "status": "official-source",
+    "checkedAt": "2026-07-17"
+  },
+  "featured": true
+}

@@ -1,0 +1,46 @@
+{
+  "slug": "mit-6-042j-mathematics-for-computer-science",
+  "title": "MIT 6.042J — Mathematics for Computer Science",
+  "description": {
+    "ca": "Recurs seleccionat de proofs discrete per construir una base sòlida en finances quantitatives. Inclou llibre, vídeos, problemes, exàmens.",
+    "en": "A selected proofs discrete resource for building a strong quantitative finance foundation. It includes llibre, vídeos, problemes, exàmens."
+  },
+  "authors": [],
+  "type": "course",
+  "areas": [
+    "mathematics"
+  ],
+  "topics": [
+    "proofs",
+    "discrete-mathematics"
+  ],
+  "collections": [
+    "mathematical-foundations",
+    "proofs-discrete"
+  ],
+  "levels": [
+    "beginner",
+    "intermediate"
+  ],
+  "languages": [
+    "en"
+  ],
+  "access": "open-access",
+  "officialUrl": "https://ocw.mit.edu/courses/6-042j-mathematics-for-computer-science-spring-2015/",
+  "materials": {
+    "exercises": false,
+    "solutions": false,
+    "videos": true,
+    "code": false,
+    "datasets": false
+  },
+  "score": {
+    "overall": 9.3
+  },
+  "verification": {
+    "status": "official-source",
+    "checkedAt": "2026-07-17"
+  },
+  "featured": false,
+  "institution": "MIT OpenCourseWare"
+}

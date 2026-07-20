@@ -1,0 +1,48 @@
+{
+  "slug": "bertsekas-optimization-convexity-books",
+  "title": "Optimization and Convexity Books",
+  "description": {
+    "ca": "Recurs seleccionat de optimization scientific computing per construir una base sòlida en finances quantitatives. Inclou diversos pdfs autoritzats per l’autor.",
+    "en": "A selected optimization scientific computing resource for building a strong quantitative finance foundation. It includes diversos pdfs autoritzats per l’autor."
+  },
+  "authors": [
+    "Dimitri P. Bertsekas"
+  ],
+  "type": "book",
+  "areas": [
+    "optimization"
+  ],
+  "topics": [
+    "optimization",
+    "scientific-computing"
+  ],
+  "collections": [
+    "mathematical-foundations",
+    "optimization-scientific-computing"
+  ],
+  "levels": [
+    "advanced",
+    "research"
+  ],
+  "languages": [
+    "en"
+  ],
+  "access": "official-free",
+  "officialUrl": "https://www.athenasc.com/books.htm",
+  "materials": {
+    "exercises": false,
+    "solutions": false,
+    "videos": false,
+    "code": true,
+    "datasets": false
+  },
+  "score": {
+    "overall": 9.0
+  },
+  "verification": {
+    "status": "official-source",
+    "checkedAt": "2026-07-17"
+  },
+  "featured": false,
+  "institution": "Athena Scientific"
+}

@@ -1,0 +1,56 @@
+{
+  "slug": "mathematics-for-machine-learning",
+  "title": "Mathematics for Machine Learning",
+  "description": {
+    "ca": "Recurs seleccionat de linear algebra matrices per construir una base sòlida en finances quantitatives. Inclou llibre, notebooks, exercicis.",
+    "en": "A selected linear algebra matrices resource for building a strong quantitative finance foundation. It includes llibre, notebooks, exercicis."
+  },
+  "authors": [
+    "Marc Peter Deisenroth",
+    "A. Aldo Faisal",
+    "Cheng Soon Ong"
+  ],
+  "type": "book",
+  "areas": [
+    "mathematics"
+  ],
+  "topics": [
+    "linear-algebra",
+    "vector-calculus",
+    "probability",
+    "optimization",
+    "regression",
+    "pca",
+    "machine-learning"
+  ],
+  "collections": [
+    "essential-library",
+    "mathematical-foundations",
+    "linear-algebra-matrices"
+  ],
+  "levels": [
+    "intermediate"
+  ],
+  "languages": [
+    "en"
+  ],
+  "access": "official-free",
+  "officialUrl": "https://mml-book.github.io/",
+  "materials": {
+    "exercises": true,
+    "solutions": false,
+    "videos": false,
+    "code": true,
+    "datasets": false
+  },
+  "score": {
+    "overall": 9.3
+  },
+  "verification": {
+    "status": "official-source",
+    "checkedAt": "2026-07-17"
+  },
+  "featured": true,
+  "institution": "Cambridge University Press",
+  "year": 2020
+}

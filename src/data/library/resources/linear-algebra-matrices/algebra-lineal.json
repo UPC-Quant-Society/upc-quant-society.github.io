@@ -1,0 +1,48 @@
+{
+  "slug": "algebra-lineal",
+  "title": "Àlgebra Lineal",
+  "description": {
+    "ca": "Recurs seleccionat de linear algebra matrices per construir una base sòlida en finances quantitatives. Inclou teoria i exemples resolts; català.",
+    "en": "A selected linear algebra matrices resource for building a strong quantitative finance foundation. It includes teoria i exemples resolts; català."
+  },
+  "authors": [
+    "J. Amorós Torrent"
+  ],
+  "type": "book",
+  "areas": [
+    "mathematics"
+  ],
+  "topics": [
+    "linear-algebra",
+    "matrices"
+  ],
+  "collections": [
+    "mathematical-foundations",
+    "linear-algebra-matrices"
+  ],
+  "levels": [
+    "beginner"
+  ],
+  "languages": [
+    "ca"
+  ],
+  "access": "official-free",
+  "officialUrl": "https://upcommons.upc.edu/bitstreams/1eb7ab44-33ac-416f-83c4-d1f022945f91/download",
+  "materials": {
+    "exercises": false,
+    "solutions": true,
+    "videos": false,
+    "code": false,
+    "datasets": false
+  },
+  "score": {
+    "overall": 8.8
+  },
+  "verification": {
+    "status": "official-source",
+    "checkedAt": "2026-07-17"
+  },
+  "featured": false,
+  "institution": "Universitat Politècnica de Catalunya",
+  "year": 2023
+}

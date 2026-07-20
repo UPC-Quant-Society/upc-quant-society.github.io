@@ -1,0 +1,45 @@
+{
+  "slug": "forecasting-principles-and-practice",
+  "title": "Forecasting: Principles and Practice",
+  "description": {
+    "ca": "Recurs seleccionat de sèries temporals per construir una base sòlida en finances quantitatives.",
+    "en": "A selected sèries temporals resource for building a strong quantitative finance foundation."
+  },
+  "authors": [],
+  "type": "book",
+  "areas": [
+    "econometrics"
+  ],
+  "topics": [
+    "time-series",
+    "forecasting"
+  ],
+  "collections": [
+    "essential-library",
+    "time-series"
+  ],
+  "levels": [
+    "intermediate"
+  ],
+  "languages": [
+    "en"
+  ],
+  "access": "official-free",
+  "officialUrl": "https://otexts.com/fpp3/",
+  "materials": {
+    "exercises": false,
+    "solutions": false,
+    "videos": false,
+    "code": true,
+    "datasets": false
+  },
+  "score": {
+    "overall": 9.2
+  },
+  "verification": {
+    "status": "official-source",
+    "checkedAt": "2026-07-17"
+  },
+  "featured": true,
+  "institution": "OTexts"
+}

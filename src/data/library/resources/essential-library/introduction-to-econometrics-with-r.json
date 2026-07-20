@@ -1,0 +1,45 @@
+{
+  "slug": "introduction-to-econometrics-with-r",
+  "title": "Introduction to Econometrics with R",
+  "description": {
+    "ca": "Recurs seleccionat de econometria per construir una base sòlida en finances quantitatives.",
+    "en": "A selected econometria resource for building a strong quantitative finance foundation."
+  },
+  "authors": [],
+  "type": "book",
+  "areas": [
+    "econometrics"
+  ],
+  "topics": [
+    "econometrics",
+    "r"
+  ],
+  "collections": [
+    "essential-library",
+    "econometrics"
+  ],
+  "levels": [
+    "intermediate"
+  ],
+  "languages": [
+    "en"
+  ],
+  "access": "official-free",
+  "officialUrl": "https://www.econometrics-with-r.org/",
+  "materials": {
+    "exercises": false,
+    "solutions": false,
+    "videos": false,
+    "code": true,
+    "datasets": false
+  },
+  "score": {
+    "overall": 8.8
+  },
+  "verification": {
+    "status": "official-source",
+    "checkedAt": "2026-07-17"
+  },
+  "featured": true,
+  "institution": "Introduction to Econometrics with R"
+}

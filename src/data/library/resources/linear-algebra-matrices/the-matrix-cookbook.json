@@ -1,0 +1,48 @@
+{
+  "slug": "the-matrix-cookbook",
+  "title": "The Matrix Cookbook",
+  "description": {
+    "ca": "Recurs seleccionat de linear algebra matrices per construir una base sòlida en finances quantitatives. Inclou identitats i derivades matricials.",
+    "en": "A selected linear algebra matrices resource for building a strong quantitative finance foundation. It includes identitats i derivades matricials."
+  },
+  "authors": [
+    "Kaare Brandt Petersen",
+    "Michael Syskind Pedersen"
+  ],
+  "type": "book",
+  "areas": [
+    "mathematics"
+  ],
+  "topics": [
+    "linear-algebra",
+    "matrices"
+  ],
+  "collections": [
+    "mathematical-foundations",
+    "linear-algebra-matrices"
+  ],
+  "levels": [
+    "research"
+  ],
+  "languages": [
+    "en"
+  ],
+  "access": "official-free",
+  "officialUrl": "https://www2.compute.dtu.dk/pubdb/pubs/3274-full.html",
+  "materials": {
+    "exercises": false,
+    "solutions": false,
+    "videos": false,
+    "code": false,
+    "datasets": false
+  },
+  "score": {
+    "overall": 8.5
+  },
+  "verification": {
+    "status": "official-source",
+    "checkedAt": "2026-07-17"
+  },
+  "featured": false,
+  "institution": "Technical University of Denmark"
+}

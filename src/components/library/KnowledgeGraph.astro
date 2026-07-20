@@ -1,0 +1,614 @@
+---
+import { getCollection } from 'astro:content';
+import { taxonomy } from '../../data/library/taxonomy';
+
+type Lang = 'ca' | 'en';
+
+type Props = {
+  lang: Lang;
+};
+
+const { lang } = Astro.props;
+
+const resources = await getCollection('resources');
+
+const areaIds = [
+  ...new Set(
+    resources.flatMap((resource) => resource.data.areas),
+  ),
+];
+
+const areaById = new Map(
+  taxonomy.map((area) => [area.id, area]),
+);
+
+function getAreaLabel(areaId: string) {
+  return areaById.get(areaId)?.name[lang] ?? areaId;
+}
+
+function hashString(value: string) {
+  let hash = 0;
+
+  for (let index = 0; index < value.length; index += 1) {
+    hash =
+      value.charCodeAt(index) +
+      ((hash << 5) - hash);
+  }
+
+  return Math.abs(hash);
+}
+
+const areaPositions = new Map<
+  string,
+  { x: number; y: number }
+>();
+
+areaIds.forEach((areaId, index) => {
+  const angle =
+    (index / Math.max(areaIds.length, 1)) *
+    Math.PI *
+    2;
+
+  areaPositions.set(areaId, {
+    x: Math.cos(angle) * 10,
+    y: Math.sin(angle) * 10,
+  });
+});
+
+const areaNodes = areaIds.map((areaId) => {
+  const position =
+    areaPositions.get(areaId) ?? { x: 0, y: 0 };
+
+  return {
+    id: `area:${areaId}`,
+    label: getAreaLabel(areaId),
+    x: position.x,
+    y: position.y,
+    size: 14,
+    color: '#39ff88',
+    nodeType: 'area',
+    href: null,
+  };
+});
+
+const resourceNodes = resources.map((resource) => {
+  const data = resource.data;
+  const primaryArea = data.areas[0];
+
+  const areaPosition =
+    areaPositions.get(primaryArea) ?? {
+      x: 0,
+      y: 0,
+    };
+
+  const hash = hashString(data.slug);
+  const angle = ((hash % 360) * Math.PI) / 180;
+  const distance = 1.5 + (hash % 40) / 20;
+
+  const isEssential =
+    data.collections.includes('essential-library');
+
+  const basePath =
+    lang === 'ca'
+      ? '/ca/recursos/biblioteca'
+      : '/en/resources/library';
+
+  return {
+    id: `resource:${data.slug}`,
+    label: data.title,
+    x:
+      areaPosition.x +
+      Math.cos(angle) * distance,
+    y:
+      areaPosition.y +
+      Math.sin(angle) * distance,
+    size: isEssential ? 7 : 5,
+    color: isEssential
+      ? '#3b82f6'
+      : '#b8b5ad',
+    nodeType: isEssential
+      ? 'essential'
+      : 'resource',
+    href: `${basePath}/${data.slug}/`,
+  };
+});
+
+const edges = resources.flatMap((resource) =>
+  resource.data.areas.map((areaId) => ({
+    source: `area:${areaId}`,
+    target: `resource:${resource.data.slug}`,
+  })),
+);
+
+const graphData = {
+  nodes: [...areaNodes, ...resourceNodes],
+  edges,
+};
+
+const serializedGraphData = JSON.stringify(
+  graphData,
+).replace(/</g, '\\u003c');
+
+const labels = {
+  ca: {
+    search: 'Cerca un recurs o una àrea',
+    reset: 'Restablir vista',
+    area: 'Àrea',
+    resource: 'Recurs',
+    essential: 'Recurs essencial',
+    loading: 'Carregant el graf…',
+  },
+  en: {
+    search: 'Search for a resource or area',
+    reset: 'Reset view',
+    area: 'Area',
+    resource: 'Resource',
+    essential: 'Essential resource',
+    loading: 'Loading graph…',
+  },
+};
+
+const t = labels[lang];
+---
+
+<div
+  class="knowledge-graph"
+  data-knowledge-graph
+>
+  <div class="knowledge-graph__toolbar">
+    <label class="knowledge-graph__search">
+      <span class="sr-only">{t.search}</span>
+
+      <input
+        type="search"
+        placeholder={t.search}
+        data-graph-search
+        autocomplete="off"
+      />
+    </label>
+
+    <button
+      type="button"
+      class="knowledge-graph__reset"
+      data-graph-reset
+    >
+      {t.reset}
+    </button>
+  </div>
+
+  <div class="knowledge-graph__legend">
+    <span>
+      <i class="legend-node legend-node--area"></i>
+      {t.area}
+    </span>
+
+    <span>
+      <i class="legend-node legend-node--resource"></i>
+      {t.resource}
+    </span>
+
+    <span>
+      <i class="legend-node legend-node--essential"></i>
+      {t.essential}
+    </span>
+  </div>
+
+  <div
+    class="knowledge-graph__canvas"
+    data-graph-canvas
+    aria-label={t.loading}
+  ></div>
+
+  <script
+    type="application/json"
+    data-graph-data
+    set:html={serializedGraphData}
+  />
+</div>
+
+<script>
+  import Graph from 'graphology';
+  import Sigma from 'sigma';
+  import forceAtlas2 from 'graphology-layout-forceatlas2';
+
+  type GraphNode = {
+    id: string;
+    label: string;
+    x: number;
+    y: number;
+    size: number;
+    color: string;
+    nodeType: string;
+    href: string | null;
+  };
+
+  type GraphEdge = {
+    source: string;
+    target: string;
+  };
+
+  type GraphData = {
+    nodes: GraphNode[];
+    edges: GraphEdge[];
+  };
+
+  const graphWidgets =
+    document.querySelectorAll<HTMLElement>(
+      '[data-knowledge-graph]',
+    );
+
+  graphWidgets.forEach((widget) => {
+    if (widget.dataset.initialized === 'true') {
+      return;
+    }
+
+    widget.dataset.initialized = 'true';
+
+    const canvas =
+      widget.querySelector<HTMLElement>(
+        '[data-graph-canvas]',
+      );
+
+    const dataElement =
+      widget.querySelector<HTMLScriptElement>(
+        '[data-graph-data]',
+      );
+
+    const searchInput =
+      widget.querySelector<HTMLInputElement>(
+        '[data-graph-search]',
+      );
+
+    const resetButton =
+      widget.querySelector<HTMLButtonElement>(
+        '[data-graph-reset]',
+      );
+
+    if (!canvas || !dataElement) {
+      return;
+    }
+
+    const graphData = JSON.parse(
+      dataElement.textContent ?? '{}',
+    ) as GraphData;
+
+    const graph = new Graph({
+      type: 'undirected',
+      multi: false,
+      allowSelfLoops: false,
+    });
+
+    graphData.nodes.forEach((node) => {
+      graph.addNode(node.id, {
+        label: node.label,
+        x: node.x,
+        y: node.y,
+        size: node.size,
+        color: node.color,
+        nodeType: node.nodeType,
+        href: node.href,
+      });
+    });
+
+    graphData.edges.forEach((edge) => {
+      if (
+        graph.hasNode(edge.source) &&
+        graph.hasNode(edge.target)
+      ) {
+        graph.mergeEdge(
+          edge.source,
+          edge.target,
+          {
+            size: 1,
+            color: '#343434',
+          },
+        );
+      }
+    });
+
+    if (graph.order > 1) {
+      forceAtlas2.assign(graph, {
+        iterations: 160,
+        settings: {
+          barnesHutOptimize: graph.order > 100,
+          gravity: 1.4,
+          scalingRatio: 4,
+          slowDown: 2,
+          strongGravityMode: false,
+          linLogMode: false,
+          adjustSizes: true,
+        },
+      });
+    }
+
+    let searchQuery = '';
+
+    const renderer = new Sigma(
+      graph,
+      canvas,
+      {
+        defaultNodeColor: '#b8b5ad',
+        defaultEdgeColor: '#343434',
+        labelFont: 'Inter, sans-serif',
+        labelSize: 12,
+        labelWeight: '500',
+        labelRenderedSizeThreshold: 5,
+        renderEdgeLabels: false,
+        zIndex: true,
+
+        nodeReducer(node, attributes) {
+          if (!searchQuery) {
+            return attributes;
+          }
+
+          const label = String(
+            attributes.label ?? '',
+          ).toLowerCase();
+
+          const matches =
+            label.includes(searchQuery);
+
+          if (matches) {
+            return {
+              ...attributes,
+              size:
+                Number(attributes.size ?? 5) *
+                1.45,
+              zIndex: 2,
+              forceLabel: true,
+            };
+          }
+
+          return {
+            ...attributes,
+            color: '#292929',
+            label: '',
+            zIndex: 0,
+          };
+        },
+
+        edgeReducer(edge, attributes) {
+          if (!searchQuery) {
+            return attributes;
+          }
+
+          const [source, target] =
+            graph.extremities(edge);
+
+          const sourceLabel = String(
+            graph.getNodeAttribute(
+              source,
+              'label',
+            ) ?? '',
+          ).toLowerCase();
+
+          const targetLabel = String(
+            graph.getNodeAttribute(
+              target,
+              'label',
+            ) ?? '',
+          ).toLowerCase();
+
+          const visible =
+            sourceLabel.includes(searchQuery) ||
+            targetLabel.includes(searchQuery);
+
+          return {
+            ...attributes,
+            color: visible
+              ? '#4f4f4f'
+              : '#202020',
+            hidden: !visible,
+          };
+        },
+      },
+    );
+
+    renderer.on('enterNode', () => {
+      canvas.style.cursor = 'pointer';
+    });
+
+    renderer.on('leaveNode', () => {
+      canvas.style.cursor = 'grab';
+    });
+
+    renderer.on('clickNode', ({ node }) => {
+      const href = graph.getNodeAttribute(
+        node,
+        'href',
+      );
+
+      if (
+        typeof href === 'string' &&
+        href.length > 0
+      ) {
+        window.location.href = href;
+      }
+    });
+
+    searchInput?.addEventListener(
+      'input',
+      () => {
+        searchQuery =
+          searchInput.value
+            .trim()
+            .toLowerCase();
+
+        renderer.refresh();
+      },
+    );
+
+    resetButton?.addEventListener(
+      'click',
+      () => {
+        searchQuery = '';
+
+        if (searchInput) {
+          searchInput.value = '';
+        }
+
+        renderer.refresh();
+
+        renderer
+          .getCamera()
+          .animatedReset({
+            duration: 500,
+          });
+      },
+    );
+  });
+</script>
+
+<style>
+  .knowledge-graph {
+    position: relative;
+    width: 100%;
+    margin-top: 30px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    overflow: hidden;
+    background:
+      radial-gradient(
+        circle at 50% 45%,
+        rgba(57, 255, 136, 0.035),
+        transparent 45%
+      ),
+      var(--graphite);
+  }
+
+  .knowledge-graph__toolbar {
+    position: relative;
+    z-index: 5;
+    display: flex;
+    gap: 12px;
+    padding: 16px;
+    border-bottom: 1px solid var(--border);
+    background: rgba(17, 17, 17, 0.92);
+  }
+
+  .knowledge-graph__search {
+    flex: 1;
+  }
+
+  .knowledge-graph__search input {
+    width: 100%;
+    min-height: 44px;
+    padding: 0 14px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    outline: none;
+    background: var(--black);
+    color: var(--off-white);
+    font: inherit;
+    font-size: 14px;
+  }
+
+  .knowledge-graph__search input:focus {
+    border-color: var(--green);
+    box-shadow:
+      0 0 0 3px
+      rgba(57, 255, 136, 0.1);
+  }
+
+  .knowledge-graph__reset {
+    min-height: 44px;
+    padding: 0 16px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    background: var(--stone);
+    color: var(--off-white);
+    font: inherit;
+    font-size: 13px;
+    cursor: pointer;
+  }
+
+  .knowledge-graph__reset:hover {
+    border-color: var(--green);
+    color: var(--green);
+  }
+
+  .knowledge-graph__legend {
+    position: absolute;
+    z-index: 4;
+    right: 18px;
+    bottom: 16px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    padding: 9px 11px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    background: rgba(17, 17, 17, 0.88);
+    backdrop-filter: blur(8px);
+  }
+
+  .knowledge-graph__legend span {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    color: var(--warm-grey);
+    font-family: var(--mono);
+    font-size: 9px;
+    text-transform: uppercase;
+  }
+
+  .legend-node {
+    width: 8px;
+    height: 8px;
+    display: inline-block;
+    border-radius: 50%;
+  }
+
+  .legend-node--area {
+    background: var(--green);
+  }
+
+  .legend-node--resource {
+    background: var(--warm-grey);
+  }
+
+  .legend-node--essential {
+    background: var(--blue);
+  }
+
+  .knowledge-graph__canvas {
+    width: 100%;
+    height: min(72vh, 700px);
+    min-height: 540px;
+    cursor: grab;
+  }
+
+  .knowledge-graph__canvas:active {
+    cursor: grabbing;
+  }
+
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+  }
+
+  @media (max-width: 680px) {
+    .knowledge-graph__toolbar {
+      flex-direction: column;
+    }
+
+    .knowledge-graph__reset {
+      width: 100%;
+    }
+
+    .knowledge-graph__canvas {
+      height: 540px;
+      min-height: 540px;
+    }
+
+    .knowledge-graph__legend {
+      right: 10px;
+      bottom: 10px;
+      left: 10px;
+    }
+  }
+</style>

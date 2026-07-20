@@ -1,0 +1,210 @@
+---
+import { getCollection } from 'astro:content';
+
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ResourceCard from './ResourceCard.astro';
+
+type Lang = 'ca' | 'en';
+
+type Props = {
+  lang: Lang;
+};
+
+const { lang } = Astro.props;
+
+const resources = await getCollection('resources');
+
+const sortedResources = resources.sort((a, b) =>
+  a.data.title.localeCompare(b.data.title),
+);
+
+const content = {
+  ca: {
+    title: 'Biblioteca Quant',
+    description:
+      'Biblioteca pública de recursos seleccionats de finances quantitatives.',
+    eyebrow: 'UPC QUANT LIBRARY',
+    intro:
+      'Cursos, llibres, papers, repositoris i altres materials seleccionats per la seva qualitat, rigor i utilitat.',
+    search: 'Cerca per títol o institució',
+    allTypes: 'Tots els tipus',
+    allLevels: 'Tots els nivells',
+    allAccess: 'Tots els accessos',
+    results: 'recursos',
+    empty: 'No s’ha trobat cap recurs amb aquests filtres.',
+  },
+
+  en: {
+    title: 'Quant Library',
+    description:
+      'A public library of selected quantitative finance resources.',
+    eyebrow: 'UPC QUANT LIBRARY',
+    intro:
+      'Courses, books, papers, repositories and other materials selected for their quality, rigour and usefulness.',
+    search: 'Search by title or institution',
+    allTypes: 'All types',
+    allLevels: 'All levels',
+    allAccess: 'All access models',
+    results: 'resources',
+    empty: 'No resources match the selected filters.',
+  },
+};
+
+const t = content[lang];
+---
+
+<BaseLayout
+  lang={lang}
+  slug={lang === 'ca' ? 'recursos/biblioteca' : 'resources/library'}
+  title={t.title}
+  description={t.description}
+>
+  <main class="shell library-page">
+    <header class="library-hero">
+      <p class="eyebrow">{t.eyebrow}</p>
+      <h1>{t.title}</h1>
+      <p>{t.intro}</p>
+    </header>
+
+    <section class="library-toolbar" aria-label={t.title}>
+      <input
+        id="library-search"
+        type="search"
+        placeholder={t.search}
+        autocomplete="off"
+      />
+
+      <select id="type-filter">
+        <option value="">{t.allTypes}</option>
+        <option value="course">Course</option>
+        <option value="book">Book</option>
+        <option value="paper">Paper</option>
+        <option value="notes">Notes</option>
+        <option value="repository">Repository</option>
+        <option value="dataset">Dataset</option>
+      </select>
+
+      <select id="level-filter">
+        <option value="">{t.allLevels}</option>
+        <option value="introductory">Introductory</option>
+        <option value="beginner">Beginner</option>
+        <option value="intermediate">Intermediate</option>
+        <option value="advanced">Advanced</option>
+        <option value="research">Research</option>
+      </select>
+
+      <select id="access-filter">
+        <option value="">{t.allAccess}</option>
+        <option value="open-access">Open access</option>
+        <option value="official-free">Official free</option>
+        <option value="freemium">Freemium</option>
+        <option value="institutional">Institutional</option>
+        <option value="paid">Paid</option>
+        <option value="subscription">Subscription</option>
+        <option value="not-verified">Not verified</option>
+      </select>
+    </section>
+
+    <p class="library-count">
+      <span id="resource-count">{sortedResources.length}</span>
+      {t.results}
+    </p>
+
+    <section class="resource-grid" id="resource-grid">
+      {
+        sortedResources.map((resource) => (
+          <ResourceCard resource={resource} lang={lang} />
+        ))
+      }
+    </section>
+
+    <p id="empty-results" hidden>
+      {t.empty}
+    </p>
+  </main>
+
+  <script>
+    const searchInput =
+      document.querySelector<HTMLInputElement>('#library-search');
+
+    const typeFilter =
+      document.querySelector<HTMLSelectElement>('#type-filter');
+
+    const levelFilter =
+      document.querySelector<HTMLSelectElement>('#level-filter');
+
+    const accessFilter =
+      document.querySelector<HTMLSelectElement>('#access-filter');
+
+    const counter =
+      document.querySelector<HTMLElement>('#resource-count');
+
+    const emptyResults =
+      document.querySelector<HTMLElement>('#empty-results');
+
+    const cards = Array.from(
+      document.querySelectorAll<HTMLElement>('[data-resource-card]'),
+    );
+
+    function filterResources() {
+      const query =
+        searchInput?.value.trim().toLowerCase() ?? '';
+
+      const selectedType = typeFilter?.value ?? '';
+      const selectedLevel = levelFilter?.value ?? '';
+      const selectedAccess = accessFilter?.value ?? '';
+
+      let visibleCount = 0;
+
+      cards.forEach((card) => {
+        const title = card.dataset.title ?? '';
+        const institution = card.dataset.institution ?? '';
+        const type = card.dataset.type ?? '';
+        const levels = card.dataset.levels ?? '';
+        const access = card.dataset.access ?? '';
+
+        const matchesSearch =
+          !query ||
+          title.includes(query) ||
+          institution.includes(query);
+
+        const matchesType =
+          !selectedType ||
+          type === selectedType;
+
+        const matchesLevel =
+          !selectedLevel ||
+          levels.split(' ').includes(selectedLevel);
+
+        const matchesAccess =
+          !selectedAccess ||
+          access === selectedAccess;
+
+        const visible =
+          matchesSearch &&
+          matchesType &&
+          matchesLevel &&
+          matchesAccess;
+
+        card.hidden = !visible;
+
+        if (visible) {
+          visibleCount += 1;
+        }
+      });
+
+      if (counter) {
+        counter.textContent = String(visibleCount);
+      }
+
+      if (emptyResults) {
+        emptyResults.hidden = visibleCount !== 0;
+      }
+    }
+
+    searchInput?.addEventListener('input', filterResources);
+    typeFilter?.addEventListener('change', filterResources);
+    levelFilter?.addEventListener('change', filterResources);
+    accessFilter?.addEventListener('change', filterResources);
+  </script>
+</BaseLayout>

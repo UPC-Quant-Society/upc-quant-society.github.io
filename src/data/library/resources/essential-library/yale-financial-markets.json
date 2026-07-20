@@ -1,0 +1,44 @@
+{
+  "slug": "yale-financial-markets",
+  "title": "Yale Financial Markets",
+  "description": {
+    "ca": "Recurs seleccionat de mercats financers per construir una base sòlida en finances quantitatives.",
+    "en": "A selected mercats financers resource for building a strong quantitative finance foundation."
+  },
+  "authors": [],
+  "type": "course",
+  "areas": [
+    "financial-markets"
+  ],
+  "topics": [
+    "financial-markets"
+  ],
+  "collections": [
+    "essential-library",
+    "financial-markets"
+  ],
+  "levels": [
+    "intermediate"
+  ],
+  "languages": [
+    "en"
+  ],
+  "access": "freemium",
+  "officialUrl": "https://www.coursera.org/learn/financial-markets-global",
+  "materials": {
+    "exercises": false,
+    "solutions": false,
+    "videos": true,
+    "code": false,
+    "datasets": false
+  },
+  "score": {
+    "overall": 8.5
+  },
+  "verification": {
+    "status": "official-source",
+    "checkedAt": "2026-07-17"
+  },
+  "featured": true,
+  "institution": "Yale University"
+}

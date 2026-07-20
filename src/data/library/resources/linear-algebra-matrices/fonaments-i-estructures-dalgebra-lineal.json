@@ -1,0 +1,46 @@
+{
+  "slug": "fonaments-i-estructures-dalgebra-lineal",
+  "title": "Fonaments i estructures d’àlgebra lineal",
+  "description": {
+    "ca": "Recurs seleccionat de linear algebra matrices per construir una base sòlida en finances quantitatives. Inclou material upc en català.",
+    "en": "A selected linear algebra matrices resource for building a strong quantitative finance foundation. It includes material upc en català."
+  },
+  "authors": [],
+  "type": "book",
+  "areas": [
+    "mathematics"
+  ],
+  "topics": [
+    "linear-algebra",
+    "matrices"
+  ],
+  "collections": [
+    "mathematical-foundations",
+    "linear-algebra-matrices"
+  ],
+  "levels": [
+    "beginner",
+    "intermediate"
+  ],
+  "languages": [
+    "ca"
+  ],
+  "access": "official-free",
+  "officialUrl": "https://upcommons.upc.edu/entities/publication/b719f20a-4233-4ae5-8a5b-f1573894b4e5",
+  "materials": {
+    "exercises": false,
+    "solutions": false,
+    "videos": false,
+    "code": false,
+    "datasets": false
+  },
+  "score": {
+    "overall": 7.9
+  },
+  "verification": {
+    "status": "official-source",
+    "checkedAt": "2026-07-17"
+  },
+  "featured": false,
+  "institution": "Universitat Politècnica de Catalunya"
+}

@@ -1,0 +1,45 @@
+{
+  "slug": "python-3-tutorial",
+  "title": "Python 3 Tutorial",
+  "description": {
+    "ca": "Recurs seleccionat de programació per construir una base sòlida en finances quantitatives.",
+    "en": "A selected programació resource for building a strong quantitative finance foundation."
+  },
+  "authors": [],
+  "type": "notes",
+  "areas": [
+    "programming"
+  ],
+  "topics": [
+    "python",
+    "programming-foundations"
+  ],
+  "collections": [
+    "essential-library",
+    "programming-foundations"
+  ],
+  "levels": [
+    "intermediate"
+  ],
+  "languages": [
+    "en"
+  ],
+  "access": "open-access",
+  "officialUrl": "https://docs.python.org/3/tutorial/",
+  "materials": {
+    "exercises": false,
+    "solutions": false,
+    "videos": false,
+    "code": true,
+    "datasets": false
+  },
+  "score": {
+    "overall": 8.7
+  },
+  "verification": {
+    "status": "official-source",
+    "checkedAt": "2026-07-17"
+  },
+  "featured": true,
+  "institution": "Python Software Foundation"
+}

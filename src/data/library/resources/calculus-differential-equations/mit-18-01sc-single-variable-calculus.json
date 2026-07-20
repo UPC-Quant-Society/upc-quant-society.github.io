@@ -1,0 +1,45 @@
+{
+  "slug": "mit-18-01sc-single-variable-calculus",
+  "title": "MIT 18.01SC — Single Variable Calculus",
+  "description": {
+    "ca": "Recurs seleccionat de calculus differential equations per construir una base sòlida en finances quantitatives. Inclou vídeos, problemes, solucions, exàmens.",
+    "en": "A selected calculus differential equations resource for building a strong quantitative finance foundation. It includes vídeos, problemes, solucions, exàmens."
+  },
+  "authors": [],
+  "type": "course",
+  "areas": [
+    "mathematics"
+  ],
+  "topics": [
+    "calculus",
+    "differential-equations"
+  ],
+  "collections": [
+    "mathematical-foundations",
+    "calculus-differential-equations"
+  ],
+  "levels": [
+    "beginner"
+  ],
+  "languages": [
+    "en"
+  ],
+  "access": "open-access",
+  "officialUrl": "https://ocw.mit.edu/courses/18-01sc-single-variable-calculus-fall-2010/",
+  "materials": {
+    "exercises": false,
+    "solutions": true,
+    "videos": true,
+    "code": false,
+    "datasets": false
+  },
+  "score": {
+    "overall": 9.3
+  },
+  "verification": {
+    "status": "official-source",
+    "checkedAt": "2026-07-17"
+  },
+  "featured": false,
+  "institution": "MIT OpenCourseWare"
+}
