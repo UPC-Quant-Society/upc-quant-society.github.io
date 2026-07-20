@@ -1,12 +1,297 @@
 {
-  "id": "essential-library",
-  "name": {
-    "ca": "Biblioteca essencial",
-    "en": "Essential library"
-  },
-  "resources": [
-    "mit-18-06sc-linear-algebra",
-    "harvard-stat-110",
-    "mit-18-05-probability-statistics"
+  "collections": [
+    {
+      "id": "essential-library",
+      "kind": "curated",
+      "order": 1,
+      "name": {
+        "ca": "Biblioteca essencial",
+        "en": "Essential library"
+      },
+      "description": {
+        "ca": "Selecció transversal de recursos especialment recomanats per construir una base quantitativa sòlida.",
+        "en": "A cross-disciplinary selection of recommended resources for building a strong quantitative foundation."
+      }
+    },
+    {
+      "id": "mathematical-foundations",
+      "kind": "area",
+      "area": "mathematics",
+      "order": 10,
+      "name": {
+        "ca": "Fonaments matemàtics",
+        "en": "Mathematical foundations"
+      },
+      "description": {
+        "ca": "Proves, càlcul, àlgebra lineal, anàlisi, PDE i altres bases matemàtiques.",
+        "en": "Proofs, calculus, linear algebra, analysis, PDEs and other mathematical foundations."
+      }
+    },
+    {
+      "id": "probability-foundations",
+      "kind": "topic",
+      "area": "probability",
+      "order": 20,
+      "name": {
+        "ca": "Fonaments de probabilitat",
+        "en": "Probability foundations"
+      },
+      "description": {
+        "ca": "Introducció estructurada a variables aleatòries, condicionament, esperança i distribucions.",
+        "en": "A structured introduction to random variables, conditioning, expectation and distributions."
+      }
+    },
+    {
+      "id": "statistics-foundations",
+      "kind": "topic",
+      "area": "statistics",
+      "order": 21,
+      "name": {
+        "ca": "Fonaments d’estadística",
+        "en": "Statistics foundations"
+      },
+      "description": {
+        "ca": "Inferència, estimació, contrastos, regressió i validació.",
+        "en": "Inference, estimation, testing, regression and validation."
+      }
+    },
+    {
+      "id": "proofs-discrete",
+      "kind": "topic",
+      "area": "mathematics",
+      "order": 30,
+      "name": {
+        "ca": "Proves i matemàtica discreta",
+        "en": "Proofs and discrete mathematics"
+      },
+      "description": {
+        "ca": "Lògica, demostracions, combinatòria, grafs i rigor matemàtic.",
+        "en": "Logic, proofs, combinatorics, graphs and mathematical rigour."
+      }
+    },
+    {
+      "id": "calculus-differential-equations",
+      "kind": "topic",
+      "area": "mathematics",
+      "order": 31,
+      "name": {
+        "ca": "Càlcul i equacions diferencials",
+        "en": "Calculus and differential equations"
+      },
+      "description": {
+        "ca": "Càlcul d’una i diverses variables, ODE i sistemes dinàmics.",
+        "en": "Single and multivariable calculus, ODEs and dynamical systems."
+      }
+    },
+    {
+      "id": "linear-algebra-matrices",
+      "kind": "topic",
+      "area": "mathematics",
+      "order": 32,
+      "name": {
+        "ca": "Àlgebra lineal i matrius",
+        "en": "Linear algebra and matrices"
+      },
+      "description": {
+        "ca": "Espais vectorials, mínims quadrats, autovalors, SVD i mètodes matricials.",
+        "en": "Vector spaces, least squares, eigenvalues, SVD and matrix methods."
+      }
+    },
+    {
+      "id": "real-analysis-measure-functional-analysis",
+      "kind": "topic",
+      "area": "mathematics",
+      "order": 33,
+      "name": {
+        "ca": "Anàlisi real, mesura i anàlisi funcional",
+        "en": "Real analysis, measure and functional analysis"
+      },
+      "description": {
+        "ca": "Convergència, integració, espais funcionals i fonaments rigorosos de probabilitat.",
+        "en": "Convergence, integration, function spaces and rigorous foundations for probability."
+      }
+    },
+    {
+      "id": "complex-fourier-pde",
+      "kind": "topic",
+      "area": "mathematics",
+      "order": 34,
+      "name": {
+        "ca": "Variable complexa, Fourier i PDE",
+        "en": "Complex analysis, Fourier and PDEs"
+      },
+      "description": {
+        "ca": "Anàlisi complexa, transformades, equacions en derivades parcials i aplicacions de pricing.",
+        "en": "Complex analysis, transforms, partial differential equations and pricing applications."
+      }
+    },
+    {
+      "id": "optimization-scientific-computing",
+      "kind": "topic",
+      "area": "optimization",
+      "order": 35,
+      "name": {
+        "ca": "Optimització i computació científica",
+        "en": "Optimization and scientific computing"
+      },
+      "description": {
+        "ca": "Optimització convexa i numèrica, algorismes i implementació computacional.",
+        "en": "Convex and numerical optimization, algorithms and computational implementation."
+      }
+    },
+    {
+      "id": "machine-learning-foundations",
+      "kind": "topic",
+      "area": "machine-learning",
+      "order": 40,
+      "name": {
+        "ca": "Fonaments de machine learning",
+        "en": "Machine learning foundations"
+      },
+      "description": {
+        "ca": "Aprenentatge estadístic, models supervisats i validació.",
+        "en": "Statistical learning, supervised models and validation."
+      }
+    },
+    {
+      "id": "econometrics-time-series",
+      "kind": "area",
+      "area": "econometrics-time-series",
+      "order": 41,
+      "name": {
+        "ca": "Econometria i sèries temporals",
+        "en": "Econometrics and time series"
+      },
+      "description": {
+        "ca": "Regressió, forecasting, dependència temporal i models economètrics.",
+        "en": "Regression, forecasting, temporal dependence and econometric models."
+      }
+    },
+    {
+      "id": "economics-macrofinance",
+      "kind": "area",
+      "area": "economics-macrofinance",
+      "order": 42,
+      "name": {
+        "ca": "Economia i macrofinances",
+        "en": "Economics and macro-finance"
+      },
+      "description": {
+        "ca": "Economia computacional, macroeconomia i factors financers.",
+        "en": "Computational economics, macroeconomics and financial factors."
+      }
+    },
+    {
+      "id": "programming-foundations",
+      "kind": "topic",
+      "area": "programming-software",
+      "order": 43,
+      "name": {
+        "ca": "Fonaments de programació",
+        "en": "Programming foundations"
+      },
+      "description": {
+        "ca": "Python, eines de desenvolupament i pràctiques bàsiques de software.",
+        "en": "Python, development tools and foundational software practices."
+      }
+    },
+    {
+      "id": "deep-learning-ai",
+      "kind": "area",
+      "area": "deep-learning-ai",
+      "order": 44,
+      "name": {
+        "ca": "Deep learning i IA",
+        "en": "Deep learning and AI"
+      },
+      "description": {
+        "ca": "Xarxes neuronals, representacions i sistemes moderns d’IA.",
+        "en": "Neural networks, representations and modern AI systems."
+      }
+    },
+    {
+      "id": "mathematical-finance",
+      "kind": "area",
+      "area": "mathematical-finance",
+      "order": 45,
+      "name": {
+        "ca": "Matemàtica financera",
+        "en": "Mathematical finance"
+      },
+      "description": {
+        "ca": "Mercats, arbitratge, derivats, pricing i cobertura.",
+        "en": "Markets, arbitrage, derivatives, pricing and hedging."
+      }
+    },
+    {
+      "id": "risk-management",
+      "kind": "area",
+      "area": "risk-management",
+      "order": 46,
+      "name": {
+        "ca": "Gestió del risc",
+        "en": "Risk management"
+      },
+      "description": {
+        "ca": "Risc de mercat, crèdit, liquiditat i mètodes quantitatius de control.",
+        "en": "Market, credit and liquidity risk with quantitative control methods."
+      }
+    },
+    {
+      "id": "market-microstructure-hft",
+      "kind": "area",
+      "area": "market-microstructure-hft",
+      "order": 47,
+      "name": {
+        "ca": "Microestructura i HFT",
+        "en": "Market microstructure and HFT"
+      },
+      "description": {
+        "ca": "Llibres d’ordres, execució, liquiditat, market making i alta freqüència.",
+        "en": "Order books, execution, liquidity, market making and high-frequency trading."
+      }
+    },
+    {
+      "id": "financial-markets",
+      "kind": "topic",
+      "area": "mathematical-finance",
+      "order": 48,
+      "name": {
+        "ca": "Mercats financers",
+        "en": "Financial markets"
+      },
+      "description": {
+        "ca": "Institucions, instruments, funcionament dels mercats i context financer.",
+        "en": "Institutions, instruments, market structure and financial context."
+      }
+    },
+    {
+      "id": "portfolio-management",
+      "kind": "area",
+      "area": "portfolio-management",
+      "order": 49,
+      "name": {
+        "ca": "Gestió de carteres",
+        "en": "Portfolio management"
+      },
+      "description": {
+        "ca": "Construcció, optimització, factors i gestió quantitativa de carteres.",
+        "en": "Portfolio construction, optimization, factors and quantitative management."
+      }
+    },
+    {
+      "id": "mlops-production",
+      "kind": "area",
+      "area": "mlops-production",
+      "order": 50,
+      "name": {
+        "ca": "MLOps i producció",
+        "en": "MLOps and production"
+      },
+      "description": {
+        "ca": "Desplegament, pipelines, monitoratge i manteniment de models.",
+        "en": "Deployment, pipelines, monitoring and model maintenance."
+      }
+    }
   ]
 }

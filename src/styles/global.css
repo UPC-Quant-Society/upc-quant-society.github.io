@@ -1339,3 +1339,21 @@ a {
     min-height: auto;
   }
 }
+
+.resources-graph-section {
+  margin-bottom: 110px;
+}
+
+.resources-graph-intro {
+  max-width: 760px;
+  margin: 0;
+  color: var(--warm-grey);
+  font-size: 17px;
+  line-height: 1.7;
+}
+
+@media (max-width: 680px) {
+  .resources-graph-section {
+    margin-bottom: 75px;
+  }
+}

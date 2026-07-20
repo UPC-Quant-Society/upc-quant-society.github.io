@@ -352,29 +352,78 @@ export const pages: Record<Lang, Record<string, PageData>> = {
     },
     recursos: {
       title: 'Recursos',
-      description: 'Repositori educatiu de finances quantitatives de UPC Quant Society.',
-      eyebrow: 'BIBLIOTECA',
+      description:
+        'Biblioteca i itineraris d’aprenentatge de finances quantitatives de UPC Quant Society.',
+      eyebrow: 'APRENENTATGE',
       intro:
-        'La biblioteca reunirà materials seleccionats per nivell i tema. L’objectiu no és acumular enllaços, sinó explicar què aporta cada recurs i en quin moment és útil.',
+        'Consulta recursos acadèmics seleccionats o segueix itineraris ordenats per construir coneixement de manera progressiva.',
       sections: [
         {
-          id: 'categories',
-          title: 'Categories',
+          id: 'biblioteca',
+          kicker: '01',
+          title: 'Biblioteca',
+          body: [
+            'Explora el catàleg complet de llibres, cursos, apunts, papers i altres materials seleccionats per UPC Quant Society.',
+            'Cada recurs està classificat per àrea, nivell, tipus, accés i utilitat quantitativa.',
+          ],
+          cta: {
+            label: 'Consulta tots els recursos disponibles',
+            href: '/ca/recursos/biblioteca/',
+          },
+        },
+        {
+          id: 'roadmaps',
+          kicker: '02',
+          title: 'Roadmaps',
+          body: [
+            'Els roadmaps transformen la biblioteca en itineraris d’aprenentatge ordenats. Cada ruta indica què estudiar, en quin ordre i quins coneixements previs són recomanables.',
+          ],
           cards: [
-            { title: 'Fonaments', text: 'Probabilitat, estadística, àlgebra lineal i càlcul.' },
-            { title: 'Derivats i processos estocàstics', text: 'Pricing, simulació i modelització.' },
-            { title: 'Microestructura', text: 'Llibres d’ordres, execució, liquiditat i market making.' },
-            { title: 'Data science', text: 'Sèries temporals, machine learning i validació.' },
-            { title: 'Programació', text: 'Python, C++, eines de dades i arquitectura de projectes.' },
-            { title: 'Preparació professional', text: 'Entrevistes quantitatives, CV i processos de selecció.' },
+            {
+              label: 'MATEMÀTIQUES',
+              title: 'Fonaments matemàtics',
+              text: 'Proves, càlcul, àlgebra lineal, anàlisi real, optimització i mètodes numèrics.',
+              href: '/ca/recursos/roadmaps/mathematics/',
+            },
+            {
+              label: 'PROBABILITAT',
+              title: 'Probabilitat i estadística',
+              text: 'Variables aleatòries, condicionament, inferència, regressió i fonaments estadístics.',
+              href: '/ca/recursos/roadmaps/probability-statistics/',
+            },
+            {
+              label: 'ECONOMETRIA',
+              title: 'Econometria i sèries temporals',
+              text: 'Regressió, forecasting, ARIMA, volatilitat, cointegració i validació temporal.',
+              href: '/ca/recursos/roadmaps/econometrics-time-series/',
+            },
+            {
+              label: 'MACHINE LEARNING',
+              title: 'Machine learning quantitatiu',
+              text: 'Aprenentatge estadístic, models supervisats, validació i aplicacions a dades financeres.',
+              href: '/ca/recursos/roadmaps/machine-learning/',
+            },
+            {
+              label: 'FINANCES',
+              title: 'Finances matemàtiques',
+              text: 'Mercats, arbitratge, derivats, pricing, cobertura, carteres i gestió del risc.',
+              href: '/ca/recursos/roadmaps/mathematical-finance/',
+            },
+            {
+              label: 'PROGRAMACIÓ',
+              title: 'Programació quantitativa',
+              text: 'Python, tractament de dades, computació científica, testing i infraestructura de recerca.',
+              href: '/ca/recursos/roadmaps/quant-programming/',
+            },
           ],
         },
         {
-          id: 'criteris',
-          title: 'Criteris de selecció',
+          id: 'metode',
+          kicker: '03',
+          title: 'Com utilitzar els recursos',
           body: [
-            'Prioritzarem llibres, papers, documentació oficial, cursos universitaris i materials amb exercicis o implementacions.',
-            'Sempre que sigui possible, indicarem nivell, prerequisits, durada aproximada i disponibilitat a les biblioteques de la UPC.',
+            'La biblioteca serveix per explorar lliurement. Els roadmaps són preferibles quan es vol seguir una progressió estructurada.',
+            'Les rutes no substitueixen assignatures universitàries ni pretenen cobrir tots els recursos disponibles. Seleccionen una seqüència coherent i assumible.',
           ],
         },
       ],
