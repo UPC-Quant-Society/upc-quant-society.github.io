@@ -324,17 +324,22 @@ const t = labels[lang];
     let searchQuery = '';
 
     const renderer = new Sigma(
-      graph,
-      canvas,
-      {
-        defaultNodeColor: '#b8b5ad',
-        defaultEdgeColor: '#343434',
-        labelFont: 'Inter, sans-serif',
-        labelSize: 12,
-        labelWeight: '500',
-        labelRenderedSizeThreshold: 5,
-        renderEdgeLabels: false,
-        zIndex: true,
+  graph,
+  canvas,
+  {
+    defaultNodeColor: '#b8b5ad',
+    defaultEdgeColor: '#343434',
+
+    labelFont: 'Inter, sans-serif',
+    labelSize: 14,
+    labelWeight: '600',
+    labelColor: {
+      color: '#ffffff',
+    },
+
+    labelRenderedSizeThreshold: 5,
+    renderEdgeLabels: false,
+    zIndex: true,
 
         nodeReducer(node, attributes) {
           if (!searchQuery) {
