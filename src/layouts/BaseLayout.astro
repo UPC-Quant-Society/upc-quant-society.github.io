@@ -17,7 +17,7 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
 const alternate = new URL(getAlternatePath(lang, slug), Astro.site);
 const catalanUrl = lang === 'ca' ? canonical : alternate;
 const englishUrl = lang === 'en' ? canonical : alternate;
-const defaultUrl = new URL('/ca/', Astro.site);
+const defaultUrl = new URL('/en/', Astro.site);
 ---
 
 <!doctype html>

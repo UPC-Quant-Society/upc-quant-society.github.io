@@ -2,7 +2,7 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import KnowledgeGraph from './library/KnowledgeGraph.astro';
 import type { Lang, PageData } from '../data/site';
-import { ui } from '../data/site';
+import { pages, ui } from '../data/site';
 
 type Props = {
   lang: Lang;
@@ -12,6 +12,23 @@ type Props = {
 
 const { lang, slug, page } = Astro.props;
 const t = ui[lang];
+
+const isAbout = slug === 'associacio' || slug === 'about';
+const activitySlug = lang === 'ca' ? 'activitat' : 'activity';
+const teamSlug = lang === 'ca' ? 'equip' : 'team';
+const activityPage = pages[lang][activitySlug];
+const teamPage = pages[lang][teamSlug];
+const displayPage = isAbout
+  ? {
+      ...page,
+      sections: [
+        ...page.sections.slice(0, 3),
+        activityPage.sections[0],
+        ...teamPage.sections.slice(0, 2),
+        ...page.sections.slice(3),
+      ],
+    }
+  : page;
 
 const showKnowledgeGraph =
   slug === 'recursos' || slug === 'resources';
@@ -30,13 +47,13 @@ const graphDescription =
 <BaseLayout
   lang={lang}
   slug={slug}
-  title={page.title}
-  description={page.description}
+  title={displayPage.title}
+  description={displayPage.description}
 >
   <section class="page-hero shell">
-    <p class="eyebrow">{page.eyebrow}</p>
-    <h1>{page.title}</h1>
-    <p class="page-intro">{page.intro}</p>
+    <p class="eyebrow">{displayPage.eyebrow}</p>
+    <h1>{displayPage.title}</h1>
+    <p class="page-intro">{displayPage.intro}</p>
   </section>
 
   {
@@ -75,7 +92,7 @@ const graphDescription =
         }
 
         {
-          page.sections.map((section) => (
+          displayPage.sections.map((section) => (
             <a href={`#${section.id}`}>
               {section.title}
             </a>
@@ -86,7 +103,7 @@ const graphDescription =
 
     <div class="page-sections">
       {
-        page.sections.map((section) => (
+        displayPage.sections.map((section) => (
           <section
             class="content-section"
             id={section.id}
@@ -181,17 +198,18 @@ const graphDescription =
                   {
                     section.people.map((person) => (
                       <article class="person-card">
-                        <div
-                          class="person-initials"
-                          aria-hidden="true"
-                        >
-                          {
-                            person.name
-                              .split(' ')
-                              .slice(0, 2)
-                              .map((part) => part[0])
-                              .join('')
-                          }
+                        <div class="person-photo">
+                          {person.image ? (
+                            <img src={person.image} alt={person.imageAlt ?? person.name} loading="lazy" />
+                          ) : (
+                            <span aria-hidden="true">
+                              {person.name
+                                .split(' ')
+                                .slice(0, 2)
+                                .map((part) => part[0])
+                                .join('')}
+                            </span>
+                          )}
                         </div>
 
                         <div>

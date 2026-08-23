@@ -1,15 +1,15 @@
 :root {
-  --black: #111111;
-  --graphite: #1a1a1a;
-  --stone: #242424;
-  --off-white: #f4f1ea;
-  --warm-grey: #b8b5ad;
-  --border: #3a3a3a;
-  --green: #39ff88;
-  --deep-green: #0f3d2e;
+  --black: #141615;
+  --graphite: #1b1e1c;
+  --stone: #232724;
+  --off-white: #f1f0ea;
+  --warm-grey: #aaaDA8;
+  --border: #363a37;
+  --green: #9ab7a2;
+  --deep-green: #202c24;
   --blue: #3b82f6;
   --max-width: 1180px;
-  --radius: 18px;
+  --radius: 12px;
   --mono: 'IBM Plex Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
   --sans: 'Inter', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
 }
@@ -26,11 +26,7 @@ html {
 body {
   margin: 0;
   min-width: 320px;
-  background:
-    linear-gradient(rgba(255, 255, 255, 0.018) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.018) 1px, transparent 1px),
-    var(--black);
-  background-size: 80px 80px;
+  background: var(--black);
   color: var(--off-white);
   font-family: var(--sans);
   line-height: 1.6;
@@ -157,6 +153,10 @@ a {
   color: var(--off-white);
 }
 
+.desktop-nav a[aria-current='page'] {
+  color: var(--off-white);
+}
+
 .header-actions {
   display: flex;
   align-items: center;
@@ -244,10 +244,10 @@ a {
 }
 
 .home-hero {
-  min-height: 690px;
+  min-height: 650px;
   display: grid;
-  grid-template-columns: minmax(0, 1.15fr) minmax(330px, 0.65fr);
-  gap: 82px;
+  grid-template-columns: minmax(0, 1.35fr) minmax(300px, 0.55fr);
+  gap: 90px;
   align-items: center;
   padding-block: 90px;
 }
@@ -256,10 +256,10 @@ a {
 .page-hero h1 {
   margin: 0;
   max-width: 850px;
-  font-size: clamp(4rem, 8vw, 7.4rem);
+  font-size: clamp(3.5rem, 7vw, 6.4rem);
   font-weight: 600;
-  line-height: 0.94;
-  letter-spacing: -0.065em;
+  line-height: 0.98;
+  letter-spacing: -0.055em;
 }
 
 .hero-copy > p:last-of-type {
@@ -304,112 +304,46 @@ a {
   background: var(--graphite);
 }
 
-.hero-system {
-  position: relative;
-  min-height: 430px;
-  overflow: hidden;
+.hero-focus {
+  min-height: 360px;
+  display: flex;
+  flex-direction: column;
+  padding: 30px;
   border: 1px solid var(--border);
-  border-radius: 22px;
+  border-radius: var(--radius);
   background: var(--graphite);
 }
 
-.hero-system::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background:
-    linear-gradient(rgba(57, 255, 136, 0.08) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(57, 255, 136, 0.08) 1px, transparent 1px);
-  background-size: 42px 42px;
-  mask-image: linear-gradient(to bottom right, black, transparent 78%);
-}
-
-.system-axis {
-  position: absolute;
-  background: var(--border);
-}
-
-.axis-x {
-  left: 34px;
-  right: 34px;
-  top: 52%;
-  height: 1px;
-}
-
-.axis-y {
-  top: 34px;
-  bottom: 34px;
-  left: 47%;
-  width: 1px;
-}
-
-.point {
-  position: absolute;
-  padding: 7px 9px;
-  border: 1px solid var(--border);
-  border-radius: 6px;
-  background: var(--black);
-  color: var(--warm-grey);
-  font-family: var(--mono);
-  font-size: 10px;
-}
-
-.point::before {
-  content: '';
-  position: absolute;
-  width: 7px;
-  height: 7px;
-  border-radius: 50%;
-  background: var(--green);
-}
-
-.p1 {
-  top: 21%;
-  left: 17%;
-}
-
-.p1::before {
-  right: -28px;
-  bottom: -35px;
-}
-
-.p2 {
-  top: 18%;
-  right: 14%;
-}
-
-.p2::before {
-  left: -32px;
-  bottom: -56px;
-}
-
-.p3 {
-  bottom: 19%;
-  left: 12%;
-}
-
-.p3::before {
-  right: -52px;
-  top: -38px;
-}
-
-.p4 {
-  right: 12%;
-  bottom: 22%;
-}
-
-.p4::before {
-  left: -38px;
-  top: -47px;
-}
-
-.system-code {
-  position: absolute;
-  right: 22px;
-  bottom: 18px;
+.hero-focus > p,
+.hero-focus > span {
+  margin: 0;
   color: var(--green);
   font-family: var(--mono);
   font-size: 10px;
+  letter-spacing: 0.08em;
+}
+
+.hero-focus ul {
+  display: grid;
+  gap: 0;
+  margin: 42px 0;
+  padding: 0;
+  list-style: none;
+}
+
+.hero-focus li {
+  padding: 17px 0;
+  border-bottom: 1px solid var(--border);
+  font-size: 17px;
+}
+
+.hero-focus li:first-child {
+  border-top: 1px solid var(--border);
+}
+
+.hero-focus > span {
+  margin-top: auto;
+  color: var(--warm-grey);
 }
 
 .phase-section {
@@ -453,7 +387,7 @@ a {
 }
 
 .area-card:hover {
-  transform: translateY(-3px);
+  transform: translateY(-2px);
   border-color: var(--green);
 }
 
@@ -711,15 +645,23 @@ a {
   background: var(--graphite);
 }
 
-.person-initials {
+.person-photo {
   width: 82px;
   height: 82px;
   display: grid;
   place-items: center;
+  overflow: hidden;
   border: 1px solid var(--border);
-  border-radius: 50%;
+  border-radius: 8px;
+  background: var(--stone);
   color: var(--green);
   font-family: var(--mono);
+}
+
+.person-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .person-card span {
@@ -808,7 +750,7 @@ a {
     min-height: auto;
   }
 
-  .hero-system {
+  .hero-focus {
     min-height: 340px;
   }
 
@@ -1052,7 +994,7 @@ a {
 .library-toolbar input:focus,
 .library-toolbar select:focus {
   border-color: var(--green);
-  box-shadow: 0 0 0 3px rgba(57, 255, 136, 0.1);
+  box-shadow: 0 0 0 3px rgba(154, 183, 162, 0.1);
 }
 
 .library-count {
@@ -1100,7 +1042,7 @@ a {
   background:
     linear-gradient(
       145deg,
-      rgba(57, 255, 136, 0.045),
+      rgba(154, 183, 162, 0.045),
       transparent 48%
     ),
     var(--graphite);
@@ -1128,7 +1070,7 @@ a {
 }
 
 .resource-card__meta span:first-child {
-  border-color: rgba(57, 255, 136, 0.45);
+  border-color: rgba(154, 183, 162, 0.45);
   color: var(--green);
 }
 
@@ -1219,15 +1161,25 @@ a {
   padding-block: 72px 120px;
 }
 
-.resource-detail > a:first-child {
-  display: inline-flex;
+.resource-breadcrumbs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
   margin-bottom: 50px;
   color: var(--warm-grey);
   font-size: 14px;
 }
 
-.resource-detail > a:first-child:hover {
+.resource-breadcrumbs a:hover {
   color: var(--green);
+}
+
+.resource-breadcrumbs span[aria-current='page'] {
+  max-width: min(520px, 100%);
+  overflow: hidden;
+  color: var(--off-white);
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .resource-detail header {
@@ -1327,7 +1279,7 @@ a {
     padding-block: 48px 85px;
   }
 
-  .resource-detail > a:first-child {
+  .resource-breadcrumbs {
     margin-bottom: 34px;
   }
 

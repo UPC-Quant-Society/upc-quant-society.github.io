@@ -10,6 +10,12 @@ type Props = {
 const { lang, slug } = Astro.props;
 const t = ui[lang];
 const alternatePath = getAlternatePath(lang, slug);
+const currentPath = Astro.url.pathname;
+
+const isCurrent = (href: string) =>
+  href === `/${lang}/`
+    ? currentPath === href
+    : currentPath.startsWith(href);
 ---
 
 <header class="site-header">
@@ -17,7 +23,7 @@ const alternatePath = getAlternatePath(lang, slug);
     <Logo lang={lang} />
     <nav class="desktop-nav" aria-label={lang === 'ca' ? 'Navegació principal' : 'Main navigation'}>
       {nav[lang].map((item) => (
-        <a href={item.href}>{item.label}</a>
+        <a href={item.href} aria-current={isCurrent(item.href) ? 'page' : undefined}>{item.label}</a>
       ))}
     </nav>
     <div class="header-actions">
@@ -29,9 +35,8 @@ const alternatePath = getAlternatePath(lang, slug);
         <summary>{t.menu}</summary>
         <div class="mobile-panel">
           {nav[lang].map((item) => (
-            <a href={item.href}>{item.label}</a>
+            <a href={item.href} aria-current={isCurrent(item.href) ? 'page' : undefined}>{item.label}</a>
           ))}
-          <a href={alternatePath}>{t.language}</a>
         </div>
       </details>
     </div>
