@@ -50,9 +50,13 @@ const finalScore =
   description={data.description.ca}
 >
   <div class="shell resource-detail">
-    <a href="/ca/recursos/biblioteca/">
-      ← Tornar a la biblioteca
-    </a>
+    <nav class="resource-breadcrumbs" aria-label="Fil d’Ariadna">
+      <a href="/ca/recursos/">Recursos</a>
+      <span aria-hidden="true">/</span>
+      <a href="/ca/recursos/biblioteca/">Biblioteca completa</a>
+      <span aria-hidden="true">/</span>
+      <span aria-current="page">{data.title}</span>
+    </nav>
 
     <header>
       <p class="eyebrow">{data.type}</p>

@@ -9,7 +9,7 @@ type Props = {
 const { lang } = Astro.props;
 const content = home[lang];
 const t = ui[lang];
-const activitySlug = lang === 'ca' ? 'activitat' : 'activity';
+const projectsSlug = lang === 'ca' ? 'projectes' : 'projects';
 const aboutSlug = lang === 'ca' ? 'associacio' : 'about';
 ---
 
@@ -20,7 +20,7 @@ const aboutSlug = lang === 'ca' ? 'associacio' : 'about';
       <h1>{content.heading}</h1>
       <p>{content.intro}</p>
       <div class="hero-links">
-        <a class="button button-primary" href={`/${lang}/${activitySlug}/`}>
+        <a class="button button-primary" href={`/${lang}/${projectsSlug}/`}>
           {t.explore}
         </a>
         <a class="button button-secondary" href={`/${lang}/${aboutSlug}/`}>
@@ -29,14 +29,14 @@ const aboutSlug = lang === 'ca' ? 'associacio' : 'about';
       </div>
     </div>
 
-    <div class="hero-system" aria-hidden="true">
-      <div class="system-axis axis-x"></div>
-      <div class="system-axis axis-y"></div>
-      <span class="point p1">PROBABILITY</span>
-      <span class="point p2">CODE</span>
-      <span class="point p3">DATA</span>
-      <span class="point p4">MARKETS</span>
-      <span class="system-code">QS / UPC / 01</span>
+    <div class="hero-focus" aria-label={lang === 'ca' ? 'Àrees de treball' : 'Areas of focus'}>
+      <p>{lang === 'ca' ? 'ÀREES DE TREBALL' : 'AREAS OF FOCUS'}</p>
+      <ul>
+        <li>{lang === 'ca' ? 'Matemàtiques aplicades' : 'Applied mathematics'}</li>
+        <li>{lang === 'ca' ? 'Programació i dades' : 'Programming and data'}</li>
+        <li>{lang === 'ca' ? 'Mercats financers' : 'Financial markets'}</li>
+      </ul>
+      <span>Barcelona · UPC</span>
     </div>
   </section>
 

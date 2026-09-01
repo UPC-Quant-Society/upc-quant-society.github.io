@@ -45,9 +45,13 @@ const finalScore = data.score.overall ?? detailedScore ?? 0;
   description={data.description.en}
 >
   <main class="shell resource-detail">
-    <a href="/en/resources/library/">
-      ← Back to the library
-    </a>
+    <nav class="resource-breadcrumbs" aria-label="Breadcrumb">
+      <a href="/en/resources/">Resources</a>
+      <span aria-hidden="true">/</span>
+      <a href="/en/resources/library/">Full library</a>
+      <span aria-hidden="true">/</span>
+      <span aria-current="page">{data.title}</span>
+    </nav>
 
     <header>
       <p class="eyebrow">{data.type}</p>

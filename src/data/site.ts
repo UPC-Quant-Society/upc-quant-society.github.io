@@ -27,6 +27,8 @@ export type Section = {
     name: string;
     role: string;
     description: string;
+    image?: string;
+    imageAlt?: string;
   }[];
 };
 
@@ -43,32 +45,25 @@ export const githubUrl = 'https://github.com/UPC-Quant-Society';
 
 export const routePairs = [
   { ca: 'associacio', en: 'about' },
-  { ca: 'activitat', en: 'activity' },
   { ca: 'projectes', en: 'projects' },
-  { ca: 'competicions', en: 'competitions' },
-  { ca: 'esdeveniments', en: 'events' },
   { ca: 'recursos', en: 'resources' },
-  { ca: 'collabora', en: 'collaborate' },
-  { ca: 'equip', en: 'team' },
-  { ca: 'participa', en: 'join' },
   { ca: 'contacte', en: 'contact' },
+  { ca: 'recursos/biblioteca', en: 'resources/library' },
 ] as const;
 
 export const nav = {
   ca: [
-    { label: 'Associació', href: '/ca/associacio/' },
-    { label: 'Activitat', href: '/ca/activitat/' },
+    { label: 'Inici', href: '/ca/' },
+    { label: 'Sobre nosaltres', href: '/ca/associacio/' },
+    { label: 'Projectes', href: '/ca/projectes/' },
     { label: 'Recursos', href: '/ca/recursos/' },
-    { label: 'Equip', href: '/ca/equip/' },
-    { label: 'Col·labora', href: '/ca/collabora/' },
     { label: 'Contacte', href: '/ca/contacte/' },
   ],
   en: [
+    { label: 'Home', href: '/en/' },
     { label: 'About', href: '/en/about/' },
-    { label: 'Activity', href: '/en/activity/' },
+    { label: 'Projects', href: '/en/projects/' },
     { label: 'Resources', href: '/en/resources/' },
-    { label: 'Team', href: '/en/team/' },
-    { label: 'Collaborate', href: '/en/collaborate/' },
     { label: 'Contact', href: '/en/contact/' },
   ],
 } satisfies Record<Lang, { label: string; href: string }[]>;
@@ -79,7 +74,7 @@ export const ui = {
     menu: 'Menú',
     language: 'English',
     languageShort: 'EN',
-    explore: 'Explora l’activitat',
+    explore: 'Explora els projectes',
     learnMore: 'Coneix l’associació',
     currentPhase: 'FASE ACTUAL',
     currentPhaseTitle: 'Construcció de la base tècnica i institucional.',
@@ -98,7 +93,7 @@ export const ui = {
     menu: 'Menu',
     language: 'Català',
     languageShort: 'CA',
-    explore: 'Explore our activity',
+    explore: 'Explore our projects',
     learnMore: 'About the society',
     currentPhase: 'CURRENT PHASE',
     currentPhaseTitle: 'Building the technical and institutional foundations.',
@@ -124,15 +119,15 @@ export const home = {
     intro:
       'Un espai per estudiar matemàtiques, programació i anàlisi de dades aplicades als mercats financers, i per convertir aquest interès en formació, projectes i treball col·laboratiu.',
     areas: [
-      { index: '01', title: 'Projectes', text: 'Implementacions, simulacions i recerca aplicada.', href: '/ca/projectes/' },
-      { index: '02', title: 'Competicions', text: 'Preparació tècnica i participació en reptes quantitatius.', href: '/ca/competicions/' },
-      { index: '03', title: 'Recursos', text: 'Materials seleccionats i organitzats per nivell i tema.', href: '/ca/recursos/' },
+      { index: '01', title: 'Sobre nosaltres', text: 'Missió, manera de treballar i les persones que formen l’associació.', href: '/ca/associacio/' },
+      { index: '02', title: 'Projectes', text: 'Implementacions, simulacions i recerca aplicada.', href: '/ca/projectes/' },
+      { index: '03', title: 'Recursos', text: 'Materials públics seleccionats i organitzats per nivell i tema.', href: '/ca/recursos/' },
     ],
     bridgeTitle: 'Un punt de connexió entre estudiants, universitat i indústria.',
     bridgeText:
       'La prioritat és construir una comunitat sòlida dins la UPC i establir relacions útils amb professors, investigadors, alumni i professionals.',
-    bridgeHref: '/ca/collabora/',
-    bridgeLink: 'Formes de col·laboració',
+    bridgeHref: '/ca/contacte/',
+    bridgeLink: 'Contacta amb nosaltres',
   },
   en: {
     title: 'UPC Quant Society',
@@ -143,15 +138,15 @@ export const home = {
     intro:
       'A space to study mathematics, programming and data analysis applied to financial markets, and to turn that interest into training, projects and collaborative work.',
     areas: [
-      { index: '01', title: 'Projects', text: 'Implementations, simulations and applied research.', href: '/en/projects/' },
-      { index: '02', title: 'Competitions', text: 'Technical preparation and participation in quantitative challenges.', href: '/en/competitions/' },
-      { index: '03', title: 'Resources', text: 'Selected materials organised by level and topic.', href: '/en/resources/' },
+      { index: '01', title: 'About', text: 'Our mission, working principles and the people behind the society.', href: '/en/about/' },
+      { index: '02', title: 'Projects', text: 'Implementations, simulations and applied research.', href: '/en/projects/' },
+      { index: '03', title: 'Resources', text: 'Public materials selected and organised by level and topic.', href: '/en/resources/' },
     ],
     bridgeTitle: 'A point of connection between students, university and industry.',
     bridgeText:
       'Our priority is to build a strong community at UPC and establish useful relationships with professors, researchers, alumni and professionals.',
-    bridgeHref: '/en/collaborate/',
-    bridgeLink: 'Ways to collaborate',
+    bridgeHref: '/en/contact/',
+    bridgeLink: 'Get in touch',
   },
 } satisfies Record<Lang, Record<string, unknown>>;
 
@@ -240,8 +235,8 @@ export const pages: Record<Lang, Record<string, PageData>> = {
           cards: [
             { label: '01', title: 'Formació tècnica', text: 'Sessions continuades, seminaris i workshops d’implementació.', href: '/ca/recursos/' },
             { label: '02', title: 'Projectes', text: 'Treball en equip sobre models, dades, backtesting i simulació.', href: '/ca/projectes/' },
-            { label: '03', title: 'Competicions', text: 'Preparació estructurada i participació quan l’equip i el calendari ho permetin.', href: '/ca/competicions/' },
-            { label: '04', title: 'Connexió externa', text: 'Activitats amb professors, investigadors, alumni i professionals.', href: '/ca/collabora/' },
+            { label: '03', title: 'Competicions', text: 'Preparació estructurada i participació quan l’equip i el calendari ho permetin.', href: '/ca/projectes/' },
+            { label: '04', title: 'Connexió externa', text: 'Activitats amb professors, investigadors, alumni i professionals.', href: '/ca/contacte/' },
           ],
         },
         {
@@ -648,8 +643,8 @@ export const pages: Record<Lang, Record<string, PageData>> = {
           cards: [
             { label: '01', title: 'Technical training', text: 'Structured sessions, seminars and implementation workshops.', href: '/en/resources/' },
             { label: '02', title: 'Projects', text: 'Teamwork on models, data, backtesting and simulation.', href: '/en/projects/' },
-            { label: '03', title: 'Competitions', text: 'Structured preparation and participation when the team and calendar allow it.', href: '/en/competitions/' },
-            { label: '04', title: 'External connection', text: 'Activities with professors, researchers, alumni and professionals.', href: '/en/collaborate/' },
+            { label: '03', title: 'Competitions', text: 'Structured preparation and participation when the team and calendar allow it.', href: '/en/projects/' },
+            { label: '04', title: 'External connection', text: 'Activities with professors, researchers, alumni and professionals.', href: '/en/contact/' },
           ],
         },
         {
@@ -761,12 +756,26 @@ export const pages: Record<Lang, Record<string, PageData>> = {
     resources: {
       title: 'Resources',
       description: 'Quantitative finance learning resources curated by UPC Quant Society.',
-      eyebrow: 'LIBRARY',
+      eyebrow: 'LEARNING',
       intro:
-        'The library will collect materials organised by level and topic. The aim is not to accumulate links, but to explain what each resource adds and when it is useful.',
+        'Explore selected academic resources or use the knowledge map to understand how quantitative topics and materials connect.',
       sections: [
         {
+          id: 'library',
+          kicker: '01',
+          title: 'Full library',
+          body: [
+            'Browse the complete catalogue of books, courses, notes, papers and other materials selected by UPC Quant Society.',
+            'Each resource is classified by area, level, type, access model and quantitative relevance.',
+          ],
+          cta: {
+            label: 'Browse all available resources',
+            href: '/en/resources/library/',
+          },
+        },
+        {
           id: 'categories',
+          kicker: '02',
           title: 'Categories',
           cards: [
             { title: 'Foundations', text: 'Probability, statistics, linear algebra and calculus.' },
@@ -779,6 +788,7 @@ export const pages: Record<Lang, Record<string, PageData>> = {
         },
         {
           id: 'criteria',
+          kicker: '03',
           title: 'Selection criteria',
           body: [
             'We will prioritise books, papers, official documentation, university courses and materials with exercises or implementations.',
@@ -928,6 +938,14 @@ export const pages: Record<Lang, Record<string, PageData>> = {
 export function getAlternatePath(lang: Lang, slug?: string) {
   const other: Lang = lang === 'ca' ? 'en' : 'ca';
   if (!slug) return `/${other}/`;
+
+  if (lang === 'ca' && slug.startsWith('recursos/biblioteca/')) {
+    return `/en/resources/library/${slug.slice('recursos/biblioteca/'.length)}/`;
+  }
+
+  if (lang === 'en' && slug.startsWith('resources/library/')) {
+    return `/ca/recursos/biblioteca/${slug.slice('resources/library/'.length)}/`;
+  }
 
   const pair = routePairs.find((item) => item[lang] === slug);
   return pair ? `/${other}/${pair[other]}/` : `/${other}/`;
