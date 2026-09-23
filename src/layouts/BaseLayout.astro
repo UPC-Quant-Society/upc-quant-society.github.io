@@ -21,15 +21,15 @@ const defaultUrl = new URL('/en/', Astro.site);
 ---
 
 <!doctype html>
-<html lang={lang} data-theme="dark">
+<html lang={lang} data-theme="light">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
     <meta name="description" content={description} />
-    <meta name="theme-color" content="#141615" />
+    <meta name="theme-color" content="#f7f7f7" />
     <script is:inline>
       (() => {
-        let theme = 'dark';
+        let theme = 'light';
         try {
           const saved = localStorage.getItem('theme');
           if (saved === 'light' || saved === 'dark') theme = saved;

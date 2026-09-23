@@ -148,41 +148,13 @@ a {
 }
 
 .logo-mark {
-  position: relative;
   width: 46px;
   height: 46px;
-  overflow: hidden;
   display: block;
-  border: 1px solid var(--border);
-  border-radius: 9px;
-  background: var(--stone);
-  font-size: 24px;
-  font-weight: 600;
-  line-height: 1;
-}
-
-.logo-mark span:first-child {
-  position: absolute;
-  top: 7px;
-  left: 7px;
-}
-
-.logo-mark span:nth-child(2) {
-  position: absolute;
-  right: 5px;
-  bottom: 5px;
-  color: var(--green);
-  font-size: 20px;
-}
-
-.logo-mark i {
-  position: absolute;
-  width: 33px;
-  height: 2px;
-  left: 6px;
-  top: 25px;
-  transform: rotate(-12deg);
-  background: var(--green);
+  flex-shrink: 0;
+  border-radius: 50%;
+  background: #ffffff;
+  object-fit: contain;
 }
 
 .logo-name {
@@ -876,21 +848,6 @@ a {
   .logo-mark {
     width: 40px;
     height: 40px;
-  }
-
-  .logo-mark span:first-child {
-    top: 5px;
-    left: 6px;
-  }
-
-  .logo-mark span:nth-child(2) {
-    right: 4px;
-    bottom: 4px;
-  }
-
-  .logo-mark i {
-    top: 21px;
-    left: 4px;
   }
 
   .logo-name {
