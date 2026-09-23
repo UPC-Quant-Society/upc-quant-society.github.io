@@ -8,9 +8,7 @@ const { lang, compact = false } = Astro.props;
 ---
 
 <a class:list={['logo', { compact }]} href={`/${lang}/`} aria-label="UPC Quant Society">
-  <span class="logo-mark" aria-hidden="true">
-    <span>Q</span><span>S</span><i></i>
-  </span>
+  <img class="logo-mark" src="/favicon.svg" width="46" height="46" alt="" />
   {!compact && (
     <span class="logo-name">UPC Quant<br />Society</span>
   )}
