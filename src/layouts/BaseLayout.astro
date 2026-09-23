@@ -36,7 +36,7 @@ const defaultUrl = new URL('/en/', Astro.site);
         } catch {}
         document.documentElement.dataset.theme = theme;
         document.querySelector('meta[name="theme-color"]')
-          ?.setAttribute('content', theme === 'light' ? '#ffffff' : '#141615');
+          ?.setAttribute('content', theme === 'light' ? '#f7f7f7' : '#141615');
       })();
     </script>
     <meta property="og:title" content={fullTitle} />
