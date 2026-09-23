@@ -27,6 +27,21 @@ const isCurrent = (href: string) =>
       ))}
     </nav>
     <div class="header-actions">
+      <button
+        class="theme-toggle"
+        type="button"
+        aria-label={lang === 'ca' ? 'Canvia al tema clar' : 'Switch to light theme'}
+        data-light-label={lang === 'ca' ? 'Canvia al tema clar' : 'Switch to light theme'}
+        data-dark-label={lang === 'ca' ? 'Canvia al tema fosc' : 'Switch to dark theme'}
+      >
+        <svg class="theme-icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true">
+          <circle cx="12" cy="12" r="4" />
+          <path d="M12 2v2m0 16v2M2 12h2m16 0h2M4.93 4.93l1.42 1.42m11.3 11.3 1.42 1.42M4.93 19.07l1.42-1.42m11.3-11.3 1.42-1.42" />
+        </svg>
+        <svg class="theme-icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M20.9 13A9 9 0 0 1 11 3.1 9 9 0 1 0 20.9 13Z" />
+        </svg>
+      </button>
       <a class="language-switch" href={alternatePath} hreflang={lang === 'ca' ? 'en' : 'ca'}>
         <span>{t.languageShort}</span>
         <span class="language-long">{t.language}</span>
@@ -42,3 +57,26 @@ const isCurrent = (href: string) =>
     </div>
   </div>
 </header>
+
+
+<script>
+  const toggle = document.querySelector<HTMLButtonElement>('.theme-toggle');
+  const updateLabel = () => {
+    if (!toggle) return;
+    const label = document.documentElement.dataset.theme === 'light'
+      ? toggle.dataset.darkLabel : toggle.dataset.lightLabel;
+    toggle.setAttribute('aria-label', label ?? '');
+    toggle.title = label ?? '';
+  };
+
+  updateLabel();
+  toggle?.addEventListener('click', () => {
+    const theme = document.documentElement.dataset.theme === 'light' ? 'dark' : 'light';
+    document.documentElement.dataset.theme = theme;
+    try { localStorage.setItem('theme', theme); } catch {}
+    document.querySelector('meta[name="theme-color"]')
+      ?.setAttribute('content', theme === 'light' ? '#f7f7f7' : '#141615');
+    updateLabel();
+    window.dispatchEvent(new Event('themechange'));
+  });
+</script>
