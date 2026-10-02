@@ -40,7 +40,7 @@ export type PageData = {
   sections: Section[];
 };
 
-export const contactEmail = 'quantumsociety.upc@gmail.com';
+export const contactEmail = 'quantsociety.upc@gmail.com';
 export const githubUrl = 'https://github.com/UPC-Quant-Society';
 
 export const routePairs = [
