@@ -200,7 +200,18 @@ const graphDescription =
                       <article class="person-card">
                         <div class="person-photo">
                           {person.image ? (
-                            <img src={person.image} alt={person.imageAlt ?? person.name} loading="lazy" />
+                            <img
+                              src={person.image}
+                              alt={person.imageAlt ?? person.name}
+                              loading="lazy"
+                              width="82"
+                              height="82"
+                              style={{
+                                objectPosition: person.imagePosition ?? 'center',
+                                transform: `scale(${person.imageScale ?? 1})`,
+                                transformOrigin: person.imagePosition ?? 'center',
+                              }}
+                            />
                           ) : (
                             <span aria-hidden="true">
                               {person.name

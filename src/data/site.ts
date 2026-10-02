@@ -29,6 +29,8 @@ export type Section = {
     description: string;
     image?: string;
     imageAlt?: string;
+    imagePosition?: string;
+    imageScale?: number;
   }[];
 };
 
@@ -467,18 +469,18 @@ export const pages: Record<Lang, Record<string, PageData>> = {
           id: 'cofundadors',
           title: 'Cofundadors',
           people: [
-            { name: 'Aniol Arolas Salvador', role: 'Cofundador', description: 'Estudiant d’Enginyeria de Telecomunicacions a la UPC.' },
-            { name: 'Pau Gibert Hernández', role: 'Cofundador', description: 'Estudiant d’Enginyeria de Telecomunicacions a la UPC.' },
+            { name: 'Aniol Arolas Salvador', image: '/images/team/aniol.JPG', imagePosition: '48% 20%', imageScale: 1.6, role: 'Cofundador', description: 'Estudiant d’Enginyeria de Telecomunicacions a la UPC.' },
+            { name: 'Pau Gibert Hernández', image: '/images/team/pau.JPG', imagePosition: '60% 42%', imageScale: 1.65, role: 'Cofundador', description: 'Estudiant d’Enginyeria de Telecomunicacions a la UPC.' },
           ],
         },
         {
           id: 'equip-fundador',
           title: 'Equip fundador',
           people: [
-            { name: 'Alejandro Cilveti', role: 'Membre de l’equip fundador', description: 'Estudiant de Matemàtiques a la UPC.' },
-            { name: 'Hàn Virgili', role: 'Membre de l’equip fundador', description: 'Estudiant de Matemàtiques a la UPC.' },
+            { name: 'Alejandro Cilveti', image: '/images/team/alejandro.jpg', role: 'Membre de l’equip fundador', description: 'Estudiant de Matemàtiques a la UPC.' },
+            { name: 'Hàn Virgili', image: '/images/team/han.JPG', role: 'Membre de l’equip fundador', description: 'Estudiant de Matemàtiques a la UPC.' },
             { name: 'Martí Ventura', role: 'Membre de l’equip fundador', description: 'Estudiant de Dret i Administració i Direcció d’Empreses a la UAB.' },
-            { name: 'Martina Gallemí', role: 'Membre de l’equip fundador', description: 'Estudiant d’Enginyeria Matemàtica en Ciència de Dades a la UPF.' },
+            { name: 'Martina Gallemí', image: '/images/team/martina.JPG', imagePosition: '60% 20%', imageScale: 1.6, role: 'Membre de l’equip fundador', description: 'Estudiant d’Enginyeria Matemàtica en Ciència de Dades a la UPF.' },
           ],
         },
         {
@@ -841,18 +843,18 @@ export const pages: Record<Lang, Record<string, PageData>> = {
           id: 'co-founders',
           title: 'Co-founders',
           people: [
-            { name: 'Aniol Arolas Salvador', role: 'Co-founder', description: 'Telecommunications Engineering student at UPC.' },
-            { name: 'Pau Gibert Hernández', role: 'Co-founder', description: 'Telecommunications Engineering student at UPC.' },
+            { name: 'Aniol Arolas Salvador', image: '/images/team/aniol.JPG', imagePosition: '48% 20%', imageScale: 1.6, role: 'Co-founder', description: 'Telecommunications Engineering student at UPC.' },
+            { name: 'Pau Gibert Hernández', image: '/images/team/pau.JPG', imagePosition: '60% 42%', imageScale: 1.65, role: 'Co-founder', description: 'Telecommunications Engineering student at UPC.' },
           ],
         },
         {
           id: 'founding-team',
           title: 'Founding team',
           people: [
-            { name: 'Alejandro Cilveti', role: 'Founding team member', description: 'Mathematics student at UPC.' },
-            { name: 'Hàn Virgili', role: 'Founding team member', description: 'Mathematics student at UPC.' },
+            { name: 'Alejandro Cilveti', image: '/images/team/alejandro.jpg', role: 'Founding team member', description: 'Mathematics student at UPC.' },
+            { name: 'Hàn Virgili', image: '/images/team/han.JPG', role: 'Founding team member', description: 'Mathematics student at UPC.' },
             { name: 'Martí Ventura', role: 'Founding team member', description: 'Law and Business Administration student at UAB.' },
-            { name: 'Martina Gallemí', role: 'Founding team member', description: 'Mathematical Engineering in Data Science student at UPF.' },
+            { name: 'Martina Gallemí', image: '/images/team/martina.JPG', imagePosition: '60% 20%', imageScale: 1.6, role: 'Founding team member', description: 'Mathematical Engineering in Data Science student at UPF.' },
           ],
         },
         {
