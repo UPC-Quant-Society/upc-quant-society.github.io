@@ -24,7 +24,7 @@ const displayPage = isAbout
       sections: [
         ...page.sections.slice(0, 3),
         activityPage.sections[0],
-        ...teamPage.sections.slice(0, 2),
+        ...teamPage.sections.filter((section) => section.people),
         ...page.sections.slice(3),
       ],
     }
@@ -227,6 +227,11 @@ const graphDescription =
                           <span>{person.role}</span>
                           <h3>{person.name}</h3>
                           <p>{person.description}</p>
+                          {person.linkedin && (
+                            <a href={person.linkedin} aria-label={`LinkedIn: ${person.name}`}>
+                              LinkedIn ↗
+                            </a>
+                          )}
                         </div>
                       </article>
                     ))

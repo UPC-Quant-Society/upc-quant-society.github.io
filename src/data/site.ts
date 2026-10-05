@@ -31,6 +31,7 @@ export type Section = {
     imageAlt?: string;
     imagePosition?: string;
     imageScale?: number;
+    linkedin?: string;
   }[];
 };
 
@@ -43,6 +44,7 @@ export type PageData = {
 };
 
 export const contactEmail = 'quantsociety.upc@gmail.com';
+export const membershipFormUrl = 'https://forms.gle/F4HjVPGyjdFAhqb58';
 export const githubUrl = 'https://github.com/UPC-Quant-Society';
 
 export const routePairs = [
@@ -484,6 +486,14 @@ export const pages: Record<Lang, Record<string, PageData>> = {
           ],
         },
         {
+          id: 'professor-fundador',
+          title: 'Professors fundadors',
+          people: [
+            { name: 'Argimiro Arratia', image: '/images/team/argimiro.png', imagePosition: '50% 30%', role: 'Professor fundador', description: 'Professor del Departament de Ciències de la Computació de la UPC · BarcelonaTech.' },
+            { name: 'Ariel Duarte López', image: '/images/team/ariel.jpg', imagePosition: '50% 30%', role: 'Professor fundador', description: 'Professor associat a la UPC · BarcelonaTech i Head of Data Science a Acuity Trading.', linkedin: 'https://www.linkedin.com/in/arieldl/' },
+          ],
+        },
+        {
           id: 'estructura',
           title: 'Estructura de govern',
           cards: [
@@ -526,10 +536,11 @@ export const pages: Record<Lang, Record<string, PageData>> = {
           id: 'convocatoria',
           title: 'Convocatòria',
           note: {
-            title: 'La propera convocatòria es publicarà aquí.',
-            text: 'No hi ha cap formulari actiu en aquesta versió. Es podrà registrar interès a través de la pàgina de contacte.',
+            title: 'Vols formar part de UPC Quant Society?',
+            text: 'Envia la teva candidatura a través del formulari d’inscripció.',
             tone: 'green',
           },
+          cta: { label: 'Envia la teva candidatura', href: membershipFormUrl },
         },
       ],
     },
@@ -538,16 +549,22 @@ export const pages: Record<Lang, Record<string, PageData>> = {
       description: 'Contacte institucional de UPC Quant Society.',
       eyebrow: 'PARLEM',
       intro:
-        'Per a consultes acadèmiques, col·laboracions, activitats o interès a participar, escriu-nos indicant breument el motiu del contacte.',
+        'Per a consultes acadèmiques, col·laboracions o activitats, escriu-nos indicant breument el motiu del contacte.',
       sections: [
+        {
+          id: 'inscripcio',
+          title: 'Uneix-te a UPC Quant Society',
+          body: ['Vols formar part de l’associació? Omple el formulari amb la teva motivació i els teus interessos.'],
+          cta: { label: 'Envia la teva candidatura', href: membershipFormUrl },
+        },
         {
           id: 'canals',
           title: 'Canals',
           cards: [
             { label: 'EMAIL', title: contactEmail, text: 'Consultes generals, acadèmiques i professionals.', href: `mailto:${contactEmail}` },
             { label: 'GITHUB', title: 'UPC-Quant-Society', text: 'Repositoris i projectes públics.', href: githubUrl },
-            { label: 'LINKEDIN', title: 'Perfil en preparació', text: 'Properament' },
-            { label: 'INSTAGRAM', title: 'Perfil en preparació', text: 'Properament' },
+            { label: 'LINKEDIN', title: 'UPC Quant Society', text: 'Segueix les novetats de l’associació.', href: 'https://www.linkedin.com/company/upc-quant-society/' },
+            { label: 'INSTAGRAM', title: '@quantsociety.upc', text: 'Descobreix les nostres activitats i la comunitat.', href: 'https://www.instagram.com/quantsociety.upc/' },
           ],
         },
         {
@@ -858,6 +875,14 @@ export const pages: Record<Lang, Record<string, PageData>> = {
           ],
         },
         {
+          id: 'founding-faculty-advisor',
+          title: 'Founding Faculty Advisors',
+          people: [
+            { name: 'Argimiro Arratia', image: '/images/team/argimiro.png', imagePosition: '50% 30%', role: 'Founding Faculty Advisor', description: 'Associate Professor, Department of Computer Science, UPC · BarcelonaTech.' },
+            { name: 'Ariel Duarte López', image: '/images/team/ariel.jpg', imagePosition: '50% 30%', role: 'Founding Faculty Advisor', description: 'Associate Lecturer at UPC · BarcelonaTech and Head of Data Science at Acuity Trading.', linkedin: 'https://www.linkedin.com/in/arieldl/' },
+          ],
+        },
+        {
           id: 'structure',
           title: 'Governance structure',
           cards: [
@@ -900,10 +925,11 @@ export const pages: Record<Lang, Record<string, PageData>> = {
           id: 'call',
           title: 'Applications',
           note: {
-            title: 'The next call will be published here.',
-            text: 'There is no active form in this version. Interest can be registered through the contact page.',
+            title: 'Want to join UPC Quant Society?',
+            text: 'Submit your application through our membership form.',
             tone: 'green',
           },
+          cta: { label: 'Apply to join', href: membershipFormUrl },
         },
       ],
     },
@@ -912,16 +938,22 @@ export const pages: Record<Lang, Record<string, PageData>> = {
       description: 'Institutional contact for UPC Quant Society.',
       eyebrow: 'GET IN TOUCH',
       intro:
-        'For academic enquiries, collaborations, activities or interest in joining, write to us and briefly explain the reason for contacting us.',
+        'For academic enquiries, collaborations or activities, write to us and briefly explain the reason for contacting us.',
       sections: [
+        {
+          id: 'membership',
+          title: 'Join UPC Quant Society',
+          body: ['Interested in becoming a member? Tell us about your motivation and interests through our application form.'],
+          cta: { label: 'Apply to join', href: membershipFormUrl },
+        },
         {
           id: 'channels',
           title: 'Channels',
           cards: [
             { label: 'EMAIL', title: contactEmail, text: 'General, academic and professional enquiries.', href: `mailto:${contactEmail}` },
             { label: 'GITHUB', title: 'UPC-Quant-Society', text: 'Public repositories and projects.', href: githubUrl },
-            { label: 'LINKEDIN', title: 'Profile being prepared', text: 'Coming soon' },
-            { label: 'INSTAGRAM', title: 'Profile being prepared', text: 'Coming soon' },
+            { label: 'LINKEDIN', title: 'UPC Quant Society', text: 'Follow the latest news from the society.', href: 'https://www.linkedin.com/company/upc-quant-society/' },
+            { label: 'INSTAGRAM', title: '@quantsociety.upc', text: 'Discover our activities and community.', href: 'https://www.instagram.com/quantsociety.upc/' },
           ],
         },
         {
