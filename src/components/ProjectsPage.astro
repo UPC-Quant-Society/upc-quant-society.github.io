@@ -1,0 +1,130 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { projects, projectsPage, type Lang } from '../data/site';
+
+type Props = {
+  lang: Lang;
+};
+
+const { lang } = Astro.props;
+const content = projectsPage[lang];
+const list = projects[lang];
+---
+
+<BaseLayout lang={lang} title={content.title} description={content.description} slug={lang === 'ca' ? 'projectes' : 'projects'}>
+  <section class="projects">
+    <h1>{content.heading}</h1>
+
+    <div class="table" role="table" aria-label={content.title}>
+      <div class="row head" role="row">
+        {content.columns.map((column) => <span role="columnheader">{column}</span>)}
+      </div>
+      {list.length ? (
+        list.map((project) => (
+          <a class="row" role="row" href={project.href} target={project.href?.startsWith('http') ? '_blank' : undefined} rel="noreferrer">
+            <span role="cell">{project.title}</span>
+            <span role="cell">{project.area}</span>
+            <span role="cell">{project.year}</span>
+            <span role="cell">{project.status}</span>
+          </a>
+        ))
+      ) : (
+        <p class="empty"><span aria-hidden="true"></span>{content.empty}</p>
+      )}
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .projects {
+    width: min(1480px, calc(100% - 64px));
+    min-height: calc(100svh - 64px);
+    margin: 0 auto;
+    padding-block: clamp(96px, 18vh, 200px) 120px;
+  }
+
+  h1 {
+    max-width: 14em;
+    margin: 0 0 clamp(64px, 12vh, 128px);
+    color: #15171c;
+    font-size: clamp(2rem, 4.4vw, 4.2rem);
+    font-weight: 500;
+    line-height: 1.05;
+    letter-spacing: -0.035em;
+    animation: rise 1.2s cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+
+  .row {
+    display: grid;
+    grid-template-columns: 2.4fr 1.2fr 0.5fr 0.8fr;
+    gap: 24px;
+    padding: 18px 0;
+    border-bottom: 1px solid rgba(21, 23, 28, 0.1);
+    color: #15171c;
+    font-size: 16px;
+  }
+
+  a.row {
+    transition: padding 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  a.row:hover {
+    padding-left: 12px;
+  }
+
+  .head {
+    color: #8b8d92;
+    font-size: 14px;
+  }
+
+  .empty {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin: 0;
+    padding: 22px 0;
+    border-bottom: 1px solid rgba(21, 23, 28, 0.1);
+    color: #6b6e74;
+    font-size: 16px;
+  }
+
+  .empty span {
+    width: 7px;
+    height: 7px;
+    background: #15171c;
+    animation: blink 1.6s steps(2, jump-none) infinite;
+  }
+
+  @keyframes rise {
+    from {
+      opacity: 0;
+      transform: translateY(24px);
+    }
+  }
+
+  @keyframes blink {
+    50% { opacity: 0.15; }
+  }
+
+  @media (max-width: 680px) {
+    .projects {
+      width: calc(100% - 32px);
+    }
+
+    .row {
+      grid-template-columns: 1fr auto;
+    }
+
+    .row > :nth-child(2),
+    .row > :nth-child(4) {
+      display: none;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    h1,
+    .empty span {
+      animation: none;
+    }
+  }
+</style>

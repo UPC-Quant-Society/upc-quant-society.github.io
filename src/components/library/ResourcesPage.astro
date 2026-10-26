@@ -1,0 +1,427 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import KnowledgeGraph from './KnowledgeGraph.astro';
+import { getLibraryGroups, isEssential } from '../../data/library/groups';
+import type { Lang } from '../../data/site';
+
+type Props = {
+  lang: Lang;
+};
+
+const { lang } = Astro.props;
+const groups = await getLibraryGroups(lang);
+const total = groups.reduce((sum, group) => sum + group.resources.length, 0);
+
+const content = {
+  ca: {
+    title: 'Recursos',
+    description: 'Biblioteca curada de recursos de matemàtiques, programació i finances quantitatives.',
+    heading: 'Cada recurs d’aquí s’ha guanyat el lloc.',
+    search: 'Cerca per títol, autor o institució',
+    essential: 'Essencials',
+    list: 'Llista',
+    map: 'Mapa',
+    resources: 'recursos',
+    topics: 'temes',
+    empty: 'Cap recurs coincideix amb la cerca.',
+    columns: ['Recurs', 'Tipus', 'Nivell', 'Accés'],
+    types: { book: 'Llibre', course: 'Curs', paper: 'Article', notes: 'Apunts', repository: 'Repositori', dataset: 'Dataset', certification: 'Certificació' },
+    levels: { introductory: 'Introductori', beginner: 'Inicial', intermediate: 'Intermedi', advanced: 'Avançat', research: 'Recerca' },
+    access: { 'open-access': 'Obert', 'official-free': 'Gratuït', freemium: 'Freemium', institutional: 'Institucional', paid: 'De pagament', subscription: 'Subscripció', 'not-verified': 'Sense verificar' },
+  },
+  en: {
+    title: 'Resources',
+    description: 'A curated library of mathematics, programming and quantitative finance resources.',
+    heading: 'Every resource here earned its place.',
+    search: 'Search by title, author or institution',
+    essential: 'Essentials',
+    list: 'List',
+    map: 'Map',
+    resources: 'resources',
+    topics: 'topics',
+    empty: 'No resources match the search.',
+    columns: ['Resource', 'Type', 'Level', 'Access'],
+    types: { book: 'Book', course: 'Course', paper: 'Paper', notes: 'Notes', repository: 'Repository', dataset: 'Dataset', certification: 'Certification' },
+    levels: { introductory: 'Introductory', beginner: 'Beginner', intermediate: 'Intermediate', advanced: 'Advanced', research: 'Research' },
+    access: { 'open-access': 'Open', 'official-free': 'Free', freemium: 'Freemium', institutional: 'Institutional', paid: 'Paid', subscription: 'Subscription', 'not-verified': 'Unverified' },
+  },
+}[lang];
+
+const levelRange = (levels: (keyof typeof content.levels)[]) => {
+  const names = levels.map((level) => content.levels[level]);
+  return names.length > 1 ? `${names[0]}–${names[names.length - 1]}` : names[0];
+};
+---
+
+<BaseLayout lang={lang} title={content.title} description={content.description} slug={lang === 'ca' ? 'recursos' : 'resources'}>
+  <section class="resources" data-resources>
+    <h1>{content.heading}</h1>
+
+    <div class="toolbar">
+      <input type="search" placeholder={content.search} aria-label={content.search} autocomplete="off" data-search />
+      <div class="toggles">
+        <button type="button" aria-pressed="false" data-essential><span></span>{content.essential}</button>
+        <i aria-hidden="true"></i>
+        <button type="button" aria-pressed="true" data-view="list"><span></span>{content.list}</button>
+        <button type="button" aria-pressed="false" data-view="map"><span></span>{content.map}</button>
+      </div>
+    </div>
+
+    <p class="count">
+      <span data-count-resources>{total}</span> {content.resources} · <span data-count-topics>{groups.length}</span> {content.topics}
+    </p>
+
+    <div data-panel="list">
+      <div class="row head" aria-hidden="true">
+        {content.columns.map((column) => <span>{column}</span>)}
+      </div>
+
+      {groups.map((group) => (
+        <section class="group" id={`topic-${group.id}`} data-group>
+          <h2>
+            <span>{group.name}</span>
+            <span class="n" data-group-count>{group.resources.length}</span>
+          </h2>
+          {group.resources.map((resource) => (
+            <a
+              class="row"
+              id={`r-${resource.slug}`}
+              href={resource.officialUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              data-row
+              data-essential={String(isEssential(resource))}
+              data-text={[resource.title, resource.institution, ...resource.authors].join(' ').toLowerCase()}
+            >
+              <span class="title">
+                {isEssential(resource) && <i aria-label={content.essential}></i>}
+                {resource.title}
+                <small>{resource.institution ?? resource.authors.join(', ')}</small>
+              </span>
+              <span>{content.types[resource.type]}</span>
+              <span>{levelRange(resource.levels)}</span>
+              <span>{content.access[resource.access]}</span>
+            </a>
+          ))}
+        </section>
+      ))}
+
+      <p class="empty" hidden data-empty>{content.empty}</p>
+    </div>
+
+    <div data-panel="map" hidden>
+      <KnowledgeGraph lang={lang} groups={groups} />
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .resources {
+    --ink: #15171c;
+    --grey: #8b8d92;
+    --rule: rgba(21, 23, 28, 0.1);
+    width: min(1480px, calc(100% - 64px));
+    margin: 0 auto;
+    padding-block: clamp(96px, 18vh, 200px) 120px;
+  }
+
+  h1 {
+    max-width: 14em;
+    margin: 0 0 clamp(64px, 12vh, 128px);
+    color: var(--ink);
+    font-size: clamp(2rem, 4.4vw, 4.2rem);
+    font-weight: 500;
+    line-height: 1.05;
+    letter-spacing: -0.035em;
+    animation: rise 1.2s cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+
+  .toolbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    border-bottom: 1px solid var(--ink);
+  }
+
+  input {
+    flex: 1;
+    min-width: 0;
+    padding: 14px 0;
+    border: 0;
+    outline: none;
+    background: none;
+    color: var(--ink);
+    font: inherit;
+    font-size: 18px;
+  }
+
+  input::placeholder {
+    color: var(--grey);
+  }
+
+  .toggles {
+    display: flex;
+    align-items: center;
+    gap: 22px;
+  }
+
+  .toggles i {
+    width: 1px;
+    height: 16px;
+    background: var(--rule);
+  }
+
+  .toggles button {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 0;
+    border: 0;
+    background: none;
+    color: var(--grey);
+    font: inherit;
+    font-size: 15px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: color 0.3s;
+  }
+
+  .toggles button span {
+    width: 6px;
+    height: 6px;
+    border: 1px solid currentColor;
+    transition: background 0.3s;
+  }
+
+  .toggles button:hover,
+  .toggles button[aria-pressed='true'] {
+    color: var(--ink);
+  }
+
+  .toggles button[aria-pressed='true'] span {
+    background: currentColor;
+  }
+
+  .count {
+    margin: 14px 0 56px;
+    color: var(--grey);
+    font-family: var(--mono);
+    font-size: 12px;
+  }
+
+  .row {
+    display: grid;
+    grid-template-columns: minmax(0, 2.4fr) minmax(0, 0.7fr) minmax(0, 1.1fr) minmax(0, 0.7fr);
+    gap: 24px;
+    padding: 16px 0;
+    border-bottom: 1px solid var(--rule);
+    color: var(--ink);
+    font-size: 15px;
+    scroll-margin-top: 120px;
+    transition: padding 0.5s cubic-bezier(0.16, 1, 0.3, 1), background 1.2s;
+  }
+
+  .head {
+    font-size: 14px;
+  }
+
+  .row > span:not(.title) {
+    color: #4d5056;
+  }
+
+  .head > span {
+    color: var(--grey);
+  }
+
+  a.row:hover {
+    padding-left: 12px;
+  }
+
+  .title {
+    position: relative;
+  }
+
+  .title i {
+    position: absolute;
+    top: 0.62em;
+    left: -14px;
+    width: 5px;
+    height: 5px;
+    background: var(--ink);
+  }
+
+  .title small {
+    display: block;
+    margin-top: 2px;
+    color: var(--grey);
+    font-size: 13px;
+  }
+
+  .group {
+    scroll-margin-top: 80px;
+  }
+
+  .group h2 {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    margin: 0;
+    padding: 64px 0 14px;
+    border-bottom: 1px solid var(--ink);
+    color: var(--ink);
+    font-size: clamp(1.3rem, 2vw, 1.75rem);
+    font-weight: 500;
+    letter-spacing: -0.025em;
+  }
+
+  .n {
+    color: var(--grey);
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: 0;
+  }
+
+  .row[hidden],
+  .group[hidden] {
+    display: none;
+  }
+
+  :global(.is-flashed) {
+    background: rgba(21, 23, 28, 0.06);
+  }
+
+  .empty {
+    padding: 22px 0;
+    color: #6b6e74;
+  }
+
+  [data-panel='map'] {
+    margin-top: 8px;
+  }
+
+  @keyframes rise {
+    from {
+      opacity: 0;
+      transform: translateY(24px);
+    }
+  }
+
+  @media (max-width: 900px) {
+    .toolbar {
+      flex-direction: column;
+      align-items: stretch;
+      gap: 0;
+      border-bottom: 0;
+    }
+
+    input {
+      border-bottom: 1px solid var(--ink);
+    }
+
+    .toggles {
+      padding-top: 14px;
+    }
+  }
+
+  @media (max-width: 680px) {
+    .resources {
+      width: calc(100% - 32px);
+    }
+
+    .row {
+      grid-template-columns: 1fr auto;
+    }
+
+    .row > :nth-child(3),
+    .row > :nth-child(4) {
+      display: none;
+    }
+
+    .title i {
+      left: -10px;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    h1 {
+      animation: none;
+    }
+  }
+</style>
+
+<script>
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const root = document.querySelector<HTMLElement>('[data-resources]');
+
+  if (root) {
+    const search = root.querySelector<HTMLInputElement>('[data-search]')!;
+    const essentialToggle = root.querySelector<HTMLButtonElement>('[data-essential]')!;
+    const viewToggles = [...root.querySelectorAll<HTMLButtonElement>('[data-view]')];
+    const panels = [...root.querySelectorAll<HTMLElement>('[data-panel]')];
+    const groups = [...root.querySelectorAll<HTMLElement>('[data-group]')];
+    const rows = [...root.querySelectorAll<HTMLElement>('[data-row]')];
+    const empty = root.querySelector<HTMLElement>('[data-empty]')!;
+    const resourceCount = root.querySelector<HTMLElement>('[data-count-resources]')!;
+    const topicCount = root.querySelector<HTMLElement>('[data-count-topics]')!;
+
+    const apply = () => {
+      const query = search.value.trim().toLowerCase();
+      const essentialOnly = essentialToggle.getAttribute('aria-pressed') === 'true';
+
+      for (const row of rows) {
+        row.hidden = Boolean(query && !row.dataset.text?.includes(query)) || (essentialOnly && row.dataset.essential !== 'true');
+      }
+
+      let visibleResources = 0;
+      let visibleTopics = 0;
+      for (const group of groups) {
+        const visible = group.querySelectorAll('[data-row]:not([hidden])').length;
+        group.hidden = visible === 0;
+        group.querySelector('[data-group-count]')!.textContent = String(visible);
+        visibleResources += visible;
+        visibleTopics += Number(visible > 0);
+      }
+
+      resourceCount.textContent = String(visibleResources);
+      topicCount.textContent = String(visibleTopics);
+      empty.hidden = visibleResources > 0;
+      window.dispatchEvent(new CustomEvent('library:filter', { detail: { query, essentialOnly } }));
+    };
+
+    const setView = (view: string) => {
+      for (const toggle of viewToggles) toggle.setAttribute('aria-pressed', String(toggle.dataset.view === view));
+      for (const panel of panels) panel.hidden = panel.dataset.panel !== view;
+      if (view === 'map') window.dispatchEvent(new CustomEvent('library:map-shown'));
+    };
+
+    search.addEventListener('input', apply);
+    essentialToggle.addEventListener('click', () => {
+      essentialToggle.setAttribute('aria-pressed', String(essentialToggle.getAttribute('aria-pressed') !== 'true'));
+      apply();
+    });
+    viewToggles.forEach((toggle) => toggle.addEventListener('click', () => setView(toggle.dataset.view!)));
+
+    const flash = (target: HTMLElement) => {
+      target.classList.add('is-flashed');
+      window.setTimeout(() => target.classList.remove('is-flashed'), 1400);
+    };
+
+    // The map sends a node's list anchor here: switch to the list and bring that topic or resource into view.
+    window.addEventListener('library:focus', (event) => {
+      const target = document.getElementById((event as CustomEvent<string>).detail);
+      if (!target) return;
+      if (target.hidden || target.closest('[hidden]:not([data-panel])')) {
+        search.value = '';
+        essentialToggle.setAttribute('aria-pressed', 'false');
+        apply();
+      }
+      setView('list');
+      target.scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth', block: 'start' });
+      flash(target.matches('[data-group]') ? target.querySelector('h2')! : target);
+    });
+
+    const linked = location.hash && document.getElementById(location.hash.slice(1));
+    if (linked) flash(linked);
+  }
+</script>

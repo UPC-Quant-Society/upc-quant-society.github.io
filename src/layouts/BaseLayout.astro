@@ -21,24 +21,12 @@ const defaultUrl = new URL('/en/', Astro.site);
 ---
 
 <!doctype html>
-<html lang={lang} data-theme="light">
+<html lang={lang}>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
     <meta name="description" content={description} />
     <meta name="theme-color" content="#f7f7f7" />
-    <script is:inline>
-      (() => {
-        let theme = 'light';
-        try {
-          const saved = localStorage.getItem('theme');
-          if (saved === 'light' || saved === 'dark') theme = saved;
-        } catch {}
-        document.documentElement.dataset.theme = theme;
-        document.querySelector('meta[name="theme-color"]')
-          ?.setAttribute('content', theme === 'light' ? '#f7f7f7' : '#141615');
-      })();
-    </script>
     <meta property="og:title" content={fullTitle} />
     <meta property="og:description" content={description} />
     <meta property="og:type" content="website" />
@@ -56,7 +44,7 @@ const defaultUrl = new URL('/en/', Astro.site);
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Instrument+Sans:wght@400..700&display=swap"
       rel="stylesheet"
     />
     <title>{fullTitle}</title>

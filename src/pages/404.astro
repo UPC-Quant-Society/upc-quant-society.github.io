@@ -7,16 +7,59 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   title="Pàgina no trobada · Page not found"
   description="La pàgina sol·licitada no existeix. The requested page does not exist."
 >
-  <section class="page-hero shell not-found">
-    <p class="eyebrow">404</p>
-    <h1>Pàgina no trobada.<br />Page not found.</h1>
-    <p class="page-intro">
-      La ruta no existeix o s’ha mogut.<br />
-      The page does not exist or has moved.
+  <section class="not-found">
+    <p class="code">404</p>
+    <h1>Page not found.<br /><span>Pàgina no trobada.</span></h1>
+    <p class="links">
+      <a href="/en/" hreflang="en">Home</a>
+      <a href="/ca/" hreflang="ca">Inici</a>
     </p>
-    <div class="hero-links">
-      <a class="button button-primary" href="/en/" hreflang="en">English home</a>
-      <a class="button button-secondary" href="/ca/" hreflang="ca">Inici en català</a>
-    </div>
   </section>
 </BaseLayout>
+
+<style>
+  .not-found {
+    width: min(1480px, calc(100% - 64px));
+    min-height: calc(100svh - 64px);
+    margin: 0 auto;
+    padding-block: clamp(96px, 18vh, 200px) 120px;
+    color: #15171c;
+  }
+
+  .code {
+    margin: 0 0 24px;
+    color: #8b8d92;
+    font-family: var(--mono);
+    font-size: 12px;
+  }
+
+  h1 {
+    margin: 0 0 48px;
+    font-size: clamp(2rem, 4.4vw, 4.2rem);
+    font-weight: 500;
+    line-height: 1.05;
+    letter-spacing: -0.035em;
+  }
+
+  h1 span {
+    color: #8b8d92;
+  }
+
+  .links {
+    display: flex;
+    gap: 32px;
+    margin: 0;
+    font-size: 17px;
+    font-weight: 500;
+  }
+
+  .links a {
+    border-bottom: 1px solid currentColor;
+  }
+
+  @media (max-width: 680px) {
+    .not-found {
+      width: calc(100% - 32px);
+    }
+  }
+</style>

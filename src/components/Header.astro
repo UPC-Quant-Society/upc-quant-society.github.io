@@ -11,72 +11,100 @@ const { lang, slug } = Astro.props;
 const t = ui[lang];
 const alternatePath = getAlternatePath(lang, slug);
 const currentPath = Astro.url.pathname;
-
-const isCurrent = (href: string) =>
-  href === `/${lang}/`
-    ? currentPath === href
-    : currentPath.startsWith(href);
 ---
 
 <header class="site-header">
-  <div class="header-inner shell">
+  <div class="bar">
     <Logo lang={lang} />
-    <nav class="desktop-nav" aria-label={lang === 'ca' ? 'Navegació principal' : 'Main navigation'}>
+    <nav aria-label={lang === 'ca' ? 'Navegació principal' : 'Main navigation'}>
       {nav[lang].map((item) => (
-        <a href={item.href} aria-current={isCurrent(item.href) ? 'page' : undefined}>{item.label}</a>
+        <a href={item.href} aria-current={currentPath.startsWith(item.href) ? 'page' : undefined}>{item.label}</a>
       ))}
-    </nav>
-    <div class="header-actions">
-      <button
-        class="theme-toggle"
-        type="button"
-        aria-label={lang === 'ca' ? 'Canvia al tema clar' : 'Switch to light theme'}
-        data-light-label={lang === 'ca' ? 'Canvia al tema clar' : 'Switch to light theme'}
-        data-dark-label={lang === 'ca' ? 'Canvia al tema fosc' : 'Switch to dark theme'}
-      >
-        <svg class="theme-icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true">
-          <circle cx="12" cy="12" r="4" />
-          <path d="M12 2v2m0 16v2M2 12h2m16 0h2M4.93 4.93l1.42 1.42m11.3 11.3 1.42 1.42M4.93 19.07l1.42-1.42m11.3-11.3 1.42-1.42" />
-        </svg>
-        <svg class="theme-icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-          <path d="M20.9 13A9 9 0 0 1 11 3.1 9 9 0 1 0 20.9 13Z" />
-        </svg>
-      </button>
-      <a class="language-switch" href={alternatePath} hreflang={lang === 'ca' ? 'en' : 'ca'}>
-        <span>{t.languageShort}</span>
-        <span class="language-long">{t.language}</span>
+      <a class="language" href={alternatePath} hreflang={lang === 'ca' ? 'en' : 'ca'} aria-label={t.languageName}>
+        {t.languageShort}
       </a>
-      <details class="mobile-nav">
-        <summary>{t.menu}</summary>
-        <div class="mobile-panel">
-          {nav[lang].map((item) => (
-            <a href={item.href} aria-current={isCurrent(item.href) ? 'page' : undefined}>{item.label}</a>
-          ))}
-        </div>
-      </details>
-    </div>
+    </nav>
   </div>
 </header>
 
+<style>
+  .site-header {
+    position: sticky;
+    z-index: 100;
+    top: 0;
+    border-bottom: 1px solid rgba(21, 23, 28, 0.1);
+    background: rgba(247, 247, 247, 0.94);
+  }
 
-<script>
-  const toggle = document.querySelector<HTMLButtonElement>('.theme-toggle');
-  const updateLabel = () => {
-    if (!toggle) return;
-    const label = document.documentElement.dataset.theme === 'light'
-      ? toggle.dataset.darkLabel : toggle.dataset.lightLabel;
-    toggle.setAttribute('aria-label', label ?? '');
-    toggle.title = label ?? '';
-  };
+  .bar {
+    width: min(1480px, calc(100% - 64px));
+    height: 64px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+  }
 
-  updateLabel();
-  toggle?.addEventListener('click', () => {
-    const theme = document.documentElement.dataset.theme === 'light' ? 'dark' : 'light';
-    document.documentElement.dataset.theme = theme;
-    try { localStorage.setItem('theme', theme); } catch {}
-    document.querySelector('meta[name="theme-color"]')
-      ?.setAttribute('content', theme === 'light' ? '#f7f7f7' : '#141615');
-    updateLabel();
-    window.dispatchEvent(new Event('themechange'));
-  });
-</script>
+  nav {
+    display: flex;
+    align-items: center;
+    gap: 32px;
+  }
+
+  nav a {
+    position: relative;
+    color: #6b6e74;
+    font-size: 15px;
+    font-weight: 500;
+    transition: color 0.3s;
+  }
+
+  nav a:hover,
+  nav a[aria-current='page'] {
+    color: #15171c;
+  }
+
+  nav a[aria-current='page']::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: -12px;
+    width: 5px;
+    height: 5px;
+    background: currentColor;
+    transform: translateY(-50%);
+  }
+
+  .language {
+    padding-left: 24px;
+    border-left: 1px solid rgba(21, 23, 28, 0.14);
+    font-family: var(--mono);
+    font-size: 12px;
+  }
+
+  @media (max-width: 680px) {
+    .bar {
+      width: calc(100% - 32px);
+      height: 56px;
+    }
+
+    nav {
+      gap: 22px;
+    }
+
+    nav a {
+      font-size: 14px;
+    }
+
+    .language {
+      padding-left: 16px;
+    }
+  }
+
+  @media (max-width: 400px) {
+    .bar :global(.logo span) {
+      display: none;
+    }
+  }
+</style>

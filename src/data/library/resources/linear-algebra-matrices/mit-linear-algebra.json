@@ -25,7 +25,8 @@
 
   "collections": [
     "essential-library",
-    "mathematical-foundations"
+    "mathematical-foundations",
+    "linear-algebra-matrices"
   ],
 
   "levels": [

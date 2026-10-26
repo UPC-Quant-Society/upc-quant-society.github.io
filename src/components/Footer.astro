@@ -1,6 +1,6 @@
 ---
 import Logo from './Logo.astro';
-import { contactEmail, githubUrl, ui, type Lang } from '../data/site';
+import { applicationsOpen, contactEmail, githubUrl, membershipFormUrl, nav, ui, type Lang } from '../data/site';
 
 type Props = {
   lang: Lang;
@@ -10,26 +10,122 @@ const { lang } = Astro.props;
 const t = ui[lang];
 ---
 
-<footer class="site-footer">
-  <div class="shell footer-grid">
+<footer class="site-footer" id="contact">
+  <div class="grid">
     <div>
       <Logo lang={lang} />
-      <p class="footer-description">{t.footerText}</p>
     </div>
-    <div class="footer-links">
+    <div>
+      <h2>{t.footerContact}</h2>
+      <a href={`mailto:${contactEmail}`}>{contactEmail}</a>
       <a href={githubUrl} target="_blank" rel="noreferrer">GitHub</a>
-      <a href={`mailto:${contactEmail}`}>Email</a>
-      <a href={`/${lang}/${lang === 'ca' ? 'contacte' : 'contact'}/`}>
-        {lang === 'ca' ? 'Contacte' : 'Contact'}
-      </a>
     </div>
-    <div class="footer-transparency">
-      <span>TRANSPARENCY / TRANSPARÈNCIA</span>
+    <div>
+      <h2>{t.footerSociety}</h2>
+      {nav[lang].map((item) => <a href={item.href}>{item.label}</a>)}
+      {applicationsOpen && <a href={membershipFormUrl} target="_blank" rel="noreferrer">{t.apply}</a>}
+    </div>
+    <div>
+      <h2>{t.footerNote}</h2>
       <p>{t.notAdvice}</p>
     </div>
   </div>
-  <div class="shell footer-bottom">
-    <span>© {new Date().getFullYear()} {t.allRights}</span>
-    <span>Universitat Politècnica de Catalunya</span>
+  <div class="bottom">
+    <span>© {new Date().getFullYear()} UPC Quant Society · Universitat Politècnica de Catalunya</span>
+    <span>41.3894° N, 2.1133° E</span>
   </div>
 </footer>
+
+<style>
+  .site-footer {
+    border-top: 1px solid rgba(21, 23, 28, 0.1);
+    color: #15171c;
+  }
+
+  .grid,
+  .bottom {
+    width: min(1480px, calc(100% - 64px));
+    margin: 0 auto;
+  }
+
+  .grid {
+    display: grid;
+    grid-template-columns: 1.6fr 1fr 0.8fr 1.2fr;
+    gap: 48px;
+    padding-block: 72px 96px;
+  }
+
+  .grid > div {
+    display: grid;
+    align-content: start;
+    gap: 12px;
+  }
+
+  h2 {
+    margin: 0 0 10px;
+    color: #8b8d92;
+    font-size: 14px;
+    font-weight: 400;
+  }
+
+  a {
+    justify-self: start;
+    font-size: 15px;
+  }
+
+  .grid a:hover {
+    text-decoration: underline;
+    text-underline-offset: 4px;
+  }
+
+  p {
+    max-width: 340px;
+    margin: 0;
+    color: #6b6e74;
+    font-size: 13px;
+    line-height: 1.6;
+  }
+
+  .bottom {
+    display: flex;
+    justify-content: space-between;
+    gap: 24px;
+    padding-block: 22px;
+    border-top: 1px solid rgba(21, 23, 28, 0.1);
+    color: #8b8d92;
+    font-size: 13px;
+  }
+
+  .bottom span:last-child {
+    font-family: var(--mono);
+    font-size: 12px;
+  }
+
+  @media (max-width: 900px) {
+    .grid {
+      grid-template-columns: 1fr 1fr;
+      gap: 40px 24px;
+      padding-block: 56px 64px;
+    }
+
+    .grid > div:first-child {
+      grid-column: 1 / -1;
+    }
+  }
+
+  @media (max-width: 680px) {
+    .grid,
+    .bottom {
+      width: calc(100% - 32px);
+    }
+
+    .grid > div:last-child {
+      grid-column: 1 / -1;
+    }
+
+    .bottom {
+      flex-direction: column;
+      gap: 6px;
+    }
+  }
+</style>
