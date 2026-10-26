@@ -1,114 +1,25 @@
 ---
 import { getCollection } from 'astro:content';
-import BaseLayout from '../../../../layouts/BaseLayout.astro';
 
+// Resource pages were folded into the library list; old links land on the resource's row.
 export async function getStaticPaths() {
   const resources = await getCollection('resources');
-
-  return resources.map((resource) => ({
-    params: {
-      slug: resource.data.slug,
-    },
-    props: {
-      resource,
-    },
-  }));
+  return resources.map(({ data }) => ({ params: { slug: data.slug } }));
 }
 
-const { resource } = Astro.props;
-const data = resource.data;
-
-const hasDetailedScore =
-  data.score.quality !== undefined &&
-  data.score.pedagogy !== undefined &&
-  data.score.quantRelevance !== undefined &&
-  data.score.practicalValue !== undefined &&
-  data.score.reputation !== undefined &&
-  data.score.currency !== undefined &&
-  data.score.accessibility !== undefined;
-
-const detailedScore = hasDetailedScore
-  ? 0.25 * data.score.quality! +
-    0.20 * data.score.pedagogy! +
-    0.20 * data.score.quantRelevance! +
-    0.15 * data.score.practicalValue! +
-    0.10 * data.score.reputation! +
-    0.05 * data.score.currency! +
-    0.05 * data.score.accessibility!
-  : undefined;
-
-const finalScore =
-  data.score.overall ??
-  detailedScore ??
-  0;
+const target = `/ca/recursos/#r-${Astro.params.slug}`;
 ---
 
-<BaseLayout
-  lang="ca"
-  slug={`recursos/biblioteca/${data.slug}`}
-  title={data.title}
-  description={data.description.ca}
->
-  <div class="shell resource-detail">
-    <nav class="resource-breadcrumbs" aria-label="Fil d’Ariadna">
-      <a href="/ca/recursos/">Recursos</a>
-      <span aria-hidden="true">/</span>
-      <a href="/ca/recursos/biblioteca/">Biblioteca completa</a>
-      <span aria-hidden="true">/</span>
-      <span aria-current="page">{data.title}</span>
-    </nav>
-
-    <header>
-      <p class="eyebrow">{data.type}</p>
-
-      <h1>{data.title}</h1>
-
-      <p>{data.description.ca}</p>
-    </header>
-
-    <dl>
-      {
-        data.institution && (
-          <div>
-            <dt>Institució</dt>
-            <dd>{data.institution}</dd>
-          </div>
-        )
-      }
-
-      <div>
-        <dt>Nivell</dt>
-        <dd>{data.levels.join(', ')}</dd>
-      </div>
-
-      <div>
-        <dt>Accés</dt>
-        <dd>{data.access}</dd>
-      </div>
-
-      <div>
-        <dt>Puntuació</dt>
-        <dd>{finalScore.toFixed(1)}/10</dd>
-      </div>
-
-      <div>
-        <dt>Idiomes</dt>
-        <dd>{data.languages.join(', ')}</dd>
-      </div>
-
-      <div>
-        <dt>Tipus</dt>
-        <dd>{data.type}</dd>
-      </div>
-    </dl>
-
-    <a
-      class="button button-primary"
-      href={data.officialUrl}
-      target="_blank"
-      rel="noopener noreferrer"
-    >
-      Obrir el recurs oficial
-    </a>
-  </div>
-</BaseLayout>
+<!doctype html>
+<html lang="ca">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="refresh" content={`0;url=${target}`} />
+    <meta name="robots" content="noindex" />
+    <link rel="canonical" href={new URL(target, Astro.site)} />
+    <title>UPC Quant Society</title>
+  </head>
+  <body>
+    <a href={target}>{target}</a>
+  </body>
+</html>

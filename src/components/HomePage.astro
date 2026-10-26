@@ -1,6 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import { home, ui, type Lang } from '../data/site';
+import { applicationsOpen, home, membershipFormUrl, type Lang } from '../data/site';
 
 type Props = {
   lang: Lang;
@@ -8,66 +8,987 @@ type Props = {
 
 const { lang } = Astro.props;
 const content = home[lang];
-const t = ui[lang];
-const projectsSlug = lang === 'ca' ? 'projectes' : 'projects';
-const aboutSlug = lang === 'ca' ? 'associacio' : 'about';
+const [closing, closingLink] = applicationsOpen ? content.applyOpen : content.applyClosed;
+const closingHref = applicationsOpen ? membershipFormUrl : '#contact';
 ---
 
 <BaseLayout lang={lang} title={content.title} description={content.description}>
-  <section class="home-hero shell">
-    <div class="hero-copy">
-      <p class="eyebrow">{content.eyebrow}</p>
-      <h1>{content.heading}</h1>
-      <p>{content.intro}</p>
-      <div class="hero-links">
-        <a class="button button-primary" href={`/${lang}/${projectsSlug}/`}>
-          {t.explore}
-        </a>
-        <a class="button button-secondary" href={`/${lang}/${aboutSlug}/`}>
-          {t.learnMore}
-        </a>
+  <section class="hero" data-hero>
+    <canvas class="hero-surface" aria-hidden="true"></canvas>
+    <h1>
+      {content.heading.map((line) => (
+        <span class="line"><span>{line} </span></span>
+      ))}
+    </h1>
+  </section>
+
+  <section class="practice" data-practice style="--progress: 0">
+    <div class="practice-sticky">
+      <div class="practice-layout">
+        <nav class="ruler" aria-label={lang === 'ca' ? 'Què fem' : 'What we do'}>
+          <span class="ruler-track" aria-hidden="true">
+            <span class="ruler-marker"><span data-progress>t = 0.00</span></span>
+          </span>
+          {content.practice.map((part, index) => (
+            <button type="button" data-part={index} data-tab={index} style={`--at: ${(index + 0.5) / content.practice.length}`}>
+              {part.label}
+            </button>
+          ))}
+        </nav>
+
+        <figure class="figure">
+          <canvas data-scene aria-hidden="true"></canvas>
+          <figcaption>
+            {content.practice.map((part, index) => <span data-part={index}>{part.caption}</span>)}
+          </figcaption>
+        </figure>
+
+        <div class="texts">
+          {content.practice.map((part, index) => (
+            <article data-part={index}>
+              <h2>
+                {part.title.split(' ').map((word, n) => (
+                  <span class="word" style={`--n: ${n}`}><span>{word}</span></span>
+                ))}
+              </h2>
+              <p>{part.text}</p>
+              <ul>
+                {part.items.map((item, n) => <li style={`--n: ${n}`}>{item}</li>)}
+              </ul>
+            </article>
+          ))}
+        </div>
       </div>
     </div>
-
-    <div class="hero-focus" aria-label={lang === 'ca' ? 'Àrees de treball' : 'Areas of focus'}>
-      <p>{lang === 'ca' ? 'ÀREES DE TREBALL' : 'AREAS OF FOCUS'}</p>
-      <ul>
-        <li>{lang === 'ca' ? 'Matemàtiques aplicades' : 'Applied mathematics'}</li>
-        <li>{lang === 'ca' ? 'Programació i dades' : 'Programming and data'}</li>
-        <li>{lang === 'ca' ? 'Mercats financers' : 'Financial markets'}</li>
-      </ul>
-      <span>Barcelona · UPC</span>
-    </div>
   </section>
 
-  <section class="phase-section shell">
-    <div class="phase-label">{t.currentPhase}</div>
-    <div>
-      <h2>{t.currentPhaseTitle}</h2>
-      <p>{t.currentPhaseText}</p>
-    </div>
-  </section>
-
-  <section class="home-areas shell">
-    {content.areas.map((area) => (
-      <a class="area-card" href={area.href}>
-        <span>{area.index}</span>
-        <h2>{area.title}</h2>
-        <p>{area.text}</p>
-        <i aria-hidden="true">↗</i>
-      </a>
-    ))}
-  </section>
-
-  <section class="bridge-section shell">
-    <div class="bridge-rule"></div>
-    <div>
-      <p class="eyebrow">{lang === 'ca' ? 'CONNEXIÓ' : 'CONNECTION'}</p>
-      <h2>{content.bridgeTitle}</h2>
-    </div>
-    <div>
-      <p>{content.bridgeText}</p>
-      <a href={content.bridgeHref}>{content.bridgeLink} <span aria-hidden="true">↗</span></a>
-    </div>
+  <section class="closing" data-reveal>
+    <p>{closing}</p>
+    <a href={closingHref} target={applicationsOpen ? '_blank' : undefined} rel={applicationsOpen ? 'noreferrer' : undefined}>
+      {closingLink} <span aria-hidden="true">↗</span>
+    </a>
   </section>
 </BaseLayout>
+
+<style>
+  .hero,
+  .practice,
+  .closing {
+    --ink: #15171c;
+    --grey: #8b8d92;
+    --rule: rgba(21, 23, 28, 0.12);
+    --ease: cubic-bezier(0.16, 1, 0.3, 1);
+    --header: 64px;
+  }
+
+  /* Hero */
+  .hero {
+    position: relative;
+    min-height: max(620px, calc(100svh - var(--header)));
+    display: grid;
+    align-content: start;
+    justify-items: center;
+    overflow: hidden;
+    isolation: isolate;
+  }
+
+  .hero-surface {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    animation: fade-in 2.6s var(--ease) 0.3s forwards;
+  }
+
+  h1 {
+    width: min(1180px, calc(100% - 32px));
+    margin: clamp(120px, 24vh, 260px) 0 0;
+    color: var(--ink);
+    font-size: clamp(1.7rem, 3.4vw, 3.3rem);
+    font-weight: 500;
+    line-height: 1.1;
+    letter-spacing: -0.028em;
+    text-align: center;
+    text-wrap: balance;
+    transform: translateY(calc(var(--hero-p, 0) * -80px));
+    opacity: calc(1 - var(--hero-p, 0) * 1.5);
+  }
+
+  .line {
+    display: block;
+    overflow: hidden;
+    padding-bottom: 0.08em;
+  }
+
+  .line > span {
+    display: inline-block;
+    transform: translateY(110%);
+    animation: rise 1.4s var(--ease) forwards;
+  }
+
+  .line:nth-child(1) > span { animation-delay: 0.25s; }
+  .line:nth-child(2) > span { animation-delay: 0.4s; }
+
+  /* Practice: one figure that re-forms as the page scrolls */
+  .practice {
+    height: 420svh;
+    margin-top: 12vh;
+  }
+
+  .practice-sticky {
+    position: sticky;
+    top: var(--header);
+    height: calc(100svh - var(--header));
+    display: grid;
+    align-items: center;
+  }
+
+  .practice-layout {
+    width: min(1480px, calc(100% - 64px));
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 210px minmax(0, 1.05fr) minmax(0, 1fr);
+    gap: clamp(32px, 5vw, 96px);
+    align-items: center;
+  }
+
+  .ruler {
+    position: relative;
+    height: min(60svh, 560px);
+  }
+
+  .ruler-track {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 72px;
+    width: 10px;
+    border-left: 1px solid var(--rule);
+    background: repeating-linear-gradient(to bottom, var(--rule) 0 1px, transparent 1px 14px);
+  }
+
+  .ruler-marker {
+    position: absolute;
+    top: calc(var(--progress) * 100%);
+    left: -9px;
+    width: 19px;
+    height: 2px;
+    background: var(--ink);
+  }
+
+  .ruler-marker span {
+    position: absolute;
+    right: calc(100% + 10px);
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--grey);
+    font-family: var(--mono);
+    font-size: 11px;
+    white-space: nowrap;
+  }
+
+  .ruler button {
+    position: absolute;
+    top: calc(var(--at) * 100%);
+    left: 104px;
+    transform: translateY(-50%);
+    padding: 6px 0;
+    border: 0;
+    background: none;
+    color: var(--grey);
+    font: inherit;
+    font-size: 15px;
+    font-weight: 500;
+    white-space: nowrap;
+    cursor: pointer;
+    transition: color 0.4s;
+  }
+
+  .ruler button:hover,
+  .ruler button[data-state='active'] {
+    color: var(--ink);
+  }
+
+  .figure {
+    display: grid;
+    gap: 14px;
+    margin: 0;
+  }
+
+  .figure canvas {
+    display: block;
+    width: 100%;
+    height: min(62svh, 620px);
+  }
+
+  figcaption {
+    display: grid;
+    text-align: center;
+    color: var(--grey);
+    font-family: var(--mono);
+    font-size: 12px;
+  }
+
+  figcaption span {
+    grid-area: 1 / 1;
+    opacity: 0;
+    transition: opacity 0.5s;
+  }
+
+  figcaption span[data-state='active'] {
+    opacity: 1;
+    transition-delay: 0.6s;
+  }
+
+  .texts {
+    display: grid;
+  }
+
+  .texts article {
+    grid-area: 1 / 1;
+    pointer-events: none;
+  }
+
+  .texts article[data-state='active'] {
+    pointer-events: auto;
+  }
+
+  .texts h2 {
+    margin: 0 0 28px;
+    color: var(--ink);
+    font-size: clamp(2rem, 3.6vw, 3.6rem);
+    font-weight: 500;
+    line-height: 1.04;
+    letter-spacing: -0.035em;
+  }
+
+  .word {
+    display: inline-block;
+    overflow: hidden;
+    margin-right: 0.22em;
+    padding-bottom: 0.1em;
+    vertical-align: top;
+  }
+
+  .word > span {
+    display: inline-block;
+    transform: translateY(105%);
+    transition: transform 0.9s var(--ease);
+  }
+
+  article[data-state='past'] .word > span {
+    transform: translateY(-105%);
+  }
+
+  article[data-state='active'] .word > span {
+    transform: none;
+    transition-delay: calc(0.15s + var(--n) * 45ms);
+  }
+
+  .texts p {
+    max-width: 460px;
+    margin: 0 0 32px;
+    color: #4d5056;
+    font-size: 16px;
+    line-height: 1.65;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity 0.5s, transform 0.9s var(--ease);
+  }
+
+  article[data-state='active'] p {
+    opacity: 1;
+    transform: none;
+    transition-delay: 0.35s;
+  }
+
+  .texts ul {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 28px;
+    max-width: 560px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .texts li {
+    padding: 11px 0;
+    border-top: 1px solid var(--rule);
+    color: var(--ink);
+    font-size: 14px;
+    opacity: 0;
+    transform: translateY(8px);
+    transition: opacity 0.5s, transform 0.8s var(--ease);
+  }
+
+  article[data-state='active'] li {
+    opacity: 1;
+    transform: none;
+    transition-delay: calc(0.45s + var(--n) * 60ms);
+  }
+
+  /* Closing */
+  .closing {
+    min-height: 60vh;
+    display: grid;
+    place-content: center;
+    justify-items: center;
+    gap: 22px;
+    padding: 0 16px 4vh;
+    text-align: center;
+  }
+
+  .closing p {
+    margin: 0;
+    color: var(--ink);
+    font-size: clamp(1.9rem, 4.6vw, 4rem);
+    font-weight: 500;
+    line-height: 1.05;
+    letter-spacing: -0.04em;
+    text-wrap: balance;
+  }
+
+  .closing a {
+    position: relative;
+    color: var(--ink);
+    font-size: 17px;
+    font-weight: 500;
+  }
+
+  .closing a::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -4px;
+    height: 1px;
+    background: currentColor;
+    transform-origin: right;
+    transition: transform 0.6s var(--ease);
+  }
+
+  .closing a:hover::after {
+    transform: scaleX(0);
+  }
+
+  [data-reveal] {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 1.4s var(--ease), transform 1.4s var(--ease);
+  }
+
+  [data-reveal].is-in {
+    opacity: 1;
+    transform: none;
+  }
+
+  @keyframes rise {
+    to { transform: translateY(0); }
+  }
+
+  @keyframes fade-in {
+    to { opacity: 1; }
+  }
+
+  @media (max-width: 900px) {
+    .practice-layout {
+      width: calc(100% - 32px);
+      grid-template-columns: 1fr;
+      gap: 18px;
+    }
+
+    .ruler {
+      height: 44px;
+    }
+
+    .ruler-track {
+      top: auto;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      width: auto;
+      height: 8px;
+      border-left: 0;
+      border-bottom: 1px solid var(--rule);
+      background: repeating-linear-gradient(to right, var(--rule) 0 1px, transparent 1px 14px);
+    }
+
+    .ruler-marker {
+      top: auto;
+      bottom: -1px;
+      left: calc(var(--progress) * 100%);
+      width: 2px;
+      height: 16px;
+    }
+
+    .ruler-marker span {
+      display: none;
+    }
+
+    .ruler button {
+      top: 0;
+      left: calc(var(--at) * 100%);
+      transform: translateX(-50%);
+      font-size: 13px;
+    }
+
+    .figure canvas {
+      height: min(32svh, 300px);
+    }
+
+    .texts h2 {
+      margin-bottom: 12px;
+      font-size: 1.75rem;
+    }
+
+    .texts p {
+      margin-bottom: 14px;
+      font-size: 14px;
+      line-height: 1.55;
+    }
+
+    .texts li {
+      padding: 8px 0;
+      font-size: 13px;
+    }
+
+    .texts li:nth-child(n + 5) {
+      display: none;
+    }
+  }
+
+  @media (max-width: 680px) {
+    .hero,
+    .practice,
+    .closing {
+      --header: 56px;
+    }
+
+    .line {
+      display: inline;
+    }
+
+    .line > span {
+      display: inline;
+      transform: none;
+      animation: none;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .hero-surface,
+    .line > span {
+      opacity: 1;
+      transform: none;
+      animation: none;
+    }
+
+    .word > span,
+    .texts p,
+    .texts li,
+    figcaption span {
+      transition: none;
+    }
+
+    [data-reveal] {
+      opacity: 1;
+      transform: none;
+    }
+  }
+</style>
+
+<script>
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const INK = '#15171c';
+  const clamp = (value: number, min = 0, max = 1) => Math.min(max, Math.max(min, value));
+  const smoothstep = (a: number, b: number, x: number) => {
+    const t = clamp((x - a) / (b - a));
+    return t * t * (3 - 2 * t);
+  };
+  const randn = () => {
+    let u = 0;
+    let v = 0;
+    while (!u) u = Math.random();
+    while (!v) v = Math.random();
+    return Math.sqrt(-2 * Math.log(u)) * Math.cos(2 * Math.PI * v);
+  };
+
+  /* Runs `draw` on every frame while `element` is on screen and the tab is visible. */
+  const animateWhileVisible = (element: Element, draw: (time: number) => void) => {
+    let visible = false;
+    let frame = 0;
+    const loop = (now: number) => {
+      draw(now / 1000);
+      frame = requestAnimationFrame(loop);
+    };
+    const sync = () => {
+      cancelAnimationFrame(frame);
+      if (visible && !document.hidden) frame = requestAnimationFrame(loop);
+    };
+    new IntersectionObserver(([entry]) => {
+      visible = entry.isIntersecting;
+      sync();
+    }).observe(element);
+    document.addEventListener('visibilitychange', sync);
+  };
+
+  const fitCanvas = (canvas: HTMLCanvasElement, ctx: CanvasRenderingContext2D) => {
+    const dpr = Math.min(2, window.devicePixelRatio || 1);
+    const width = canvas.clientWidth;
+    const height = canvas.clientHeight;
+    canvas.width = Math.round(width * dpr);
+    canvas.height = Math.round(height * dpr);
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    return { width, height };
+  };
+
+  /*
+   * Hero: an implied-volatility surface (smile across strikes, decaying term
+   * structure) rendered as a dot lattice. It breathes slowly; the cursor tilts
+   * the camera and sends shocks that propagate across the surface.
+   */
+  const hero = document.querySelector<HTMLElement>('[data-hero]');
+  const heroCanvas = hero?.querySelector<HTMLCanvasElement>('.hero-surface');
+
+  if (hero && heroCanvas) {
+    const ctx = heroCanvas.getContext('2d')!;
+    const NX = 72;
+    const NZ = 44;
+    const COUNT = NX * NZ;
+    const LEVELS = [0.1, 0.2, 0.32, 0.46, 0.64];
+    const px = new Float32Array(COUNT);
+    const py = new Float32Array(COUNT);
+    const alpha = new Float32Array(COUNT);
+    const size = new Float32Array(COUNT);
+    const shocks: { k: number; tau: number; born: number }[] = [];
+    const tilt = { x: 0, y: 0 };
+    const target = { x: 0, y: 0 };
+    let view = fitCanvas(heroCanvas, ctx);
+    let now = 0;
+    let lastShock = 0;
+
+    const surface = (k: number, tau: number, t: number) => {
+      let z = (0.35 * (k + 0.15) ** 2) / Math.sqrt(tau + 0.3) + 0.25 * Math.exp(-2.5 * tau);
+      z += 0.05 * Math.sin(2.2 * Math.PI * k + t * 0.45) * Math.cos(1.5 * Math.PI * tau - t * 0.3);
+      for (const shock of shocks) {
+        const age = t - shock.born;
+        const d = Math.hypot(k - shock.k, (tau - shock.tau) * 1.6);
+        const front = d - age * 0.55;
+        z += 0.1 * Math.exp(-(front * front) / 0.005) * Math.exp(-age * 0.9);
+      }
+      return z;
+    };
+
+    const project = (t: number) => {
+      const { width, height } = view;
+      const scrolled = Number(hero.style.getPropertyValue('--hero-p')) || 0;
+      const yaw = -0.55 + 0.1 * Math.sin(t * 0.06) + tilt.x * 0.22;
+      const pitch = 0.48 + tilt.y * 0.1 + scrolled * 0.6;
+      const [cy, sy] = [Math.cos(yaw), Math.sin(yaw)];
+      const [cp, sp] = [Math.cos(pitch), Math.sin(pitch)];
+      const scale = Math.min(Math.max(width * 0.6, height * 0.5), height * 1.05);
+      const centerX = width / 2;
+      const centerY = height * 0.66;
+      const titleY = height * 0.32;
+
+      for (let j = 0; j < NZ; j++) {
+        const tau = j / (NZ - 1);
+        for (let i = 0; i < NX; i++) {
+          const n = j * NX + i;
+          const u = i / (NX - 1);
+          const k = u * 2 - 1;
+          const x = k;
+          const y = (surface(k, tau, t) - 0.4) * 0.8;
+          const z = (tau - 0.5) * 1.3;
+
+          const x1 = x * cy - z * sy;
+          const z1 = x * sy + z * cy;
+          const y2 = y * cp - z1 * sp;
+          const z2 = y * sp + z1 * cp;
+          const s = 2.6 / (2.6 + z2);
+
+          px[n] = centerX + x1 * s * scale;
+          py[n] = centerY - y2 * s * scale;
+
+          const near = clamp((0.9 - z2) / 1.8);
+          const edge = smoothstep(0, 0.14, Math.min(u, 1 - u)) * smoothstep(0, 0.14, Math.min(tau, 1 - tau));
+          const dyTitle = (py[n] - titleY) / (height * 0.13);
+          const dxTitle = (px[n] - centerX) / (width * 0.38);
+          const title = 1 - 0.85 * Math.exp(-dyTitle * dyTitle - dxTitle * dxTitle);
+          alpha[n] = (0.22 + 0.78 * near) * edge * title;
+          size[n] = 1.3 + 1.7 * near;
+        }
+      }
+    };
+
+    const render = (t: number) => {
+      now = t;
+      tilt.x += (target.x - tilt.x) * 0.04;
+      tilt.y += (target.y - tilt.y) * 0.04;
+      while (shocks.length && t - shocks[0].born > 5) shocks.shift();
+      project(t);
+
+      ctx.clearRect(0, 0, view.width, view.height);
+      ctx.fillStyle = INK;
+      ctx.strokeStyle = INK;
+      ctx.lineWidth = 1;
+
+      ctx.globalAlpha = 0.09;
+      ctx.beginPath();
+      for (let j = 0; j < NZ; j += 4) {
+        for (let i = 0; i < NX; i++) {
+          const n = j * NX + i;
+          if (i === 0) ctx.moveTo(px[n], py[n]);
+          else ctx.lineTo(px[n], py[n]);
+        }
+      }
+      for (let i = 0; i < NX; i += 6) {
+        for (let j = 0; j < NZ; j++) {
+          const n = j * NX + i;
+          if (j === 0) ctx.moveTo(px[n], py[n]);
+          else ctx.lineTo(px[n], py[n]);
+        }
+      }
+      ctx.stroke();
+
+      LEVELS.forEach((level, index) => {
+        ctx.globalAlpha = level + 0.06;
+        ctx.beginPath();
+        for (let n = 0; n < COUNT; n++) {
+          if (alpha[n] < 0.05 || Math.min(4, Math.floor(alpha[n] * 5)) !== index) continue;
+          const d = size[n];
+          ctx.rect(px[n] - d / 2, py[n] - d / 2, d, d);
+        }
+        ctx.fill();
+      });
+      ctx.globalAlpha = 1;
+    };
+
+    render(0);
+
+    if (!reduceMotion) {
+      animateWhileVisible(hero, render);
+
+      let resizeTimer = 0;
+      new ResizeObserver(() => {
+        clearTimeout(resizeTimer);
+        resizeTimer = window.setTimeout(() => {
+          view = fitCanvas(heroCanvas, ctx);
+        }, 150);
+      }).observe(hero);
+
+      hero.addEventListener('pointermove', (event) => {
+        if (event.pointerType !== 'mouse') return;
+        const rect = hero.getBoundingClientRect();
+        const x = event.clientX - rect.left;
+        const y = event.clientY - rect.top;
+        target.x = x / rect.width - 0.5;
+        target.y = y / rect.height - 0.5;
+
+        if (now - lastShock < 0.3) return;
+        let best = -1;
+        let bestDistance = 50 * 50;
+        for (let n = 0; n < COUNT; n++) {
+          const distance = (px[n] - x) ** 2 + (py[n] - y) ** 2;
+          if (distance < bestDistance && alpha[n] > 0.05) {
+            best = n;
+            bestDistance = distance;
+          }
+        }
+        if (best < 0) return;
+        lastShock = now;
+        shocks.push({ k: ((best % NX) / (NX - 1)) * 2 - 1, tau: Math.floor(best / NX) / (NZ - 1), born: now });
+        if (shocks.length > 6) shocks.shift();
+      });
+      hero.addEventListener('pointerleave', () => {
+        target.x = 0;
+        target.y = 0;
+      });
+    }
+  }
+
+  /*
+   * Practice figure: a single set of particles that re-forms into the picture
+   * of each part (a regression, Brownian paths, a network, a correlation
+   * matrix) instead of swapping images.
+   */
+  type Box = { left: number; top: number; size: number; t: number };
+  type Particle = [x: number, y: number, size: number, alpha: number];
+  type Scene = {
+    tick?: (t: number) => void;
+    target: (i: number, box: Box) => Particle;
+    decor?: (ctx: CanvasRenderingContext2D, box: Box) => void;
+  };
+
+  const PARTICLES = 240;
+  const hidden = (box: Box): Particle => [box.left + box.size / 2, box.top + box.size / 2, 0, 0];
+
+  const research: Scene = (() => {
+    const points = Array.from({ length: 200 }, () => {
+      const x = Math.random() * 2 - 1;
+      return [x, clamp(0.55 * x + 0.3 * randn(), -1.1, 1.1), Math.random() * Math.PI * 2];
+    });
+    const mapX = (box: Box, x: number) => box.left + ((x + 1) / 2) * box.size;
+    const mapY = (box: Box, y: number) => box.top + box.size - ((y + 1.15) / 2.3) * box.size;
+    return {
+      target(i, box) {
+        if (i < points.length) {
+          const [x, y, phase] = points[i];
+          return [
+            mapX(box, x + 0.012 * Math.sin(box.t * 0.9 + phase)),
+            mapY(box, y + 0.012 * Math.cos(box.t * 0.7 + phase)),
+            3,
+            0.32,
+          ];
+        }
+        const x = -1 + (2 * (i - points.length)) / (PARTICLES - points.length - 1);
+        const slope = 0.55 + 0.05 * Math.sin(box.t * 0.6);
+        return [mapX(box, x), mapY(box, slope * x), 2.5, 1];
+      },
+      decor(ctx, box) {
+        ctx.beginPath();
+        ctx.moveTo(box.left - 12, box.top - 8);
+        ctx.lineTo(box.left - 12, box.top + box.size + 12);
+        ctx.lineTo(box.left + box.size + 8, box.top + box.size + 12);
+        ctx.stroke();
+      },
+    };
+  })();
+
+  const training: Scene = (() => {
+    const PATHS = 8;
+    const STEPS = 24;
+    const BINS = [1, 2, 4, 6, 8, 9, 8, 6, 3, 1];
+    const shocks = Float32Array.from({ length: PATHS * STEPS }, randn);
+    const levels = new Float32Array(PATHS * STEPS);
+    const slots = BINS.flatMap((count, bin) => Array.from({ length: count }, (_, n) => [bin, n]));
+    return {
+      tick() {
+        for (let n = 0; n < shocks.length; n++) shocks[n] = 0.985 * shocks[n] + 0.172 * randn();
+        for (let p = 0; p < PATHS; p++) {
+          let level = 0;
+          for (let j = 0; j < STEPS; j++) {
+            if (j > 0) level += shocks[p * STEPS + j];
+            levels[p * STEPS + j] = level;
+          }
+        }
+      },
+      target(i, box) {
+        const middle = box.top + box.size / 2;
+        if (i < PATHS * STEPS) {
+          const j = i % STEPS;
+          return [box.left + (j / (STEPS - 1)) * box.size * 0.64, middle + levels[i] * box.size * 0.045, 2.5, 0.22 + 0.6 * (j / (STEPS - 1))];
+        }
+        const slot = slots[i - PATHS * STEPS];
+        if (!slot) return hidden(box);
+        const [bin, n] = slot;
+        return [box.left + box.size * 0.74 + n * box.size * 0.028, middle + (bin - (BINS.length - 1) / 2) * box.size * 0.055, box.size * 0.02, 0.85];
+      },
+      decor(ctx, box) {
+        ctx.beginPath();
+        ctx.moveTo(box.left + box.size * 0.71, box.top + box.size * 0.18);
+        ctx.lineTo(box.left + box.size * 0.71, box.top + box.size * 0.82);
+        ctx.stroke();
+      },
+    };
+  })();
+
+  const industry: Scene = (() => {
+    const hubs = [
+      ...Array.from({ length: 6 }, (_, n) => [0.18 + (n % 2) * 0.08, 0.12 + n * 0.152]),
+      ...Array.from({ length: 4 }, (_, n) => [0.8, 0.2 + n * 0.2]),
+    ];
+    const edges = Array.from({ length: 6 }, (_, s) => [[s, 6 + (s % 4)], [s, 6 + ((s + 2) % 4)]]).flat();
+    const PER_EDGE = Math.floor((PARTICLES - hubs.length) / edges.length);
+    const hubAt = (box: Box, h: number) => [
+      box.left + hubs[h][0] * box.size,
+      box.top + (hubs[h][1] + 0.008 * Math.sin(box.t * 0.8 + h)) * box.size,
+    ];
+    return {
+      target(i, box) {
+        if (i < hubs.length) {
+          const [x, y] = hubAt(box, i);
+          return [x, y, i < 6 ? 6 : 8, 1];
+        }
+        const e = Math.floor((i - hubs.length) / PER_EDGE);
+        if (e >= edges.length) return hidden(box);
+        const j = (i - hubs.length) % PER_EDGE;
+        const direction = e % 2 ? 1 : -1;
+        const f = (((j / PER_EDGE + box.t * 0.06 * direction) % 1) + 1) % 1;
+        const [x0, y0] = hubAt(box, edges[e][0]);
+        const [x1, y1] = hubAt(box, edges[e][1]);
+        return [x0 + (x1 - x0) * f, y0 + (y1 - y0) * f, 1.8, 0.2 + 0.6 * Math.sin(Math.PI * f)];
+      },
+      decor(ctx, box) {
+        for (let h = 6; h < hubs.length; h++) {
+          const [x, y] = hubAt(box, h);
+          const half = Math.max(14, box.size * 0.055);
+          ctx.strokeRect(x - half - 0.5, y - half * 0.55 - 0.5, half * 2, half * 1.1);
+        }
+      },
+    };
+  })();
+
+  const exchange: Scene = (() => {
+    const ASSETS = 15;
+    const seeds = Array.from({ length: ASSETS }, () => [randn(), randn(), Math.random() * Math.PI * 2]);
+    const corr = new Float32Array(ASSETS * ASSETS);
+    return {
+      tick(t) {
+        const loadings = seeds.map(([a, b, phase]) => [a + 0.5 * Math.sin(t * 0.5 + phase), b + 0.5 * Math.cos(t * 0.4 + phase)]);
+        const norms = loadings.map(([a, b]) => Math.sqrt(a * a + b * b + 0.6));
+        for (let r = 0; r < ASSETS; r++) {
+          for (let c = 0; c < ASSETS; c++) {
+            corr[r * ASSETS + c] = r === c ? 1 : (loadings[r][0] * loadings[c][0] + loadings[r][1] * loadings[c][1]) / (norms[r] * norms[c]);
+          }
+        }
+      },
+      target(i, box) {
+        if (i >= ASSETS * ASSETS) return hidden(box);
+        const cell = box.size / ASSETS;
+        const strength = Math.abs(corr[i]);
+        return [
+          box.left + ((i % ASSETS) + 0.5) * cell,
+          box.top + (Math.floor(i / ASSETS) + 0.5) * cell,
+          Math.max(1.5, cell * 0.82 * Math.sqrt(strength)),
+          0.15 + 0.85 * strength,
+        ];
+      },
+    };
+  })();
+
+  const scenes = [research, training, industry, exchange];
+
+  const practice = document.querySelector<HTMLElement>('[data-practice]');
+  const sceneCanvas = practice?.querySelector<HTMLCanvasElement>('[data-scene]');
+
+  if (practice && sceneCanvas) {
+    const sticky = practice.querySelector<HTMLElement>('.practice-sticky')!;
+    const progressLabel = practice.querySelector<HTMLElement>('[data-progress]')!;
+    const parts = [...practice.querySelectorAll<HTMLElement>('[data-part]')];
+    const ctx = sceneCanvas.getContext('2d')!;
+    const current = Array.from({ length: PARTICLES }, (): Particle => [0, 0, 0, 0]);
+    const from = Array.from({ length: PARTICLES }, (): Particle => [0, 0, 0, 0]);
+    const delay = Array.from({ length: PARTICLES }, () => Math.random() * 0.35);
+    let view = fitCanvas(sceneCanvas, ctx);
+    let active = 0;
+    let morphStart = 0;
+    let clock = 0;
+
+    const boxFor = (t: number): Box => {
+      const size = Math.min(view.width, view.height) * 0.8;
+      return { left: (view.width - size) / 2, top: (view.height - size) / 2, size, t };
+    };
+
+    // The figure first assembles out of scattered dust.
+    const start = boxFor(0);
+    from.forEach((particle) => {
+      particle[0] = start.left + Math.random() * start.size;
+      particle[1] = start.top + Math.random() * start.size;
+    });
+
+    const draw = (time: number) => {
+      clock = time;
+      const scene = scenes[active];
+      const t = reduceMotion ? 10 : time;
+      const box = boxFor(t);
+      scene.tick?.(t);
+
+      ctx.clearRect(0, 0, view.width, view.height);
+      ctx.fillStyle = INK;
+      ctx.strokeStyle = INK;
+      ctx.lineWidth = 1;
+
+      for (let i = 0; i < PARTICLES; i++) {
+        const target = scene.target(i, box);
+        const progress = reduceMotion ? 1 : clamp((time - morphStart - delay[i]) / 1.1);
+        const k = 1 - (1 - progress) ** 4;
+        const particle = current[i];
+        for (let n = 0; n < 4; n++) particle[n] = from[i][n] + (target[n] - from[i][n]) * k;
+        if (particle[3] < 0.01 || particle[2] < 0.3) continue;
+        ctx.globalAlpha = particle[3];
+        ctx.fillRect(particle[0] - particle[2] / 2, particle[1] - particle[2] / 2, particle[2], particle[2]);
+      }
+
+      if (scene.decor) {
+        ctx.globalAlpha = 0.35 * (reduceMotion ? 1 : smoothstep(0.6, 1.4, time - morphStart));
+        scene.decor(ctx, box);
+      }
+      ctx.globalAlpha = 1;
+    };
+
+    const setActive = (index: number) => {
+      if (index !== active) {
+        current.forEach((particle, i) => from[i].splice(0, 4, ...particle));
+        active = index;
+        morphStart = clock;
+      }
+      for (const part of parts) {
+        const n = Number(part.dataset.part);
+        part.dataset.state = n === index ? 'active' : n < index ? 'past' : 'future';
+      }
+      if (reduceMotion) draw(0);
+    };
+
+    const scrollable = () => practice.offsetHeight - sticky.offsetHeight;
+    const update = () => {
+      const progress = clamp(-practice.getBoundingClientRect().top / scrollable());
+      practice.style.setProperty('--progress', progress.toFixed(4));
+      progressLabel.textContent = `t = ${progress.toFixed(2)}`;
+      setActive(Math.min(scenes.length - 1, Math.floor(progress * scenes.length)));
+    };
+
+    update();
+    window.addEventListener('scroll', update, { passive: true });
+    window.addEventListener('resize', update);
+
+    practice.querySelectorAll<HTMLButtonElement>('[data-tab]').forEach((tab) => {
+      tab.addEventListener('click', () => {
+        const top = practice.getBoundingClientRect().top + window.scrollY;
+        const step = scrollable() / scenes.length;
+        window.scrollTo({ top: top + step * (Number(tab.dataset.tab) + 0.5), behavior: reduceMotion ? 'auto' : 'smooth' });
+      });
+    });
+
+    new ResizeObserver(() => {
+      view = fitCanvas(sceneCanvas, ctx);
+      if (reduceMotion) draw(0);
+    }).observe(sceneCanvas);
+
+    if (!reduceMotion) {
+      // Start the clock (and the first assembly) when the section comes into view.
+      let started = false;
+      animateWhileVisible(practice, (time) => {
+        if (!started) {
+          started = true;
+          morphStart = time;
+        }
+        draw(time);
+      });
+    }
+  }
+
+  /* Hero recedes as the page scrolls; the closing line rises into view. */
+  if (!reduceMotion) {
+    const updateHero = () => {
+      if (hero) hero.style.setProperty('--hero-p', String(clamp(window.scrollY / hero.offsetHeight)));
+    };
+    updateHero();
+    window.addEventListener('scroll', updateHero, { passive: true });
+
+    const reveal = new IntersectionObserver((entries) => {
+      for (const entry of entries) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-in');
+          reveal.unobserve(entry.target);
+        }
+      }
+    }, { threshold: 0.3 });
+    document.querySelectorAll('[data-reveal]').forEach((element) => reveal.observe(element));
+  } else {
+    document.querySelectorAll('[data-reveal]').forEach((element) => element.classList.add('is-in'));
+  }
+</script>

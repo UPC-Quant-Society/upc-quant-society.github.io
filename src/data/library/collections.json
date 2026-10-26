@@ -292,6 +292,76 @@
         "ca": "Desplegament, pipelines, monitoratge i manteniment de models.",
         "en": "Deployment, pipelines, monitoring and model maintenance."
       }
+    },
+    {
+      "id": "statistical-learning",
+      "kind": "topic",
+      "area": "machine-learning",
+      "order": 39,
+      "name": {
+        "ca": "Aprenentatge estadístic",
+        "en": "Statistical learning"
+      },
+      "description": {
+        "ca": "Models estadístics d’aprenentatge, regularització i validació.",
+        "en": "Statistical learning models, regularisation and validation."
+      }
+    },
+    {
+      "id": "econometrics",
+      "kind": "topic",
+      "area": "econometrics-time-series",
+      "order": 41,
+      "name": {
+        "ca": "Econometria",
+        "en": "Econometrics"
+      },
+      "description": {
+        "ca": "Inferència causal, regressió i models econòmics aplicats.",
+        "en": "Causal inference, regression and applied economic models."
+      }
+    },
+    {
+      "id": "time-series",
+      "kind": "topic",
+      "area": "econometrics-time-series",
+      "order": 41,
+      "name": {
+        "ca": "Sèries temporals i predicció",
+        "en": "Time series and forecasting"
+      },
+      "description": {
+        "ca": "Models de sèries temporals i mètodes de predicció.",
+        "en": "Time series models and forecasting methods."
+      }
+    },
+    {
+      "id": "computational-economics",
+      "kind": "topic",
+      "area": "economics-macrofinance",
+      "order": 42,
+      "name": {
+        "ca": "Economia computacional",
+        "en": "Computational economics"
+      },
+      "description": {
+        "ca": "Mètodes numèrics i programació aplicats a l’economia.",
+        "en": "Numerical methods and programming applied to economics."
+      }
+    },
+    {
+      "id": "deep-learning",
+      "kind": "topic",
+      "area": "deep-learning-ai",
+      "order": 44,
+      "name": {
+        "ca": "Aprenentatge profund",
+        "en": "Deep learning"
+      },
+      "description": {
+        "ca": "Xarxes neuronals, optimització i arquitectures modernes.",
+        "en": "Neural networks, optimisation and modern architectures."
+      }
     }
   ]
 }
