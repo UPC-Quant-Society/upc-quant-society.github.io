@@ -22,6 +22,7 @@ const content = {
     list: 'Llista',
     map: 'Mapa',
     resources: 'recursos',
+    across: 'en',
     topics: 'temes',
     empty: 'Cap recurs coincideix amb la cerca.',
     columns: ['Recurs', 'Tipus', 'Nivell', 'Accés'],
@@ -38,6 +39,7 @@ const content = {
     list: 'List',
     map: 'Map',
     resources: 'resources',
+    across: 'in',
     topics: 'topics',
     empty: 'No resources match the search.',
     columns: ['Resource', 'Type', 'Level', 'Access'],
@@ -68,7 +70,7 @@ const levelRange = (levels: (keyof typeof content.levels)[]) => {
     </div>
 
     <p class="count">
-      <span data-count-resources>{total}</span> {content.resources} · <span data-count-topics>{groups.length}</span> {content.topics}
+      <span data-count-resources>{total}</span> {content.resources} {content.across} <span data-count-topics>{groups.length}</span> {content.topics}
     </p>
 
     <div data-panel="list">

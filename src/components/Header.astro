@@ -33,7 +33,7 @@ const currentPath = Astro.url.pathname;
     z-index: 100;
     top: 0;
     border-bottom: 1px solid rgba(21, 23, 28, 0.1);
-    background: rgba(247, 247, 247, 0.94);
+    background: rgba(255, 255, 255, 0.94);
   }
 
   .bar {
@@ -55,8 +55,7 @@ const currentPath = Astro.url.pathname;
   nav a {
     position: relative;
     color: #6b6e74;
-    font-size: 15px;
-    font-weight: 500;
+    font-size: 16px;
     transition: color 0.3s;
   }
 
@@ -72,7 +71,7 @@ const currentPath = Astro.url.pathname;
     left: -12px;
     width: 5px;
     height: 5px;
-    background: currentColor;
+    background: var(--accent);
     transform: translateY(-50%);
   }
 
@@ -103,7 +102,7 @@ const currentPath = Astro.url.pathname;
   }
 
   @media (max-width: 400px) {
-    .bar :global(.logo span) {
+    .bar :global(.logo .name) {
       display: none;
     }
   }
