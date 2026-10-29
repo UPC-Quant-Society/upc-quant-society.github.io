@@ -1,9 +1,11 @@
 :root {
   color-scheme: light;
-  --paper: #f7f7f7;
+  --paper: #ffffff;
   --ink: #15171c;
+  /* UPC corporate blue: the only accent, for links, active states and a stroke in a figure. */
+  --accent: #007bc0;
   --mono: 'IBM Plex Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
-  --sans: 'Instrument Sans', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --sans: 'IBM Plex Sans', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
 }
 
 * {
@@ -21,6 +23,7 @@ body {
   background: var(--paper);
   color: var(--ink);
   font-family: var(--sans);
+  font-size: 17px;
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
 }
